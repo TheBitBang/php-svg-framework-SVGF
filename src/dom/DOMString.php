@@ -3,8 +3,6 @@
 namespace b1t\dom;
 
 /**
- * DOMString.php
- *
  * This class implements the type DOMString as described in Document Object Model (DOM) Level 3 Core Specification.
  *
  * It ensures UTF-16 encoding for strings.
@@ -15,7 +13,7 @@ namespace b1t\dom;
  
 class DOMString {
 	 
-	/** @var string $dom_string Representation of a string according to DOM sepecification */
+	/** @var string $dom_string Representation of a string according to DOM specification */
 	private $dom_string;
 	
 	/**
