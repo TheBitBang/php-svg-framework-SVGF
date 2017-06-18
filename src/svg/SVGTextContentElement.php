@@ -5,6 +5,8 @@ namespace b1t\svg;
 use b1t\svgf\font\SVGFFont;
 
 /**
+ * SVGTextContentElement.php
+ *
  * This class implements the interface SVGTextContentElement as described in Document Object Model (DOM) Level 3 Core Specification.
  * 
  * Note: it is assumed that the class using this trait extends SVGObject which in turn extends \DOMElement
@@ -54,6 +56,11 @@ trait SVGTextContentElement {
 	public function getComputedTextLength()
 	{
 		// to-do: the effect of properties ‘kerning’, ‘letter-spacing’ and ‘word-spacing’ and adjustments due to attributes ‘dx’ and ‘dy’ on ‘tspan’ elements.
+		$fuente = '../Decker.ttf';
+		$bbox = imagettfbbox(12, 0, $fuente, $svg_text->nodeValue);
+		
+		$this->textLength = strlen($this->textContent); // the value is updated only when this function is called
+		return $this->textLength;
 	}	
 
 }
