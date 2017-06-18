@@ -5,7 +5,7 @@ namespace b1t\dom;
 /**
  * This class implements the type DOMString as described in Document Object Model (DOM) Level 3 Core Specification.
  *
- * It ensures UTF-16 encoding for strings.
+ * to-do: It ensures UTF-16 encoding for strings.
  *
  * @author	J. Xavier Atero
  * @link	https://www.w3.org/TR/DOM-Level-3-Core/core.html#DOMString 
@@ -28,7 +28,8 @@ class DOMString {
 	
 	public function setDOMString($input_string)
 	{
-		$this->dom_string = mb_convert_encoding($input_string, "UTF-16", "auto");
+//		$this->dom_string = mb_convert_encoding($input_string, "UTF-16", "auto");
+		$this->dom_string = $input_string;
 	}
 
 	public function getDOMString()
