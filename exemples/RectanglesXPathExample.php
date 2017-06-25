@@ -47,12 +47,12 @@ foreach ($matches as $match) {
 	}
 }		
 
-// perform search to round the corners of the rectangles multiple of 6
+// perform search to round the corners of the rectangles multiple of 19
 $matches = $xpath->query("//rect");
 foreach ($matches as $match) {
 	$id = $match->id;
 	if ($id % 19 == 0) 
-	{ // if id is a multiple of 6
+	{ // if id is a multiple of 19
 		$match->rx = 20;
 		$match->ry = 20;
 	}
