@@ -39,24 +39,29 @@ class SVGObject extends \DOMElement {
 		{	// the attribute does not belong to a namespace
 			$string_set_method_name = "set" . ucfirst($attribute_name);
 			if(!method_exists($this,$string_set_method_name))// {throw new \Exception("attribute : $attribute_name is not a valid SVG attribute for the element : $this->element_name");}
-{}else{
-			$call_to_user_func = array(get_class($this), $string_set_method_name);
-			switch ($attribute_name) 
 			{
-				case 'style': // convert attribute_value to CSSStyleDeclaration
-					$type_string = gettype('string');
-					if (gettype($attribute_value) == $type_string)
-					{ // if string convert to CSSStyleDeclaration
-						$css = new CSSStyleDeclaration();
-						$css->cssText = $attribute_value;
-						$attribute_value = $css;
-					}
-					break;		
+				// currently the unknown attributes will be added without any check
+				$this->setAttribute($attribute_name,$attribute_value); // set attribute in DOM
 			}
-			
-			call_user_func($call_to_user_func,$attribute_value);
-//			$this->setAttribute($attribute_name,$attribute_value); // set attribute in DOM (to_do: should not be needed here)
-}			
+			else
+			{
+					$call_to_user_func = array(get_class($this), $string_set_method_name);
+					switch ($attribute_name) 
+					{
+						case 'style': // convert attribute_value to CSSStyleDeclaration
+							$type_string = gettype('string');
+							if (gettype($attribute_value) == $type_string)
+							{ // if string convert to CSSStyleDeclaration
+								$css = new CSSStyleDeclaration();
+								$css->cssText = $attribute_value;
+								$attribute_value = $css;
+							}
+							break;		
+					}
+					
+					call_user_func($call_to_user_func,$attribute_value);
+//					$this->setAttribute($attribute_name,$attribute_value); // set attribute in DOM (to_do: should not be needed here)
+			}			
 		}
 		else
 		{

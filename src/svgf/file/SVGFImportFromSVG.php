@@ -91,7 +91,7 @@ class SVGFImportFromSVG {
 	
 	/**
 	 * Parses the XML constructing an array that contains the references to all the SVGObject created.
-	 * This array is craeated because if the SVGObject is directly appended with appendChild() after exiting this function it will be of type base DOMElement.
+	 * This array is created because if the SVGObject is directly appended with appendChild() after exiting this function it will be of type base DOMElement.
 	 *
 	 * @param \DOMElement $dom_element The XML element to add.
 	 * @param &object[] & $array_svg_objects Reference to the specific part of the array that will store the SVGObjects created inside this function.
@@ -108,6 +108,12 @@ class SVGFImportFromSVG {
 		$svg_object = new $name_class(self::$dom_doc_svg); // create element
 		$array_svg_objects['svg_object'] = $svg_object;
 		$array_svg_objects['children'] = array(); // if there are no children the array will be empty
+		
+		if ($element_name == 'svg')
+		{	// it seems that the xmlns is lost as an attribute when the file is read as \DOMDocument
+			$svg_object->xmlns = $dom_element->namespaceURI;
+		}
+
 		
 		foreach ($dom_element->attributes as $attribute)
 		{	// populate attributes
