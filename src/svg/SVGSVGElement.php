@@ -10,7 +10,7 @@ namespace b1t\svg;
  */
  
 class SVGSVGElement extends SVGObject {
-	
+
 	use SVGElement;
 	use SVGTests;
 	use SVGLangSpace;

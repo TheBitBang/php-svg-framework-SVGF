@@ -12,18 +12,18 @@ use b1t\dom\DOMString;
  */
  
 trait SVGElement {
-	
+
 	/** @var DOMString $id The value of the 'id' attribute on the given element, or the empty string if 'id' is not present. */
 	private $id;
-	
+
 	// set and get methods
-	
+
 	public function setId($id = '')
 	{
 		$this->id = new DOMString($id);
 		$this->setAttribute('id',$id); // set attribute in DOM
 	}
-	
+
 	public function getId()
 	{
 		return $this->id->getDOMString();
@@ -38,7 +38,7 @@ trait SVGElement {
 		$this->array_attributes_in_namespaces['xml'] = new DOMString($xml_base);
 		$this->setAttribute('xml:base',$xml_base); // set attribute in DOM
 	}
-	
+
 	public function getXMLBase()
 	{
 		return $this->array_attributes_in_namespaces['xml']->getDOMString(); // no need to check if it exists since it should always be set

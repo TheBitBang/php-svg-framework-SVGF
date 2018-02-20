@@ -13,7 +13,7 @@ use b1t\svg\SVGRectElement;
  */
  
 class SVGUtils {
-	
+
 	const SIZE_A0 = array('mm', '841', '1189');
 	const SIZE_A1 = array('mm', '594', '841');
 	const SIZE_A2 = array('mm', '420', '594');
@@ -36,14 +36,14 @@ class SVGUtils {
 	const SIZE_QHD = array('px', '1440', '2560');
 	const SIZE_UHD = array('px', '2160', '3840');
 	const SIZE_8K = array('px', '4320', '7680');
-	
+
 	public static function svg($dom_doc, $id = null, $const_size = self::SIZE_A4, $orientation = 'landscape')
 	{
 
 		$svg_svg = new SVGSVGElement($dom_doc);
 		
 		$units = $const_size[0];
-		
+
 		if ($orientation == 'portrait')
 		{	// portrait orientation
 			$width = $const_size[1];
@@ -54,7 +54,7 @@ class SVGUtils {
 			$width = $const_size[2];
 			$height = $const_size[1];
 		}
-		
+
 		$svg_svg->setWidth($width . $units);
 		$svg_svg->setHeight($height . $units);
 		$svg_svg->setViewBox('0 0 ' . $width . ' ' . $height);
@@ -63,11 +63,11 @@ class SVGUtils {
 		$variable = $item ?: NULL;
 		
 		// add properties if the strings are not empty
-		if (isset($id))	{$svg_svg->id = $id;}
+		if (isset($id)) {$svg_svg->id = $id;}
 
-		return $svg_svg;	
+		return $svg_svg;
 	}
-	
+
 	public static function rect($dom_doc_svg, $width, $height, $id = null , $x = '0', $y = '0', $rx = null, $ry = null, $style_fill = null, $style_stroke = null, $style_stroke_width = null)
 	{
 
@@ -78,16 +78,16 @@ class SVGUtils {
 		$svg_rect->y = $y;
 
 		// add properties if the strings are not empty
-		if (isset($id))	{$svg_rect->id = $id;}
-		if (isset($rx))	{$svg_rect->rx = $rx;}
-		if (isset($ry))	{$svg_rect->ry = $ry;}
-		if (isset($style_fill))	{$svg_rect->style->setProperty('fill',$style_fill,'');}
-		if (isset($style_stroke))	{$svg_rect->style->setProperty('stroke',$style_stroke,'');}
-		if (isset($style_stroke_width))	{$svg_rect->style->setProperty('stroke-width',$style_stroke_width,'');}
-		
-		return $svg_rect;	
-	}	
-	
+		if (isset($id)) {$svg_rect->id = $id;}
+		if (isset($rx)) {$svg_rect->rx = $rx;}
+		if (isset($ry)) {$svg_rect->ry = $ry;}
+		if (isset($style_fill)) {$svg_rect->style->setProperty('fill',$style_fill,'');}
+		if (isset($style_stroke)) {$svg_rect->style->setProperty('stroke',$style_stroke,'');}
+		if (isset($style_stroke_width)) {$svg_rect->style->setProperty('stroke-width',$style_stroke_width,'');}
+
+		return $svg_rect;
+	}
+
 	public static function circle($dom_doc_svg, $r, $id = null , $cx = '0', $cy = '0', $style_fill = null, $style_stroke = null, $style_stroke_width = null)
 	{
 
@@ -95,14 +95,14 @@ class SVGUtils {
 		$svg_circle->r = $r;
 
 		// add properties if the strings are not empty
-		if (isset($id))	{$svg_circle->id = $id;}
-		if (isset($cx))	{$svg_circle->cx = $cx;}
-		if (isset($cy))	{$svg_circle->cy = $cy;}
-		if (isset($style_fill))	{$svg_circle->style->setProperty('fill',$style_fill,'');}
-		if (isset($style_stroke))	{$svg_circle->style->setProperty('stroke',$style_stroke,'');}
-		if (isset($style_stroke_width))	{$svg_circle->style->setProperty('stroke-width',$style_stroke_width,'');}
-		
+		if (isset($id)) {$svg_circle->id = $id;}
+		if (isset($cx)) {$svg_circle->cx = $cx;}
+		if (isset($cy)) {$svg_circle->cy = $cy;}
+		if (isset($style_fill)) {$svg_circle->style->setProperty('fill',$style_fill,'');}
+		if (isset($style_stroke)) {$svg_circle->style->setProperty('stroke',$style_stroke,'');}
+		if (isset($style_stroke_width)) {$svg_circle->style->setProperty('stroke-width',$style_stroke_width,'');}
+
 		return $svg_circle;	
-	}		
-	
+	}
+
  }

@@ -68,5 +68,5 @@ class SVGCircleElement extends SVGObject {
 	public function getR()
 	{
 		return $this->r;
-	}	
+	}
 }

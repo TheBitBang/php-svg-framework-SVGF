@@ -16,7 +16,7 @@ class SVGPolylineElement extends SVGObject {
 	use SVGLangSpace;
 	use SVGExternalResourcesRequired;
 	use SVGStylable;
-	use SVGTransformable;	
+	use SVGTransformable;
 	use SVGAnimatedPoints;
 	
 	public function __construct($dom_doc_svg)

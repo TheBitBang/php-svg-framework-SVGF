@@ -17,8 +17,8 @@ class SVGAnimatedEnumeration {
 	/** @var readonly unsigned short $animVal If the given attribute or property is being animated, contains the current animated value of the attribute or property. If the given attribute or property is not currently being animated, contains the same value as baseVal. */
 	private $animVal = null;
 
-	// set and get methods	
-	
+	// set and get methods
+
 	public function setBaseVal($baseVal)
 	{
 		$this->baseVal = $baseVal;
@@ -27,23 +27,23 @@ class SVGAnimatedEnumeration {
 			$this->animVal = $this->baseVal;
 		}
 	}
-	
+
 	public function getBaseVal()
 	{
 		return $this->baseVal;
 	}
-	
+
 	public function setAnimVal($animVal)
 	{
 		$this->animVal = $animVal;
 		if ($animVal == null)
 		{ //  If the given attribute or property is not currently being animated, contains the same value as baseVal.
 			$this->animVal = $this->baseVal;
-		}		
+		}
 	}
-	
+
 	public function getAnimVal()
 	{
 		return $this->animVal;
-	}	
+	}
 }

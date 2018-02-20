@@ -15,7 +15,7 @@ class CSSStyleDeclaration {
 
 	/** @var DOMString $cssText The parsable textual representation of the declaration block (excluding the surrounding curly braces). Setting this attribute will result in the parsing of the new value and resetting of all the properties in the declaration block including the removal or addition of properties. */
 	private $cssText;
-	
+
 	/** @var unsigned long $length The number of properties that have been explicitly set in this declaration block. The range of valid indices is 0 to length-1 inclusive. */
 	private $length;
 
@@ -49,7 +49,7 @@ class CSSStyleDeclaration {
 			$this->dom_element_associated = $dom_element_associated;
 		}
 	}
-	
+
 	/**
 	 * Used to retrieve the value of a CSS property if it has been explicitly set within this declaration block.
 	 *
@@ -87,7 +87,7 @@ class CSSStyleDeclaration {
 	{
 		unser($this->array_properties_values[$propertyName]);
 	}
-	
+
 	/**
 	 * Used to retrieve the priority of a CSS property (e.g. the "important" qualifier) if the property has been explicitly set in this declaration block..
 	 *
@@ -132,7 +132,7 @@ class CSSStyleDeclaration {
 		$keys = array_keys($this->array_properties_values);
 		return $keys[$index];
 	}
-	
+
 	/**
 	 * Sets the value of an attribute.
 	 *
@@ -149,25 +149,25 @@ class CSSStyleDeclaration {
 		$call_to_user_func = array(get_class($this), $string_set_method_name);
 		call_user_func($call_to_user_func,$attribute_value);
 	}
-	
+
 	/**
 	 * Returns the value of the specified attribute.
 	 *
 	 * @param string $attribute_name The name of the attribute.
 	 *
-	 * @return value of the attributre.
+	 * @return value of the attribute.
 	 *
 	 * @throws Exception if wrong syntax.
 	 * @throws Exception if the attribute does not exist.
-	 */	
+	 */
 	public function __get($attribute_name)
 	{
 		$string_get_method_name = "get" . ucfirst($attribute_name);
 		if(!method_exists($this,$string_get_method_name)) {throw new \Exception("attribute : $attribute_name is not a valid attribute for this class");}
 		$call_to_user_func = array(get_class($this), $string_get_method_name);
 		return call_user_func($call_to_user_func,$attribute_value);
-	}	
-	
+	}
+
 	// set and get methods
 
 	private function setCssText($cssText)
@@ -186,7 +186,7 @@ class CSSStyleDeclaration {
 		}	
 		$this->cssText = $cssText;
 	}
-	
+
 	private function getCssText()
 	{
 		$this->cssText = '';
@@ -197,5 +197,5 @@ class CSSStyleDeclaration {
 
 		return $this->cssText;
 	}
-	
+
  }
