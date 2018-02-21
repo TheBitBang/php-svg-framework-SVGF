@@ -2,6 +2,22 @@
 
 namespace b1t\svgf\xsvg;
 
+use b1t\svg\SVGPathSegClosePath;
+use b1t\svg\SVGPathSegMovetoAbs;
+use b1t\svg\SVGPathSegMovetoRel;
+use b1t\svg\SVGPathSegLinetoAbs;
+use b1t\svg\SVGPathSegLinetoRel;
+use b1t\svg\SVGPathSegCurvetoCubicAbs;
+use b1t\svg\SVGPathSegCurvetoCubicRel;
+use b1t\svg\SVGPathSegArcAbs;
+use b1t\svg\SVGPathSegArcRel;
+use b1t\svg\SVGPathSegLinetoHorizontalAbs;
+use b1t\svg\SVGPathSegLinetoHorizontalRel;
+use b1t\svg\SVGPathSegLinetoVerticalAbs;
+use b1t\svg\SVGPathSegLinetoVerticalRel;
+use b1t\svg\SVGPathSegCurvetoQuadraticSmoothAbs;
+use b1t\svg\SVGPathSegCurvetoQuadraticSmoothRel;
+
 /**
  * This class contains an extended implementation for the SVGPathData.
  *
@@ -24,7 +40,9 @@ class SVGPathData {
 		$path_data = '';
 		foreach ($this->array_path_data as $command) 
 		{
-			$path_data = $path_data . $command->getCommand() . ' ';
+			$segTypeAsLetter = $command->getPathSegTypeAsLetter();
+			$segData = ($segTypeAsLetter == 'z') ? '' :  $command->getData();
+			$path_data = $path_data . $segTypeAsLetter . ' ' . $segData . ' ' ;
 		}
 
 		return trim($path_data);
@@ -52,47 +70,45 @@ class SVGPathData {
 		$is_match = preg_match('/(' . $regex_command_first . $regex_command_mixed . $regex_command_last .')+/', $data, $matches);
 		if(!$is_match) {throw new \Exception("Wrong syntax for path_data '$data");}
 
-		// split in commands
+		// split in path segments
 		$array_commands = preg_split('/([M|m|L|l|H|h|V|v|C|c|S|s|Q|q|T|t|A|a][$n+, ]+|[Z|z][ ]*)/', $data, -1, PREG_SPLIT_DELIM_CAPTURE | PREG_SPLIT_NO_EMPTY);
 
 		for ($i=0;$i<count($array_commands);$i++) {
-			$commandType = trim($array_commands[$i]);
-			switch ($commandType){
-				case 'm':
+			$pathSegType = trim($array_commands[$i]);
+			switch ($pathSegType){
 				case 'M':
+				case 'm':
 					$i++;
-					$commandValue = trim($array_commands[$i]);
-					$this->processCommandM($commandType,$commandValue);
+					$pathSegData = trim($array_commands[$i]);
+					$this->processPathSegM($pathSegType,$pathSegData);
 					break;
 				case 'Z':
-					$this->array_path_data[] = new SVGPathDataCommandZ(true);
-					break;
 				case 'z':
-					$this->array_path_data[] = new SVGPathDataCommandZ(false);
+					$this->array_path_data[] = new SVGPathSegClosePath();
 					break;
 				case 'L':
 				case 'l':
 					$i++;
-					$commandValue = trim($array_commands[$i]);
-					$this->processCommandL($commandType,$commandValue);
+					$pathSegData = trim($array_commands[$i]);
+					$this->processPathSegL($pathSegType,$pathSegData);
 					break;
 				case 'H':
 				case 'h':
 					$i++;
-					$commandValue = trim($array_commands[$i]);
-					$this->processCommandH($commandType,$commandValue);
+					$pathSegData = trim($array_commands[$i]);
+					$this->processPathSegH($pathSegType,$pathSegData);
 					break;
 				case 'V':
 				case 'v':
 					$i++;
-					$commandValue = trim($array_commands[$i]);
-					$this->processCommandV($commandType,$commandValue);
+					$pathSegData = trim($array_commands[$i]);
+					$this->processPathSegV($pathSegType,$pathSegData);
 					break;
 				case 'C':
 				case 'c':
 					$i++;
-					$commandValue = trim($array_commands[$i]);
-					$this->processCommandC($commandType,$commandValue);
+					$pathSegData = trim($array_commands[$i]);
+					$this->processPathSegC($pathSegType,$pathSegData);
 					break;
 				case 'S':
 				case 's':
@@ -101,147 +117,146 @@ class SVGPathData {
 					break;
 				case 'T':
 				case 't':
-					$commandValue = trim($array_commands[$i]);
-					$this->processCommandL($commandType,$commandValue);
+					$pathSegData = trim($array_commands[$i]);
+					$this->processPathSegL($pathSegType,$pathSegData);
 					break;
 				case 'A':
 				case 'a':
 					$i++;
-					$commandValue = trim($array_commands[$i]);
-					$this->processCommandA($commandType,$commandValue);
+					$pathSegData = trim($array_commands[$i]);
+					$this->processPathSegA($pathSegType,$pathSegData);
 					break;
 			}
 		}
 	}
 
-	private function processCommandM($commandType, $commandValue)
+	private function processPathSegM($pathSegType, $pathSegData)
 	{
-		// split in commands
-		$array_values = array_values(array_filter(explode(' ',$commandValue),'self::filterNumeric'));
+		// split in path segments
+		$array_values = array_values(array_filter(explode(' ',$pathSegData),'self::filterNumeric'));
 
 		// the first value corresponds to an M or m
-		if ($commandType == 'M') {
-			$this->array_path_data[] = new SVGPathDataCommandM(true,$array_values[0]);
+		if ($pathSegType == 'M') {
+			$pathSeg = new SVGPathSegMovetoAbs();
 		} else { // 'm'
-			$this->array_path_data[] = new SVGPathDataCommandM(false,$array_values[0]);
+			$pathSeg = new SVGPathSegMovetoRel();
 		}
+		$pathSeg->setData($array_values[0]);
+		$this->array_path_data[] = $pathSeg;
 
 		// the next values correspond to L or l (non-visible)
 		for ($i=1;$i<count($array_values);$i++) {
-			if ($commandType == 'M') {
-				$this->array_path_data[] = new SVGPathDataCommandL(true,$array_values[$i],false);
+			if ($pathSegType == 'M') {
+				$pathSeg = new SVGPathSegLinetoAbs();
 			} else { // 'm'
-				$this->array_path_data[] = new SVGPathDataCommandL(false,$array_values[$i],false);
+				$pathSeg = new SVGPathSegLinetoRel();
 			}
+			$pathSeg->setData($array_values[$i]);
+			$this->array_path_data[] = $pathSeg;
 		}
 	}
 
-	private function processCommandL($commandType, $commandValue)
+	private function processPathSegL($pathSegType, $pathSegData)
 	{
-		// split in commands
-		$array_values = array_values(array_filter(explode(' ',$commandValue),'self::filterNumeric'));
+		// split in path segments
+		$array_values = array_values(array_filter(explode(' ',$pathSegData),'self::filterNumeric'));
 
-		// the first value corresponds to an L or l (visible)
-		if ($commandType == 'L') {
-			$this->array_path_data[] = new SVGPathDataCommandL(true,$array_values[0]);
-		} else { // 'l'
-			$this->array_path_data[] = new SVGPathDataCommandL(false,$array_values[0]);
-		}
-
-		// the next values correspond to L or l (non-visible)
-		for ($i=1;$i<count($array_values);$i++) {
-			if ($commandType == 'L') {
-				$this->array_path_data[] = new SVGPathDataCommandL(true,$array_values[$i],false);
+		// create path segments
+		for ($i=0;$i<count($array_values);$i++) {
+			if ($pathSegType == 'L') {
+				$pathSeg = new SVGPathSegLinetoAbs();
 			} else { // 'l'
-				$this->array_path_data[] = new SVGPathDataCommandL(false,$array_values[$i],false);
+				$pathSeg = new SVGPathSegLinetoRel();
 			}
+			$pathSeg->setData($array_values[$i]);
+			$this->array_path_data[] = $pathSeg;
 		}
 	}
 
-	private function processCommandH($commandType, $commandValue)
+	private function processPathSegH($pathSegType, $pathSegData)
 	{
-		// split in commands
-		$array_values = array_values(array_filter(explode(' ',$commandValue),'self::filterNumeric'));
+		// split in path segments
+		$array_values = array_values(array_filter(explode(' ',$pathSegData),'self::filterNumeric'));
 
-		// the first value corresponds to an H or h
-		if ($commandType == 'H') {
-			$this->array_path_data[] = new SVGPathDataCommandH(true,$array_values[0]);
-		} else { // 'h'
-			$this->array_path_data[] = new SVGPathDataCommandH(false,$array_values[0]);
+		// create path segments
+		for ($i=0;$i<count($array_values);$i++) {
+			if ($pathSegType == 'H') {
+				$pathSeg = new SVGPathSegLinetoHorizontalAbs();
+			} else { // 'h'
+				$pathSeg = new SVGPathSegLinetoHorizontalRel();
+			}
+			$pathSeg->setData($array_values[$i]);
+			$this->array_path_data[] = $pathSeg;
 		}
 	}
 
-	private function processCommandV($commandType, $commandValue)
+	private function processPathSegV($pathSegType, $pathSegData)
 	{
-		// split in commands
-		$array_values = array_values(array_filter(explode(' ',$commandValue),'self::filterNumeric'));
+		// split in path segments
+		$array_values = array_values(array_filter(explode(' ',$pathSegData),'self::filterNumeric'));
 
-		// the first value corresponds to an V or v
-		if ($commandType == 'V') {
-			$this->array_path_data[] = new SVGPathDataCommandV(true,$array_values[0]);
-		} else { // 'v'
-			$this->array_path_data[] = new SVGPathDataCommandV(false,$array_values[0]);
+		// create path segments
+		for ($i=0;$i<count($array_values);$i++) {
+			if ($pathSegType == 'V') {
+				$pathSeg = new SVGPathSegLinetoVerticalAbs();
+			} else { // 'v'
+				$pathSeg = new SVGPathSegLinetoVerticalRel();
+			}
+			$pathSeg->setData($array_values[$i]);
+			$this->array_path_data[] = $pathSeg;
 		}
 	}
 
-	private function processCommandC($commandType, $commandValue)
+	private function processPathSegC($pathSegType, $pathSegData)
 	{
-		// split in commands
-		$array_values = array_values(array_filter(explode(' ',$commandValue),'self::filterNumeric'));
+		// split in path segments
+		$array_values = array_values(array_filter(explode(' ',$pathSegData),'self::filterNumeric'));
 
-		// the first value corresponds to an C or c (visible)
-		$data = $array_values[0] . ' ' . $array_values[1] . ' ' . $array_values[2] . ' ';
-		if ($commandType == 'C') {
-			$this->array_path_data[] = new SVGPathDataCommandC(true,$data);
-		} else { // 'c'
-			$this->array_path_data[] = new SVGPathDataCommandC(false,$data);
-		}
-
-		// the next values correspond to C or c (non-visible)
-		for ($i=3;$i<count($array_values);$i=$i+3) {
+		// create path segments
+		for ($i=0;$i<count($array_values);$i=$i+3) {
 			$data = $array_values[$i] . ' ' . $array_values[$i+1] . ' ' . $array_values[$i+2] . ' ';
-			if ($commandType == 'C') {
-				$this->array_path_data[] = new SVGPathDataCommandC(true,$data,false);
+			if ($pathSegType == 'C') {
+				$pathSeg = new SVGPathSegCurvetoCubicAbs();
 			} else { // 'c'
-				$this->array_path_data[] = new SVGPathDataCommandC(false,$data,false);
+				$pathSeg = new SVGPathSegCurvetoCubicRel();
 			}
+			$pathSeg->setData($data);
+			$this->array_path_data[] = $pathSeg;
 		}
 	}
 
-	private function processCommandT($commandType, $commandValue)
+	private function processPathSegT($pathSegType, $pathSegData)
 	{
-		// split in commands
-		$array_values = array_values(array_filter(explode(' ',$commandValue),'self::filterNumeric'));
+		// split in path segments
+		$array_values = array_values(array_filter(explode(' ',$pathSegData),'self::filterNumeric'));
 
-		// the first value corresponds to an T or t
-		if ($commandType == 'T') {
-			$this->array_path_data[] = new SVGPathDataCommandT(true,$array_values[0]);
-		} else { // 't'
-			$this->array_path_data[] = new SVGPathDataCommandT(false,$array_values[0]);
+		// create path segments
+		for ($i=0;$i<count($array_values);$i++) {
+			if ($pathSegType == 'T') {
+				$pathSeg = new SVGPathSegCurvetoQuadraticSmoothAbs();
+			} else { // 't'
+				$pathSeg = new SVGPathSegCurvetoQuadraticSmoothRel();
+			}
+			$pathSeg->setData($array_values[$i]);
+			$this->array_path_data[] = $pathSeg;
 		}
 	}
 
-	private function processCommandA($commandType, $commandValue)
+	private function processPathSegA($pathSegType, $pathSegData)
 	{
-		// split in commands
-		$array_values = array_values(array_filter(explode(' ',$commandValue),'self::filterNumeric'));
- 
-		// the first value corresponds to an A or a (visible)
-		$data = $array_values[0] . ' ' . $array_values[1] . ' ' . $array_values[2] . ' ' . $array_values[3] . ' ' . $array_values[4] . ' ';
-		if ($commandType == 'A') {
-			$this->array_path_data[] = new SVGPathDataCommandA(true,$data);
-		} else {
-			$this->array_path_data[] = new SVGPathDataCommandA(false,$data);
-		}
+		// split in path segments
+		$array_values = array_values(array_filter(explode(' ',$pathSegData),'self::filterNumeric'));
 
-		// the next values correspond to A or a (non-visible)
-		for ($i=5;$i<count($array_values);$i=$i+5) {
+		// create path segments
+		for ($i=0;$i<count($array_values);$i=$i+5) {
 			$data = $array_values[$i] . ' ' . $array_values[$i+1] . ' ' . $array_values[$i+2] . ' ' . $array_values[$i+3] . ' ' . $array_values[$i+4] . ' ';
-			if ($commandType == 'A') {
-				$this->array_path_data[] = new SVGPathDataCommandA(true,$data,false);
+			if ($pathSegType == 'A') {
+				$pathSeg = new SVGPathSegArcAbs();
 			} else { // 'a'
-				$this->array_path_data[] = new SVGPathDataCommandA(false,$data,false);
+				$pathSeg = new SVGPathSegArcRel();
 			}
+			$pathSeg->setData($data);
+			$this->array_path_data[] = $pathSeg;
 		}
 	}
 

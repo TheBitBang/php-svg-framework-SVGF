@@ -10,13 +10,13 @@ namespace b1t\svg;
  */
  
 class SVGMarkerElement extends SVGObject {
-	
+
 	use SVGElement;
 	use SVGLangSpace;
 	use SVGExternalResourcesRequired;
 	use SVGStylable;
 	use SVGFitToViewBox;
-	
+
 	// Marker Unit Types
 	const SVG_MARKERUNITS_UNKNOWN = 0;
 	const SVG_MARKERUNITS_USERSPACEONUSE = 1;
@@ -25,7 +25,7 @@ class SVGMarkerElement extends SVGObject {
 	// Marker Orientation Types
 	const SVG_MARKER_ORIENT_UNKNOWN = 0;
 	const SVG_MARKER_ORIENT_AUTO = 1;
-	const SVG_MARKER_ORIENT_ANGLE = 2;	
+	const SVG_MARKER_ORIENT_ANGLE = 2;
 
 	/** @var SVGAnimatedLength $refX Corresponds to attribute 'refX' on the given 'marker' element. */
 	private $refX;
@@ -54,14 +54,14 @@ class SVGMarkerElement extends SVGObject {
 		$this->markerUnits = new SVGAnimatedEnumeration(); 
 		$this->orientType = new SVGAnimatedEnumeration();
 		
-		// set the default values		
+		// set the default values
 		$this->markerUnits->setBaseVal(self::SVG_MARKERUNITS_UNKNOWN);
 		$this->orientType->setBaseVal(self::SVG_MARKER_ORIENT_UNKNOWN);
 		
 		parent::__construct($dom_doc_svg,'marker');
 	}
 	
-	// set and get methods	
+	// set and get methods
 	
 	public function setRefX($refX)
 	{
@@ -69,7 +69,7 @@ class SVGMarkerElement extends SVGObject {
 		$this->refX = $refX;
 		$this->setAttribute('refX',$refX); // set attribute in DOM
 	}
-	
+
 	public function getRefX()
 	{
 		return $this->refX;

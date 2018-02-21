@@ -4,6 +4,8 @@ namespace b1t\svgf\utils;
 
 use b1t\svg\SVGGElement;
 use b1t\svg\SVGPathElement;
+use b1t\svg\SVGPathSeg;
+use b1t\svg\SVGPathSegMovetoAbs;
 use b1t\svgf\xsvg\SVGPathData;
 
 
@@ -32,34 +34,42 @@ class SVGPathDataUtils {
 
 		// process path data
 		foreach($array_commands as $command) {
-			$command->makeVisible(); // to simplify the calculations. This way only Moveto command needs to be changed to absolute coordinates
-			$commandType = $command->getCommandType();
-			if ($commandType == 'M' || $commandType == 'm') {
+			$segTypeAsLetter = $command->getPathSegTypeAsLetter();
+			$segData = ($segTypeAsLetter == 'z') ? '' :  $command->getData();
+			if ($segTypeAsLetter == 'M' || $segTypeAsLetter == 'm') {
 				if ($i_d != '') {
 					$svg_path_new = clone $svg_path; // create new path data
 					$svg_path_new->setD($i_d);
 					$svg_g->appendChild($svg_path_new);
+					if ($segTypeAsLetter == 'm') {
+						$pathSeg = new SVGPathSegMovetoAbs();
+						$x = $command->getX();
+						$y = $command->getY();
+						$pathSeg->setX($x + $x_abs);
+						$pathSeg->setY($y + $y_abs);
+						$segTypeAsLetter = $pathSeg->getPathSegTypeAsLetter();
+						$segData = $pathSeg->getData();
+					}
 				}
-				$command->makeAbsoulte($x_abs,$y_abs); // make the start of the new path absolute
-				$i_d = $command->getCommand();
+				$i_d = $segTypeAsLetter . ' ' . $segData;
 			} else {
-				$i_d = $i_d . ' ' . $command->getCommand(); // add to path
+				$i_d = $i_d . ' ' . $segTypeAsLetter . ' ' . $segData; // add to path
 			}
 
 			// trace absolute coordinates
-			if ($command->getCommandType() != 'Z' && $command->getCommandType() != 'z') {
-				if ($command->isAbsolute()) {
-					if ($command->getCommandType() != 'V' && $command->getCommandType() != 'v') {
+			if ($command->getPathSegTypeAsLetter() != 'z') {
+				if ($command->getPathSegType() % 2 == 0) { // is absolute 
+					if ($command->getPathSegTypeAsLetter() != 'V') {
 						$x_abs = $command->getX();
 					}
-					if ($command->getCommandType() != 'H' && $command->getCommandType() != 'h') {
+					if ($command->getPathSegTypeAsLetter() != 'H') {
 						$y_abs = $command->getY();
 					}
 				} else {
-					if ($command->getCommandType() != 'V' && $command->getCommandType() != 'v') {
+					if ($command->getPathSegTypeAsLetter() != 'v') {
 						$x_abs = $x_abs + $command->getX();
 					}
-					if ($command->getCommandType() != 'H' && $command->getCommandType() != 'h') {
+					if ($command->getPathSegTypeAsLetter() != 'h') {
 						$y_abs = $y_abs + $command->getY();
 					}
 				}
