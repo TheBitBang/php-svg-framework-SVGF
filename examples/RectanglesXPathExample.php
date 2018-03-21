@@ -30,22 +30,22 @@ for ($i=100; $i<620; $i=$i+82) {
 // get the DOM representation
 $xpath = new \DOMXPath($dom_doc_svg);
 
-// perform search to change stroke color of the rectangles in the diagonal to red 
+// perform search to change stroke color of the rectangles in the diagonal to #ad3d45
 $matches = $xpath->query("//rect[@x=@y]");
 foreach ($matches as $match) {
-	$match->style->setProperty('stroke','#ff0000','');
+	$match->style->setProperty('stroke','#ad3d45','');
 	$match->style->setProperty('stroke-width','5','');
-}		
+}
 
-// perform search to change fill color of the rectangles multiple of 4 to blue
+// perform search to change fill color of the rectangles multiple of 4 to #d9737a
 $matches = $xpath->query("//rect");
 foreach ($matches as $match) {
 	$id = $match->id;
 	if ($id % 4 == 0) 
 	{ // if id is a multiple of 4
-		$match->style->setProperty('fill','#0000ff','');
+		$match->style->setProperty('fill','#d9737a','');
 	}
-}		
+}
 
 // perform search to round the corners of the rectangles multiple of 19
 $matches = $xpath->query("//rect");
@@ -56,12 +56,12 @@ foreach ($matches as $match) {
 		$match->rx = 20;
 		$match->ry = 20;
 	}
-}		
+}
 
-// perform search to change fill color of the rectangle number 10 to green
+// perform search to change fill color of the rectangle number 10 to ruby red
 $matches = $xpath->query("//rect[@id='10']");
 foreach ($matches as $match) {
-	$match->style->setProperty('fill','green','');
+	$match->style->setProperty('fill','#861a22','');
 }
 
 $txt_svg = $dom_doc_svg->saveXML();
