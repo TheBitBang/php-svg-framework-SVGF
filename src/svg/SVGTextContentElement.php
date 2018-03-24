@@ -16,24 +16,24 @@ use b1t\svgf\font\SVGFFont;
  */
  
 trait SVGTextContentElement {
-	
+
 	use SVGElement;
 	use SVGTests;
 	use SVGLangSpace;
 	use SVGExternalResourcesRequired;
 	use SVGStylable;
-	
+
 	// lengthAdjust Types (Traits cannot have constants)
 	static $const_LENGTHADJUST_UNKNOWN = 0;
 	static $const_LENGTHADJUST_SPACING = 1;
-	static $const_LENGTHADJUST_SPACINGANDGLYPHS = 2;		
-	
+	static $const_LENGTHADJUST_SPACINGANDGLYPHS = 2;
+
 	/** @var SVGAnimatedLengthList $textLength Corresponds to attribute 'textLength' on the given element. */
 	private $textLength;
 	
 	/** @var SVGAnimatedEnumeration $lengthAdjust corresponds to attribute 'lengthAdjust' on the given element. The value must be one of the length adjust constants defined on this interface. */
 	private $lengthAdjust;
-	
+
 	/**
 	 * Returns the total number of characters available for rendering within the current element, which includes referenced characters from ‘tref’ reference, regardless of whether they will be rendered.
 	 * Effectively, this is equivalent to the length of the Node::textContent attribute from DOM Level 3 Core ([DOM3], section 1.4), if that attribute also expanded ‘tref’ elements.
@@ -45,7 +45,7 @@ trait SVGTextContentElement {
 		$this->textLength = strlen($this->textContent); // the value is updated only when this function is called
 		return $this->textLength;
 	}
-	
+
 	/**
 	 * The total sum of all of the advance values from rendering all of the characters within this element, including the advance value on the glyphs (horizontal or vertical),
 	 * the effect of properties ‘kerning’, ‘letter-spacing’ and ‘word-spacing’ and adjustments due to attributes ‘dx’ and ‘dy’ on ‘tspan’ elements.
@@ -61,6 +61,6 @@ trait SVGTextContentElement {
 		
 		$this->textLength = strlen($this->textContent); // the value is updated only when this function is called
 		return $this->textLength;
-	}	
+	}
 
 }

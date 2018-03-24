@@ -10,21 +10,21 @@ namespace b1t\svg;
  */
  
 trait SVGTextPositioningElement {
-	
-	use SVGTextContentElement;	
-	
+
+	use SVGTextContentElement;
+
 	/** @var SVGAnimatedLengthList $x Corresponds to attribute 'x' on the given element. */
 	private $x;
-	
+
 	/** @var SVGAnimatedLengthList $y Corresponds to attribute 'y' on the given element. */
 	private $y;
 
 	/** @var SVGAnimatedLengthList $dx Corresponds to attribute 'dx' on the given element. */
 	private $dx;
-	
+
 	/** @var SVGAnimatedLengthList $dy Corresponds to attribute 'dx' on the given element. */
 	private $dy;
-	
+
 	/** @var SVGAnimatedLengthList $rotate Corresponds to attribute 'rotate' on the given element. */
 	private $rotate;
 
@@ -36,19 +36,19 @@ trait SVGTextPositioningElement {
 		$this->x = $x;
 		$this->setAttribute('x',$x); // set attribute in DOM
 	}
-	
+
 	public function getX()
 	{
 		return $this->x;
 	}
-	
+
 	public function setY($y)
 	{
 		// to-do: SVGAnimatedLengthList
 		$this->y = $y;
 		$this->setAttribute('y',$y); // set attribute in DOM
 	}
-	
+
 	public function getY()
 	{
 		return $this->y;
@@ -60,19 +60,19 @@ trait SVGTextPositioningElement {
 		$this->dx = $dx;
 		$this->setAttribute('dx',$dx); // set attribute in DOM
 	}
-	
+
 	public function getDx()
 	{
 		return $this->dx;
 	}
-	
+
 	public function setDy($dy)
 	{
 		// to-do: SVGAnimatedLengthList
 		$this->dy = $dy;
 		$this->setAttribute('dy',$dy); // set attribute in DOM
 	}
-	
+
 	public function getDy()
 	{
 		return $this->dy;
@@ -84,7 +84,7 @@ trait SVGTextPositioningElement {
 		$this->rotate = $rotate;
 		$this->setAttribute('rotate',$rotate); // set attribute in DOM
 	}
-	
+
 	public function getRotate()
 	{
 		return $this->rotate;
