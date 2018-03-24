@@ -5,6 +5,8 @@ namespace b1t\svgf\utils;
 use b1t\svg\SVGSVGElement;
 use b1t\svg\SVGCircleElement;
 use b1t\svg\SVGRectElement;
+use b1t\svg\SVGTextElement;
+use b1t\svg\SVGTSpanElement;
 
 /**
  * This class returns SVGElements with the specified properties.
@@ -103,6 +105,48 @@ class SVGUtils {
 		if (isset($style_stroke_width)) {$svg_circle->style->setProperty('stroke-width',$style_stroke_width,'');}
 
 		return $svg_circle;	
+	}
+	
+	public static function text($dom_doc_svg, $value, $id = null , $x = '0', $y = '0', $style_font_family = null, $style_font_size = null, $style_weight = null, $style_fill = null)
+	{
+
+		$svg_text = new SVGTextElement($dom_doc_svg);
+		$svg_text->nodeValue = $value;
+
+		// add properties if the strings are not empty
+		if (isset($id)) {$svg_text->id = $id;}
+		if (isset($x)) {$svg_text->x = $x;}
+		if (isset($y)) {$svg_text->y = $cy;}
+		if (isset($style_font_family)) {$svg_text->style->setProperty('font-family',$style_font_family,'');}
+		if (isset($style_font_size)) {$svg_text->style->setProperty('font-size',$style_font_size,'');}
+		if (isset($style_weight)) {$svg_text->style->setProperty('font-weight',$style_weight,'');}
+		if (isset($style_fill)) {$svg_text->style->setProperty('fill',$style_fill,'');}		
+
+		return $svg_text;	
+	}	
+
+	public static function tspan($dom_doc_svg, $value, $id = null , $x = '0', $y = '0', $style_font_family = null, $style_font_size = null, $style_weight = null, $style_fill = null)
+	{
+
+		$svg_tspan = new SVGTSpanElement($dom_doc_svg);
+		$svg_tspan->nodeValue = $value;
+
+		// add properties if the strings are not empty
+		if (isset($id)) {$svg_tspan->id = $id;}
+		if (isset($x)) {$svg_tspan->x = $x;}
+		if (isset($y)) {$svg_tspan->y = $y;}
+		if (isset($style_font_family)) {$svg_tspan->style->setProperty('font-family',$style_font_family,'');}
+		if (isset($style_font_size)) {$svg_tspan->style->setProperty('font-size',$style_font_size,'');}
+		if (isset($style_weight)) {$svg_tspan->style->setProperty('font-weight',$style_weight,'');}
+		if (isset($style_fill)) {$svg_tspan->style->setProperty('fill',$style_fill,'');}		
+
+		return $svg_tspan;	
+	}
+
+	public static function align($svg_element_static, $svg_element_moving)
+	{
+		$bbox_static = new SVGObjectBox($svg_element_static);
+		$bbox_moving = new SVGObjectBox($svg_element_moving);
 	}
 
  }
