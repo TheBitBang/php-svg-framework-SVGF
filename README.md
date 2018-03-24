@@ -126,5 +126,3 @@ $svg_svg->appendChild($svg_rect);
 ### Align SVG elements
 
 ### Split paths
-
-<svg xmlns="http://www.w3.org/2000/svg" width="297mm" height="210mm" viewBox="0 0 297 210" version="1.1" id="a4"><rect id="circle_1" x="100" y="100" width="100" height="100" rx="10" ry="10"/><rect id="rect_2" x="200" y="200" width="10" height="10" rx="2" ry="2"/><rect width="50" height="50" x="220" y="120" id="rect_3" rx="5" ry="5" style="fill: #d9737a; stroke: black; "/><circle cx="250" cy="60" r="40"/><circle id="circle_2" cx="150" cy="50" r="10"/><circle r="10" id="circle_3" cx="150" cy="60" style="fill: #d9737a; stroke: black; stroke-width: 3; "/></svg>
