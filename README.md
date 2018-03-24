@@ -82,7 +82,7 @@ $svg_svg = SVGUtils::svg($dom_doc_svg,'a4',SVGUtils::SIZE_FHD);
 
 ### Create basic shapes
 
-#### Create rectangle calling methods
+#### Create rectangle using methods
 
 ```php
 $svg_rect = new SVGRectElement($dom_doc_svg);
@@ -122,6 +122,42 @@ $svg_svg->appendChild($svg_rect);
 ```
 
 <img src="./examples/readme/rect_50x50_3.svg">
+
+#### Create circle using methods
+
+```php
+$svg_circle = new SVGCircleElement($dom_doc_svg);
+$svg_circle->setId('circle_10');
+$svg_circle->setCx(25);
+$svg_circle->setCy(25);
+$svg_circle->setR(10);
+$svg_svg->appendChild($svg_circle);
+```
+
+<img src="./examples/readme/circle_10.svg">
+
+#### Create circle setting values
+
+```php
+$svg_circle = new SVGCircleElement($dom_doc_svg);
+$svg_circle->id = 'circle_15';
+$svg_circle->cx = 25;
+$svg_circle->cy = 25;
+$svg_circle->r = 15;
+$svg_svg->appendChild($svg_circle);
+```
+
+<img src="./examples/readme/circle_15.svg">
+
+#### Create circle using functions SVGUtils
+
+```php
+// create circle
+$svg_circle = SVGUtils::circle($dom_doc_svg,'20','circle_20','25','25');
+$svg_svg->appendChild($svg_circle);
+```
+
+<img src="./examples/readme/circle_20.svg">
 
 ### Apply style
 
