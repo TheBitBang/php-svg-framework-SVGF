@@ -12,23 +12,3 @@ It is composed of:
 These are the main functionalities provided by **SVGF**:
 
 * Read and write SVG files.
-* Programatically modify the attributes of the elements in compliance with the (SVG) 1.1 specification.
-* Programatically modify the style attribute in compliance with the (DOM) Level 2 Style Specification.
-* Access SVG elements using XPath.
-* Programatically align SVG elements
-
-## Usage
-
-### Create and read SVG files
-
-#### Using primitives
-
-#### Using utils
-
-### Create basic shapes
-
-### Apply style
-
-### Align SVG elements
-
-### Split paths
