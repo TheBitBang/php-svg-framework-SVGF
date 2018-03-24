@@ -25,7 +25,7 @@ These are the main functionalities provided by **SVGF**:
 
 ```php
 $dom_doc_svg = new \DOMDocument('1.0', 'utf-8');
-$svg_svg = new SVGSVGElement($dom_doc);
+$svg_svg = new SVGSVGElement($dom_doc_svg);
 $svg_svg->setWidth('210mm');
 $svg_svg->setHeight('297mm');
 $svg_svg->setViewBox('0 0 210 270');
@@ -58,7 +58,7 @@ $svg_svg = SVGUtils::svg($dom_doc_svg,'a4',SVGUtils::SIZE_A4,'landscape');
 
 ```php
 $dom_doc_svg = new \DOMDocument('1.0', 'utf-8');
-$svg_svg = new SVGSVGElement($dom_doc);
+$svg_svg = new SVGSVGElement($dom_doc_svg);
 $svg_svg->setWidth('1920px');
 $svg_svg->setHeight('1080px');
 $svg_svg->setViewBox('0 0 1920 1080');
@@ -86,38 +86,45 @@ $svg_svg = SVGUtils::svg($dom_doc_svg,'a4',SVGUtils::SIZE_FHD);
 
 ```php
 $svg_rect = new SVGRectElement($dom_doc_svg);
-$svg_rect->setId('rect_100x100');
-$svg_rect->setX('100');
-$svg_rect->setY('100');
-$svg_rect->setWidth('100');
-$svg_rect->setHeight('100');
-$svg_rect->setRx('10');
-$svg_rect->setRy('10');
+$svg_rect->setId('rect_50x50_1');
+$svg_rect->setX('0');
+$svg_rect->setY('0');
+$svg_rect->setWidth('50');
+$svg_rect->setHeight('50');
+$svg_rect->setRx('5');
+$svg_rect->setRy('5');
 $svg_svg->appendChild($svg_rect);
 ```
+
+<img src="./examples/readme/rect_50x50_1.svg">
 
 #### Create rectangle setting values
 
 ```php
 $svg_rect = new SVGRectElement($dom_doc_svg);
-$svg_rect->id = 'rect_10x10';
-$svg_rect->x = '100';
-$svg_rect->y = '100';
-$svg_rect->width = '10';
-$svg_rect->height = '10';
-$svg_rect->rx = '2';
-$svg_rect->ry = '2';
+$svg_rect->id = 'rect_40x40_2';
+$svg_rect->x = '0';
+$svg_rect->y = '0';
+$svg_rect->width = '40';
+$svg_rect->height = '40';
 $svg_svg->appendChild($svg_rect);
 ```
 
+<img src="./examples/readme/rect_50x50_2.svg">
+
 #### Create rectangle using functions SVGUtils
+
 ```php
-$svg_rect = SVGUtils::rect($dom_doc_svg,'50','50','rect_50x50','100','100','5','5','#d9737a','black');
+$svg_rect = SVGUtils::rect($dom_doc_svg,'50','50','rect_50x50_3');
 $svg_svg->appendChild($svg_rect);
 ```
+
+<img src="./examples/readme/rect_50x50_3.svg">
 
 ### Apply style
 
 ### Align SVG elements
 
 ### Split paths
+
+<svg xmlns="http://www.w3.org/2000/svg" width="297mm" height="210mm" viewBox="0 0 297 210" version="1.1" id="a4"><rect id="circle_1" x="100" y="100" width="100" height="100" rx="10" ry="10"/><rect id="rect_2" x="200" y="200" width="10" height="10" rx="2" ry="2"/><rect width="50" height="50" x="220" y="120" id="rect_3" rx="5" ry="5" style="fill: #d9737a; stroke: black; "/><circle cx="250" cy="60" r="40"/><circle id="circle_2" cx="150" cy="50" r="10"/><circle r="10" id="circle_3" cx="150" cy="60" style="fill: #d9737a; stroke: black; stroke-width: 3; "/></svg>
