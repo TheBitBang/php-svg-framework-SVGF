@@ -102,11 +102,13 @@ $svg_svg->appendChild($svg_rect);
 
 ```php
 $svg_rect = new SVGRectElement($dom_doc_svg);
-$svg_rect->id = 'rect_40x40_2';
+$svg_rect->id = 'rect_50x50_2';
 $svg_rect->x = '0';
 $svg_rect->y = '0';
-$svg_rect->width = '40';
-$svg_rect->height = '40';
+$svg_rect->width = '50';
+$svg_rect->height = '50';
+$svg_rect->rx = '10';
+$svg_rect->ry = '10';
 $svg_svg->appendChild($svg_rect);
 ```
 
