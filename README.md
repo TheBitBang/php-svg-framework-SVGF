@@ -237,4 +237,30 @@ foreach ($matches as $match) {
 
 <img src="./examples/readme/xpath_select_elements_by_id.svg">
 
+#### Select elements by tag name
+
+```php
+// Change fill color of circle elements to #1a867e. Move them 25px down and 20px to the right
+$matches = $xpath->query("//circle");
+foreach ($matches as $match) {
+	$match->style->setProperty('fill','#1a867e','');
+	$match->cy = $match->cy + 25;
+	$match->cx = $match->cx + 20;
+}
+```
+
+<img src="./examples/readme/xpath_select_elements_by_tag_name.svg">
+
+#### Select children elements
+
+```php
+// Change fill color of the g children elements to #1a867e
+$matches = $xpath->query("//g/*");
+foreach ($matches as $match) {
+	$match->style->setProperty('fill','#1a867e','');
+}
+```
+
+<img src="./examples/readme/xpath_select_children.svg">
+
 ### Split paths
