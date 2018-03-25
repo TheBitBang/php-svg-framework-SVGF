@@ -19,7 +19,7 @@ These are the main functionalities provided by **SVGF**:
 
 ## Usage
 
-### Create and read SVG files
+### Create SVG files
 
 #### Create SVG with size A4 (portrait orientation)
 
@@ -79,6 +79,13 @@ $svg_svg = SVGUtils::svg($dom_doc_svg,'a4',SVGUtils::SIZE_FHD);
 * ARCH_A, ARCH_B, ARCH_C, ARCH_D, ARCH_E
 * ICON_16X16, ICON_32X32, ICON_48X48
 * VGA, SVGA, XGA, HD, FHD, QHD, UHD, 8K
+
+### Read existing SVG files
+
+```php
+$path_to_file = './file_name.svg';
+$dom_doc_svg = SVGFImportFromSVG::getSVGFromFile($path_to_file);
+```
 
 ### Create basic shapes
 
@@ -193,5 +200,41 @@ $svg_circle = SVGUtils::circle($dom_doc_svg,20,'circle_20_style',25,25,'#d9737a'
 ### Align SVG elements
 
 ### Access SVG elements using XPath
+
+Source svg file used to ilustrate xpath functionalities:
+
+```xml
+<?xml version="1.0" encoding="utf-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" width="150px" height="100px" viewBox="0 0 150 100" version="1.1">
+	<circle r="15" id="circle_2" cx="75" cy="25" style="fill: #861a22; "/>
+	<g>
+		<circle r="10" id="circle_1" cx="25" cy="25"/>
+		<circle r="20" id="circle_3" cx="125" cy="25" style="fill: #d9737a; stroke: #861a22; stroke-width: 2; "/>
+		<rect width="30" height="30" x="60" y="60" id="rect_2" style="fill: #861a22; "/>
+	</g>
+	<rect width="40" height="40" x="5" y="55" id="rect_1" style="fill: #d9737a; stroke: #861a22; stroke-width: 2; "/>
+	<rect width="20" height="20" x="115" y="65" id="rect_3"/>
+</svg>
+```
+
+<img src="./examples/readme/xpath_source_file.svg">
+
+To get the DOM representation:
+
+```php
+$xpath = new \DOMXPath($dom_doc_svg);
+```
+
+#### Select elements by id
+
+```php
+// Change fill color of the elements rect_1 and circle_2 to #1a867e 
+$matches = $xpath->query("//*[@id='rect_1'] | //*[@id='circle_2']");
+foreach ($matches as $match) {
+	$match->style->setProperty('fill','#1a867e','');
+}
+```
+
+
 
 ### Split paths
