@@ -305,4 +305,18 @@ foreach ($matches as $match) {
 
 <img src="./examples/readme/xpath_select_elements_by_style_setting.svg">
 
+#### Select parent element
+
+```php
+// Create style for parent of rect_2 (the style settings will be overriden if they are definied in the child element).
+$matches = $xpath->query("//rect[@id='rect_2']");
+foreach ($matches as $match) {
+	$parent_svg = $match->parentNode;
+	$parent_svg->style = 'stroke:#d9737a; stroke-width: 5; stroke-dasharray: 10 5; fill:#1a867e';
+}
+```
+
+<img src="./examples/readme/xpath_select_parent.svg">
+
+
 ### Split paths
