@@ -289,4 +289,20 @@ foreach ($matches as $match) {
 
 <img src="./examples/readme/xpath_select_elements_by_attribute_value.svg">
 
+#### Select elements by style setting
+
+```php
+// Create border for elements with fill #861a22.
+$matches = $xpath->query("//*");
+foreach ($matches as $match) {
+	$fill = $match->style->getPropertyValue('fill');
+	if ($fill == '#861a22') {
+		$match->style->setProperty('stroke','#1a867e','');
+		$match->style->setProperty('stroke-width',5,'');
+	}
+}
+```
+
+<img src="./examples/readme/xpath_select_elements_by_style_setting.svg">
+
 ### Split paths
