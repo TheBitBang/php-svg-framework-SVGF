@@ -318,5 +318,54 @@ foreach ($matches as $match) {
 
 <img src="./examples/readme/xpath_select_parent.svg">
 
+### Create texts
 
-### Split paths
+#### Create text
+
+```php
+$svg_text = new SVGTextElement($dom_doc_svg);
+$svg_text->nodeValue = 'Hello World!';
+$svg_text->id = 'text_hello';
+$svg_text->x = 0;
+$svg_text->y = 20;
+$svg_svg->appendChild($svg_text);
+```
+
+<img src="./examples/readme/text_1.svg">
+
+#### Create text using functions SVGUtils
+
+```php
+$svg_text = new SVGTextElement($dom_doc_svg);
+$svg_text = SVGUtils::text($dom_doc_svg,'Hello World!','text_hello','0','20');
+$svg_svg->appendChild($svg_text);
+```
+
+<img src="./examples/readme/text_2.svg">
+
+#### Create text with style properties
+
+```php
+$svg_text = new SVGTextElement($dom_doc_svg);
+$svg_text->nodeValue = 'Hello World!';
+$svg_text->id = 'text_hello';
+$svg_text->x = 0;
+$svg_text->y = 20;
+$svg_text->style->setProperty('font-family','Helvetica','');
+$svg_text->style->setProperty('font-size','16px','');
+$svg_text->style->setProperty('font-weight','bold','');
+$svg_text->style->setProperty('fill','#d9737a','');
+$svg_svg->appendChild($svg_text);
+```
+
+<img src="./examples/readme/text_1.svg">
+
+#### Create text with style properties using functions SVGUtils
+
+```php
+$svg_text = new SVGTextElement($dom_doc_svg);
+$svg_text = SVGUtils::text($dom_doc_svg,'Hello World!','text_hello','0','20','Helvetica','25px','normal','#861a22');
+$svg_svg->appendChild($svg_text);
+```
+
+<img src="./examples/readme/text_1.svg">

@@ -55,9 +55,11 @@ trait SVGTextContentElement {
 	 */	
 	public function getComputedTextLength()
 	{
+		// to-do: Untested function.
 		// to-do: the effect of properties ‘kerning’, ‘letter-spacing’ and ‘word-spacing’ and adjustments due to attributes ‘dx’ and ‘dy’ on ‘tspan’ elements.
-		$fuente = '../Decker.ttf';
-		$bbox = imagettfbbox(12, 0, $fuente, $svg_text->nodeValue);
+		$style_font_family = $this->style->getProperty('font-family'); // defined in SVGStylable
+		$style_font_size =  $this->style->getProperty('font-size'); // defined in SVGStylable
+		$bbox = imagettfbbox($style_font_size, 0, $style_font_family, $svg_text->nodeValue);
 		
 		$this->textLength = strlen($this->textContent); // the value is updated only when this function is called
 		return $this->textLength;

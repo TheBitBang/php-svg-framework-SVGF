@@ -116,7 +116,7 @@ class SVGUtils {
 		// add properties if the strings are not empty
 		if (isset($id)) {$svg_text->id = $id;}
 		if (isset($x)) {$svg_text->x = $x;}
-		if (isset($y)) {$svg_text->y = $cy;}
+		if (isset($y)) {$svg_text->y = $y;}
 		if (isset($style_font_family)) {$svg_text->style->setProperty('font-family',$style_font_family,'');}
 		if (isset($style_font_size)) {$svg_text->style->setProperty('font-size',$style_font_size,'');}
 		if (isset($style_weight)) {$svg_text->style->setProperty('font-weight',$style_weight,'');}
