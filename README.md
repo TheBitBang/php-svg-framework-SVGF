@@ -235,10 +235,6 @@ foreach ($matches as $match) {
 }
 ```
 
-<<<<<<< HEAD
 <img src="./examples/readme/xpath_select_elements_by_id.svg">
-=======
->>>>>>> 7e84d5d51aefa8e739718509c42a7ab74a7fb39c
-
 
 ### Split paths
