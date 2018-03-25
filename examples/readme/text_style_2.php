@@ -24,7 +24,6 @@ $svg_svg->setVersion('1.1');
 $svg_svg->setAttribute('xmlns','http://www.w3.org/2000/svg');
 
 // create text
-$svg_text = new SVGTextElement($dom_doc_svg);
 $svg_text = SVGUtils::text($dom_doc_svg,'Hello World!','text_hello','0','20','Helvetica','25px','normal','#861a22');
 $svg_svg->appendChild($svg_text);
 
