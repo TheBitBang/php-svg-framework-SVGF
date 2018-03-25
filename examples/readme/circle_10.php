@@ -1,7 +1,7 @@
 <?php
 
 /**
- * rect_100x100.php
+ * circle_10.php
  *
  * This file contains an example for readme visualization.
  *

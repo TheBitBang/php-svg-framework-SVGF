@@ -1,7 +1,7 @@
 <?php
 
 /**
- * rect_100x100.php
+ * xpath_select_elements_by_id.php
  *
  * This file contains an example for readme visualization.
  *

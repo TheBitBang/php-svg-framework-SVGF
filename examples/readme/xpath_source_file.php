@@ -1,7 +1,7 @@
 <?php
 
 /**
- * rect_100x100.php
+ * xpath_source_file.php
  *
  * This file contains an example for readme visualization.
  *
