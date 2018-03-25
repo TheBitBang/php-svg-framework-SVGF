@@ -263,4 +263,30 @@ foreach ($matches as $match) {
 
 <img src="./examples/readme/xpath_select_children.svg">
 
+#### Select elements by attribute value
+
+```php
+// Create a corner radius of 15px in rect_1
+$matches = $xpath->query("//rect[@id='rect_1']");
+foreach ($matches as $match) {
+	$match->rx = 15;
+	$match->ry = 15;	
+}
+
+// Create a corner radius of 5px in rect_2
+$matches = $xpath->query("//rect[@id='rect_2']");
+foreach ($matches as $match) {
+	$match->rx = 5;
+	$match->ry = 5;
+}
+
+// Change fill color of rect elements with rx < 10 (or not set) to #1a867e.
+$matches = $xpath->query("//rect[@rx<10] | rect[not(@rx)]");
+foreach ($matches as $match) {
+	$match->style->setProperty('fill','#1a867e','');
+}
+```
+
+<img src="./examples/readme/xpath_select_elements_by_attribute_value.svg">
+
 ### Split paths
