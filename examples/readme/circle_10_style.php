@@ -12,7 +12,7 @@ require realpath(__DIR__ . '/../..' . '/vendor/autoload.php');;
 
 use b1t\svg\SVGSVGElement;
 use b1t\svg\SVGRectElement;
-use b1t\svgf\utils\SVGUtils;
+use b1t\svgf\SVGFNew;
 
 // create svg document
 $dom_doc_svg = new \DOMDocument('1.0', 'utf-8');
@@ -24,7 +24,7 @@ $svg_svg->setVersion('1.1');
 $svg_svg->setAttribute('xmlns','http://www.w3.org/2000/svg');
 
 // create circle
-$svg_circle = SVGUtils::circle($dom_doc_svg,10,'circle_10_style',25,25);
+$svg_circle = SVGFNew::circle($dom_doc_svg,10,'circle_10_style',25,25);
 $svg_circle->style->setProperty('fill','#d9737a','');
 $svg_circle->style->setProperty('stroke','#861a22','');
 $svg_circle->style->setProperty('stroke-width','2','');

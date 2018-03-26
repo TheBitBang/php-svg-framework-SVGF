@@ -1,6 +1,6 @@
 <?php
 
-namespace b1t\svgf\file;
+namespace b1t\svgf;
 
 use b1t\svg\SVGSVGElement;
 

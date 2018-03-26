@@ -10,7 +10,7 @@ use b1t\svg\SVGObject;
  * @author	J. Xavier Atero
  */
  
-class SVGObjectBoxRectElement extends SVGObjectBox {
+class SVGFObjectBoxRectElement extends SVGFObjectBox {
 
 	/**
 	 * This function calculates the bounding box in pixels for a SVGRectElement.
@@ -25,12 +25,12 @@ class SVGObjectBoxRectElement extends SVGObjectBox {
 		$stroke_width = floatval($obj_svg->style->getPropertyValue('stroke-width'));
 		$stroke_width_div_2 = $stroke_width / 2;
 		
-		$this->xMin = $obj_svg->x - $stroke_width_div_2;;
-		$this->xMax = $obj_svg->x + $obj_svg->width + $stroke_width_div_2;;
-		$this->yMin = $obj_svg->y - $stroke_width_div_2;;
-		$this->yMax = $obj_svg->y + $obj_svg->height + $stroke_width_div_2;;
-		$this->xCenter = $obj_svg->x + ($obj_svg->width/2);
-		$this->yCenter = $obj_svg->y + ($obj_svg->height/2);
+		$this->x_min = $obj_svg->x - $stroke_width_div_2;
+		$this->x_max = $obj_svg->x + $obj_svg->width + $stroke_width_div_2;
+		$this->y_min = $obj_svg->y - $stroke_width_div_2;
+		$this->y_max = $obj_svg->y + $obj_svg->height + $stroke_width_div_2;
+		$this->x_center = $obj_svg->x + ($obj_svg->width/2);
+		$this->y_center = $obj_svg->y + ($obj_svg->height/2);
 	}
 
 }

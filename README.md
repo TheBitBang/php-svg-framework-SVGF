@@ -33,25 +33,25 @@ $svg_svg->setVersion('1.1');
 $svg_svg->setAttribute('xmlns','http://www.w3.org/2000/svg');	
 ```
 
-#### Create SVG with size A4 using SVGUtils (portrait orientation)
+#### Create SVG with size A4 using SVGF (portrait orientation)
 
 ```php
 $dom_doc_svg = new \DOMDocument('1.0', 'utf-8');
-$svg_svg = SVGUtils::svg($dom_doc_svg,'a4',SVGUtils::SIZE_A4,'portrait');
+$svg_svg = SVGFNew::svg($dom_doc_svg,'a4',SVGFNew::SIZE_A4,'portrait');
 ```
 
-#### Create SVG with size A4 using SVGUtils (landscape orientation)
+#### Create SVG with size A4 using SVGF (landscape orientation)
 
 ```php
 $dom_doc_svg = new \DOMDocument('1.0', 'utf-8');
-$svg_svg = SVGUtils::svg($dom_doc_svg,'a4');
+$svg_svg = SVGFNew::svg($dom_doc_svg,'a4');
 ```
 
 or
 
 ```php
 $dom_doc_svg = new \DOMDocument('1.0', 'utf-8');
-$svg_svg = SVGUtils::svg($dom_doc_svg,'a4',SVGUtils::SIZE_A4,'landscape');
+$svg_svg = SVGFNew::svg($dom_doc_svg,'a4',SVGFNew::SIZE_A4,'landscape');
 ```
 
 #### Create SVG with size Full HD
@@ -66,14 +66,14 @@ $svg_svg->setVersion('1.1');
 $svg_svg->setAttribute('xmlns','http://www.w3.org/2000/svg');	
 ```
 
-#### Create SVG with size Full HD using SVGUtils 
+#### Create SVG with size Full HD using SVGF 
 
 ```php
 $dom_doc_svg = new \DOMDocument('1.0', 'utf-8');
-$svg_svg = SVGUtils::svg($dom_doc_svg,'a4',SVGUtils::SIZE_FHD);
+$svg_svg = SVGFNew::svg($dom_doc_svg,'a4',SVGFNew::SIZE_FHD);
 ```
 
-#### SVGUtils predefined sizes
+#### SVGF predefined sizes
 
 * A0, A1, A2, A3, A4, A5
 * ARCH_A, ARCH_B, ARCH_C, ARCH_D, ARCH_E
@@ -121,10 +121,10 @@ $svg_svg->appendChild($svg_rect);
 
 <img src="./examples/readme/rect_50x50_2.svg">
 
-#### Create rectangle using functions SVGUtils
+#### Create rectangle using SVGF
 
 ```php
-$svg_rect = SVGUtils::rect($dom_doc_svg,'50','50','rect_50x50_3');
+$svg_rect = SVGFNew::rect($dom_doc_svg,'50','50','rect_50x50_3');
 $svg_svg->appendChild($svg_rect);
 ```
 
@@ -156,11 +156,11 @@ $svg_svg->appendChild($svg_circle);
 
 <img src="./examples/readme/circle_15.svg">
 
-#### Create circle using functions SVGUtils
+#### Create circle using SVGF
 
 ```php
 // create circle
-$svg_circle = SVGUtils::circle($dom_doc_svg,'20','circle_20','25','25');
+$svg_circle = SVGFNew::circle($dom_doc_svg,'20','circle_20','25','25');
 $svg_svg->appendChild($svg_circle);
 ```
 
@@ -171,7 +171,7 @@ $svg_svg->appendChild($svg_circle);
 #### Apply style setting individual properties
 
 ```php
-$svg_circle = SVGUtils::circle($dom_doc_svg,10,'circle_10_style',25,25);
+$svg_circle = SVGFNew::circle($dom_doc_svg,10,'circle_10_style',25,25);
 $svg_circle->style->setProperty('fill','#d9737a','');
 $svg_circle->style->setProperty('stroke','#861a22','');
 $svg_circle->style->setProperty('stroke-width','2','');
@@ -183,16 +183,16 @@ $svg_svg->appendChild($svg_circle);
 #### Apply style setting style as string with properties and values
 
 ```php
-$svg_circle = SVGUtils::circle($dom_doc_svg,15,'circle_15_style',25,25);
+$svg_circle = SVGFNew::circle($dom_doc_svg,15,'circle_15_style',25,25);
 $svg_circle->style = "fill: #d9737a; stroke: #861a22; stroke-width: 2;";
 ```
 
 <img src="./examples/readme/circle_15_style.svg">
 
-#### Apply style from SVGUtils function
+#### Apply style from SVGF
 
 ```php
-$svg_circle = SVGUtils::circle($dom_doc_svg,20,'circle_20_style',25,25,'#d9737a','#861a22',2);
+$svg_circle = SVGFNew::circle($dom_doc_svg,20,'circle_20_style',25,25,'#d9737a','#861a22',2);
 ```
 
 <img src="./examples/readme/circle_20_style.svg">
@@ -333,10 +333,10 @@ $svg_svg->appendChild($svg_text);
 
 <img src="./examples/readme/text_1.svg">
 
-#### Create text using functions SVGUtils
+#### Create text using SVGF
 
 ```php
-$svg_text = SVGUtils::text($dom_doc_svg,'Hello World!','text_hello','0','20');
+$svg_text = SVGFNew::text($dom_doc_svg,'Hello World!','text_hello','0','20');
 $svg_svg->appendChild($svg_text);
 ```
 
@@ -359,10 +359,10 @@ $svg_svg->appendChild($svg_text);
 
 <img src="./examples/readme/text_style_1.svg">
 
-#### Create text with style properties using functions SVGUtils
+#### Create text with style properties using SVGF
 
 ```php
-$svg_text = SVGUtils::text($dom_doc_svg,'Hello World!','text_hello','0','20','Helvetica','25px','normal','#861a22');
+$svg_text = SVGFNew::text($dom_doc_svg,'Hello World!','text_hello','0','20','Helvetica','25px','normal','#861a22');
 $svg_svg->appendChild($svg_text);
 ```
 

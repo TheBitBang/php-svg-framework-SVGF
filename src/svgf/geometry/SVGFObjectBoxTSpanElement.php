@@ -10,7 +10,7 @@ use b1t\svg\SVGObject;
  * @author	J. Xavier Atero
  */
  
-class SVGObjectBoxTSpanElement extends SVGObjectBox {
+class SVGFObjectBoxTSpanElement extends SVGFObjectBox {
 
 	/** @var string $fontFile The path to the TrueType font you wish to use. */
 	private $fontFile = array();
@@ -52,16 +52,16 @@ class SVGObjectBoxTSpanElement extends SVGObjectBox {
 
 		$font_size_pixels = floatval($obj_svg->style->getPropertyValue('font-size'));
 		$bounding = imagettfbbox($font_size_pixels, 0, $this->fontFile, $obj_svg->nodeValue);
-		$xMin = min($bounding[0],$bounding[2],$bounding[4],$bounding[6]) * $float_conversion_rate; 
-		$xMax = max($bounding[0],$bounding[2],$bounding[4],$bounding[6]) * $float_conversion_rate;
-		$yMin = min($bounding[1],$bounding[3],$bounding[5],$bounding[7]) * $float_conversion_rate;
-		$yMax = max($bounding[1],$bounding[3],$bounding[5],$bounding[7]) * $float_conversion_rate;
-		$this->xMin = $xMin;
-		$this->xMax = $xMax;
-		$this->yMin = $yMin;
-		$this->yMax = $yMax;
-		$this->xCenter = ($xMin + $xMax) / 2;
-		$this->yCenter = ($yMin + $yMax) / 2;
+		$x_min = min($bounding[0],$bounding[2],$bounding[4],$bounding[6]) * $float_conversion_rate; 
+		$x_max = max($bounding[0],$bounding[2],$bounding[4],$bounding[6]) * $float_conversion_rate;
+		$y_min = min($bounding[1],$bounding[3],$bounding[5],$bounding[7]) * $float_conversion_rate;
+		$y_max = max($bounding[1],$bounding[3],$bounding[5],$bounding[7]) * $float_conversion_rate;
+		$this->x_min = $x_min;
+		$this->x_max = $x_max;
+		$this->y_min = $y_min;
+		$this->y_max = $y_max;
+		$this->$svg_element_static->tagName = ($x_min + $x_max) / 2;
+		$this->y_center = ($y_min + $y_max) / 2;
 	}
 
 }

@@ -10,7 +10,7 @@
 
 require realpath(__DIR__ . '/..' . '/vendor/autoload.php');;
 
-use b1t\svgf\file\SVGFImportFromSVG;
+use b1t\svgf\SVGFImportFromSVG;
 
 $path_to_file = './RectanglesXPathExample.svg';
 $dom_doc_svg = SVGFImportFromSVG::getSVGFromFile($path_to_file);

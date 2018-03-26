@@ -13,11 +13,11 @@ require realpath(__DIR__ . '/..' . '/vendor/autoload.php');;
 use b1t\svg\SVGSVGElement;
 use b1t\svg\SVGRectElement;
 use b1t\svg\SVGCircleElement;
-use b1t\svgf\utils\SVGUtils;
+use b1t\svgf\SVGFNew;
 
 $dom_doc_svg = new \DOMDocument('1.0', 'utf-8');
 
-$svg_svg = SVGUtils::svg($dom_doc_svg,'a4',SVGUtils::SIZE_A4);
+$svg_svg = SVGFNew::svg($dom_doc_svg,'a4',SVGFNew::SIZE_A4);
 
 // create rectangle
 $svg_rect_1 = new SVGRectElement($dom_doc_svg);
@@ -42,7 +42,7 @@ $svg_rect_2->ry = '2';
 $svg_svg->appendChild($svg_rect_2);
 
 // create rectangle 3
-$svg_rect_3 = SVGUtils::rect($dom_doc_svg,'50','50','rect_3','220','120','5','5','#d9737a','black');
+$svg_rect_3 = SVGFNew::rect($dom_doc_svg,'50','50','rect_3','220','120','5','5','#d9737a','black');
 $svg_svg->appendChild($svg_rect_3);
 
 // create circle 1
@@ -62,7 +62,7 @@ $svg_circle_2->r = '10';
 $svg_svg->appendChild($svg_circle_2);
 
 // create circle 3
-$svg_circle_3 = SVGUtils::circle($dom_doc_svg,'10','circle_3','150','60','#d9737a','black','3');
+$svg_circle_3 = SVGFNew::circle($dom_doc_svg,'10','circle_3','150','60','#d9737a','black','3');
 $svg_svg->appendChild($svg_circle_3);
 
 $txt_svg = $dom_doc_svg->saveXML();

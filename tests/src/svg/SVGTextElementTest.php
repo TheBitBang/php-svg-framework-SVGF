@@ -10,7 +10,7 @@ require realpath(__DIR__ . '/../../..' . '/vendor/autoload.php');
 
 use b1t\svg\SVGTextElement;
 use b1t\svg\SVGTSpanElement;
-use b1t\svgf\utils\SVGUtils;
+use b1t\svgf\SVGFNew;
 
 class SVGTextElementTest extends \PHPUnit_Framework_TestCase {
 
@@ -20,7 +20,7 @@ class SVGTextElementTest extends \PHPUnit_Framework_TestCase {
 	protected function setUp()
 	{
 		$this->dom_doc_svg = new \DOMDocument('1.0', 'utf-8');
-		$this->svg_svg = SVGUtils::svg($this->dom_doc_svg,'a4',SVGUtils::SIZE_A4);
+		$this->svg_svg = SVGFNew::svg($this->dom_doc_svg,'a4',SVGFNew::SIZE_A4);
 	}
 
 	public function testGetNumberOfChars()

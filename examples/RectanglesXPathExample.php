@@ -11,18 +11,18 @@
 require realpath(__DIR__ . '/..' . '/vendor/autoload.php');;
 
 use b1t\svg\SVGRectElement;
-use b1t\svgf\utils\SVGUtils;
+use b1t\svgf\SVGFNew;
 
 $dom_doc_svg = new \DOMDocument('1.0', 'utf-8');
 
-$svg_svg = SVGUtils::svg($dom_doc_svg,'hd',SVGUtils::SIZE_HD);
+$svg_svg = SVGFNew::svg($dom_doc_svg,'hd',SVGFNew::SIZE_HD);
 
 $id = 1;
 
 for ($i=100; $i<620; $i=$i+82) {
 	for ($j=100; $j<1180; $j=$j+82) {
 		// create rectangle
-		$svg_rect = SVGUtils::rect($dom_doc_svg,80,80,$id++,$j,$i);
+		$svg_rect = SVGFNew::rect($dom_doc_svg,80,80,$id++,$j,$i);
 		$svg_svg->appendChild($svg_rect);
 	}
 }

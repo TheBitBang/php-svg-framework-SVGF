@@ -13,13 +13,13 @@ require realpath(__DIR__ . '/..' . '/vendor/autoload.php');;
 use b1t\css\CSSStyleDeclaration;
 use b1t\svg\SVGSVGElement;
 use b1t\svg\SVGPathElement;
-use b1t\svgf\utils\SVGUtils;
+use b1t\svgf\SVGFNew;
 use b1t\svgf\utils\SVGPathDataUtils;
 
 $dom_doc_svg = new \DOMDocument('1.0', 'utf-8');
 $dom_doc_svg_aux = new \DOMDocument('1.0', 'utf-8');
 
-$svg_svg = SVGUtils::svg($dom_doc_svg,'a4',SVGUtils::SIZE_A4);
+$svg_svg = SVGFNew::svg($dom_doc_svg,'a4',SVGFNew::SIZE_A4);
 
 // create path
 $svg_path = new SVGPathElement($dom_doc_svg_aux);

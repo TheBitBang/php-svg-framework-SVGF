@@ -12,7 +12,7 @@ require realpath(__DIR__ . '/../..' . '/vendor/autoload.php');;
 
 use b1t\svg\SVGSVGElement;
 use b1t\svg\SVGTextElement;
-use b1t\svgf\utils\SVGUtils;
+use b1t\svgf\SVGFNew;
 
 // create svg document
 $dom_doc_svg = new \DOMDocument('1.0', 'utf-8');

@@ -1,6 +1,6 @@
 <?php
 
-namespace b1t\svgf\utils;
+namespace b1t\svgf;
 
 use b1t\svg\SVGSVGElement;
 use b1t\svg\SVGCircleElement;
@@ -14,7 +14,7 @@ use b1t\svg\SVGTSpanElement;
  * @author J. Xavier Atero
  */
  
-class SVGUtils {
+class SVGFNew {
 
 	const SIZE_A0 = array('mm', '841', '1189');
 	const SIZE_A1 = array('mm', '594', '841');
@@ -145,8 +145,8 @@ class SVGUtils {
 
 	public static function align($svg_element_static, $svg_element_moving)
 	{
-		$bbox_static = new SVGObjectBox($svg_element_static);
-		$bbox_moving = new SVGObjectBox($svg_element_moving);
+		$bbox_static = new SVGFObjectBox($svg_element_static);
+		$bbox_moving = new SVGFObjectBox($svg_element_moving);
 	}
 
  }

@@ -10,7 +10,7 @@ use b1t\svg\SVGObject;
  * @author	J. Xavier Atero
  */
  
-class SVGObjectBoxCircleElement extends SVGObjectBox {
+class SVGFObjectBoxCircleElement extends SVGFObjectBox {
 
 
 	/**
@@ -25,12 +25,12 @@ class SVGObjectBoxCircleElement extends SVGObjectBox {
 		$this->element_name = $obj_svg->nodeName;
 		$stroke_width = floatval($obj_svg->style->getPropertyValue('stroke-width'));
 		$stroke_width_div_2 = $stroke_width / 2;
-		$this->xMin = $obj_svg->cx - $obj_svg->r - $stroke_width_div_2;
-		$this->xMax = $obj_svg->cx + $obj_svg->r + $stroke_width_div_2;
-		$this->yMin = $obj_svg->cy - $obj_svg->r - $stroke_width_div_2;
-		$this->yMax = $obj_svg->cy + $obj_svg->r + $stroke_width_div_2;
-		$this->xCenter = $obj_svg->cx;
-		$this->yCenter = $obj_svg->cy;
+		$this->x_min = $obj_svg->cx - $obj_svg->r - $stroke_width_div_2;
+		$this->x_max = $obj_svg->cx + $obj_svg->r + $stroke_width_div_2;
+		$this->y_min = $obj_svg->cy - $obj_svg->r - $stroke_width_div_2;
+		$this->y_max = $obj_svg->cy + $obj_svg->r + $stroke_width_div_2;
+		$this->x_center = $obj_svg->cx;
+		$this->y_center = $obj_svg->cy;
 	}
 
 }
