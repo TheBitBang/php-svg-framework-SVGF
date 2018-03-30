@@ -175,7 +175,6 @@ $svg_circle = SVGFNew::circle($dom_doc_svg,10,'circle_10_style',25,25);
 $svg_circle->style->setProperty('fill','#d9737a','');
 $svg_circle->style->setProperty('stroke','#861a22','');
 $svg_circle->style->setProperty('stroke-width','2','');
-$svg_svg->appendChild($svg_circle);
 ```
 
 <img src="./examples/readme/circle_10_style.svg">
@@ -215,13 +214,8 @@ Source svg file used to ilustrate align functionalities:
 #### Align to center
 
 ```php
-// align
 $svg_rect_1 = SVGFAlign::align($svg_rect_1,$svg_rect_0,SVGFObjectBox::ALIGN_CENTER);
 $svg_rect_2 = SVGFAlign::align($svg_rect_2,$svg_rect_0,SVGFObjectBox::ALIGN_CENTER);
-
-$svg_svg->appendChild($svg_rect_0);
-$svg_svg->appendChild($svg_rect_1);
-$svg_svg->appendChild($svg_rect_2);
 ```
 
 <img src="./examples/readme/align_center.svg">
@@ -229,13 +223,8 @@ $svg_svg->appendChild($svg_rect_2);
 #### Align to center with offset
 
 ```php
-// align
 $svg_rect_1 = SVGFAlign::align($svg_rect_1,$svg_rect_0,SVGFObjectBox::ALIGN_CENTER,20,0);
 $svg_rect_2 = SVGFAlign::align($svg_rect_2,$svg_rect_0,SVGFObjectBox::ALIGN_CENTER,0,-10);
-
-$svg_svg->appendChild($svg_rect_0);
-$svg_svg->appendChild($svg_rect_1);
-$svg_svg->appendChild($svg_rect_2);
 ```
 
 <img src="./examples/readme/align_center_offset.svg">
@@ -243,25 +232,15 @@ $svg_svg->appendChild($svg_rect_2);
 #### Align to sides
 
 ```php
-// align
 $svg_rect_1 = SVGFAlign::align($svg_rect_1,$svg_rect_0,SVGFObjectBox::ALIGN_BOTTOM);
 $svg_rect_2 = SVGFAlign::align($svg_rect_2,$svg_rect_0,SVGFObjectBox::ALIGN_RIGHT);
-
-$svg_svg->appendChild($svg_rect_0);
-$svg_svg->appendChild($svg_rect_1);
-$svg_svg->appendChild($svg_rect_2);
 ```
 
 <img src="./examples/readme/align_1.svg">
 
 ```php
-// align
 $svg_rect_1 = SVGFAlign::align($svg_rect_1,$svg_rect_0,SVGFObjectBox::ALIGN_LEFT);
 $svg_rect_2 = SVGFAlign::align($svg_rect_2,$svg_rect_0,SVGFObjectBox::ALIGN_TOP);
-
-$svg_svg->appendChild($svg_rect_0);
-$svg_svg->appendChild($svg_rect_1);
-$svg_svg->appendChild($svg_rect_2);
 ```
 
 <img src="./examples/readme/align_2.svg">
@@ -269,27 +248,17 @@ $svg_svg->appendChild($svg_rect_2);
 #### Position on sides
 
 ```php
-// align
 $svg_rect_1 = SVGFAlign::align($svg_rect_1,$svg_rect_0,SVGFObjectBox::POSITION_LEFT);
 $svg_rect_2 = SVGFAlign::align($svg_rect_2,$svg_rect_0,SVGFObjectBox::ALIGN_CENTER);
 $svg_rect_2 = SVGFAlign::align($svg_rect_2,$svg_rect_0,SVGFObjectBox::POSITION_TOP);
-
-$svg_svg->appendChild($svg_rect_0);
-$svg_svg->appendChild($svg_rect_1);
-$svg_svg->appendChild($svg_rect_2);
 ```
 
 <img src="./examples/readme/align_position_1.svg">
 
 ```php
-// align
 $svg_rect_1 = SVGFAlign::align($svg_rect_1,$svg_rect_0,SVGFObjectBox::POSITION_RIGHT);
 $svg_rect_2 = SVGFAlign::align($svg_rect_2,$svg_rect_0,SVGFObjectBox::POSITION_RIGHT);
 $svg_rect_2 = SVGFAlign::align($svg_rect_2,$svg_rect_1,SVGFObjectBox::POSITION_BOTTOM);
-
-$svg_svg->appendChild($svg_rect_0);
-$svg_svg->appendChild($svg_rect_1);
-$svg_svg->appendChild($svg_rect_2);
 ```
 
 <img src="./examples/readme/align_position_2.svg">
@@ -297,14 +266,9 @@ $svg_svg->appendChild($svg_rect_2);
 #### Position on sides with offset
 
 ```php
-// align
 $svg_rect_1 = SVGFAlign::align($svg_rect_1,$svg_rect_0,SVGFObjectBox::POSITION_LEFT,-5);
 $svg_rect_2 = SVGFAlign::align($svg_rect_2,$svg_rect_0,SVGFObjectBox::ALIGN_CENTER);
 $svg_rect_2 = SVGFAlign::align($svg_rect_2,$svg_rect_0,SVGFObjectBox::POSITION_TOP,0,-5);
-
-$svg_svg->appendChild($svg_rect_0);
-$svg_svg->appendChild($svg_rect_1);
-$svg_svg->appendChild($svg_rect_2);
 ```
 
 <img src="./examples/readme/align_position_offset.svg">
