@@ -309,12 +309,7 @@ $svg_svg->appendChild($svg_rect_2);
 
 <img src="./examples/readme/align_position_offset.svg">
 
-#### Access SVG elements using XPath
-
-```php
-```
-
-<img src="./examples/readme/xpath_source_file.svg">
+### Access SVG elements using XPath
 
 Source svg file used to ilustrate xpath functionalities:
 
