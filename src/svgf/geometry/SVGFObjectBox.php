@@ -84,7 +84,7 @@ class SVGFObjectBox {
 				$y_offset = $y_center_ref - $this->y_center;
 				break;
 			case self::ALIGN_TOP:
-				$y_offset = $x_min_ref - $this->x_min;
+				$y_offset = $y_min_ref - $this->y_min;
 				break;
 			case self::ALIGN_BOTTOM:
 				$y_offset = $y_max_ref - $this->y_max;			

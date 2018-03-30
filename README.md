@@ -199,7 +199,122 @@ $svg_circle = SVGFNew::circle($dom_doc_svg,20,'circle_20_style',25,25,'#d9737a',
 
 ### Align SVG elements
 
-### Access SVG elements using XPath
+Source svg file used to ilustrate align functionalities:
+
+```xml
+<?xml version="1.0" encoding="utf-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" width="150px" height="100px" viewBox="0 0 150 100" version="1.1">
+	<rect width="50" height="50" x="50" y="25" id="rect_0" style="fill: #d9737a; "/>
+	<rect width="30" height="30" x="15" y="35" id="rect_1" style="fill: #d9737a; stroke: #1a867e; stroke-width: 4; stroke-dasharray: 8 2; "/>
+	<rect width="20" height="20" x="115" y="40" id="rect_2" style="fill: #861a22; "/>
+</svg>
+```
+
+<img src="./examples/readme/align_source_file.svg">
+
+#### Align to center
+
+```php
+// align
+$svg_rect_1 = SVGFAlign::align($svg_rect_1,$svg_rect_0,SVGFObjectBox::ALIGN_CENTER);
+$svg_rect_2 = SVGFAlign::align($svg_rect_2,$svg_rect_0,SVGFObjectBox::ALIGN_CENTER);
+
+$svg_svg->appendChild($svg_rect_0);
+$svg_svg->appendChild($svg_rect_1);
+$svg_svg->appendChild($svg_rect_2);
+```
+
+<img src="./examples/readme/align_center.svg">
+
+#### Align to center with offset
+
+```php
+// align
+$svg_rect_1 = SVGFAlign::align($svg_rect_1,$svg_rect_0,SVGFObjectBox::ALIGN_CENTER,20,0);
+$svg_rect_2 = SVGFAlign::align($svg_rect_2,$svg_rect_0,SVGFObjectBox::ALIGN_CENTER,0,-10);
+
+$svg_svg->appendChild($svg_rect_0);
+$svg_svg->appendChild($svg_rect_1);
+$svg_svg->appendChild($svg_rect_2);
+```
+
+<img src="./examples/readme/align_center_offset.svg">
+
+#### Align to sides
+
+```php
+// align
+$svg_rect_1 = SVGFAlign::align($svg_rect_1,$svg_rect_0,SVGFObjectBox::ALIGN_BOTTOM);
+$svg_rect_2 = SVGFAlign::align($svg_rect_2,$svg_rect_0,SVGFObjectBox::ALIGN_RIGHT);
+
+$svg_svg->appendChild($svg_rect_0);
+$svg_svg->appendChild($svg_rect_1);
+$svg_svg->appendChild($svg_rect_2);
+```
+
+<img src="./examples/readme/align_1.svg">
+
+```php
+// align
+$svg_rect_1 = SVGFAlign::align($svg_rect_1,$svg_rect_0,SVGFObjectBox::ALIGN_LEFT);
+$svg_rect_2 = SVGFAlign::align($svg_rect_2,$svg_rect_0,SVGFObjectBox::ALIGN_TOP);
+
+$svg_svg->appendChild($svg_rect_0);
+$svg_svg->appendChild($svg_rect_1);
+$svg_svg->appendChild($svg_rect_2);
+```
+
+<img src="./examples/readme/align_2.svg">
+
+#### Position on sides
+
+```php
+// align
+$svg_rect_1 = SVGFAlign::align($svg_rect_1,$svg_rect_0,SVGFObjectBox::POSITION_LEFT);
+$svg_rect_2 = SVGFAlign::align($svg_rect_2,$svg_rect_0,SVGFObjectBox::ALIGN_CENTER);
+$svg_rect_2 = SVGFAlign::align($svg_rect_2,$svg_rect_0,SVGFObjectBox::POSITION_TOP);
+
+$svg_svg->appendChild($svg_rect_0);
+$svg_svg->appendChild($svg_rect_1);
+$svg_svg->appendChild($svg_rect_2);
+```
+
+<img src="./examples/readme/align_position_1.svg">
+
+```php
+// align
+$svg_rect_1 = SVGFAlign::align($svg_rect_1,$svg_rect_0,SVGFObjectBox::POSITION_RIGHT);
+$svg_rect_2 = SVGFAlign::align($svg_rect_2,$svg_rect_0,SVGFObjectBox::POSITION_RIGHT);
+$svg_rect_2 = SVGFAlign::align($svg_rect_2,$svg_rect_1,SVGFObjectBox::POSITION_BOTTOM);
+
+$svg_svg->appendChild($svg_rect_0);
+$svg_svg->appendChild($svg_rect_1);
+$svg_svg->appendChild($svg_rect_2);
+```
+
+<img src="./examples/readme/align_position_2.svg">
+
+#### Position on sides with offset
+
+```php
+// align
+$svg_rect_1 = SVGFAlign::align($svg_rect_1,$svg_rect_0,SVGFObjectBox::POSITION_LEFT,-5);
+$svg_rect_2 = SVGFAlign::align($svg_rect_2,$svg_rect_0,SVGFObjectBox::ALIGN_CENTER);
+$svg_rect_2 = SVGFAlign::align($svg_rect_2,$svg_rect_0,SVGFObjectBox::POSITION_TOP,0,-5);
+
+$svg_svg->appendChild($svg_rect_0);
+$svg_svg->appendChild($svg_rect_1);
+$svg_svg->appendChild($svg_rect_2);
+```
+
+<img src="./examples/readme/align_position_offset.svg">
+
+#### Access SVG elements using XPath
+
+```php
+```
+
+<img src="./examples/readme/xpath_source_file.svg">
 
 Source svg file used to ilustrate xpath functionalities:
 
