@@ -175,6 +175,7 @@ $svg_circle = SVGFNew::circle($dom_doc_svg,10,'circle_10_style',25,25);
 $svg_circle->style->setProperty('fill','#d9737a','');
 $svg_circle->style->setProperty('stroke','#861a22','');
 $svg_circle->style->setProperty('stroke-width','2','');
+$svg_svg->appendChild($svg_circle);
 ```
 
 <img src="./examples/readme/circle_10_style.svg">
@@ -184,6 +185,7 @@ $svg_circle->style->setProperty('stroke-width','2','');
 ```php
 $svg_circle = SVGFNew::circle($dom_doc_svg,15,'circle_15_style',25,25);
 $svg_circle->style = "fill: #d9737a; stroke: #861a22; stroke-width: 2;";
+$svg_svg->appendChild($svg_circle);
 ```
 
 <img src="./examples/readme/circle_15_style.svg">
@@ -192,6 +194,7 @@ $svg_circle->style = "fill: #d9737a; stroke: #861a22; stroke-width: 2;";
 
 ```php
 $svg_circle = SVGFNew::circle($dom_doc_svg,20,'circle_20_style',25,25,'#d9737a','#861a22',2);
+$svg_svg->appendChild($svg_circle);
 ```
 
 <img src="./examples/readme/circle_20_style.svg">
