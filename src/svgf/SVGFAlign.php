@@ -52,10 +52,10 @@ class SVGFAlign {
 				$bbox_element_moving = new SVGFObjectBoxCircleElement($svg_element_moving);			
 				break;
 			case 'text':
-				$bbox_element_moving = new SVGFObjectBoxTextElement($svg_element_moving,'Decker');
+				$bbox_element_moving = new SVGFObjectBoxTextElement($svg_element_moving);
 				break;
 			case 'tspan':
-				$bbox_element_moving = new SVGFObjectBoxTSpanElement($svg_element_moving,'Decker');
+				$bbox_element_moving = new SVGFObjectBoxTSpanElement($svg_element_moving);
 				break;				
 		}
 		

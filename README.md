@@ -444,3 +444,34 @@ $svg_svg->appendChild($svg_text);
 ```
 
 <img src="./examples/readme/text_style_2.svg">
+
+### Align Texts
+
+**Note**: The file containing the TrueType font must be located in the same folder
+
+#### Align texts to edges of element
+
+```php
+$svg_text_0 = SVGFAlign::align($svg_text_0,$svg_rect,SVGFObjectBox::ALIGN_CENTER); // 'CENTERED' 10px
+$svg_text_1 = SVGFAlign::align($svg_text_1,$svg_rect,SVGFObjectBox::ALIGN_LEFT); // 'On top and left aligned' 16px
+$svg_text_1 = SVGFAlign::align($svg_text_1,$svg_rect,SVGFObjectBox::POSITION_TOP);
+$svg_text_2 = SVGFAlign::align($svg_text_2,$svg_rect,SVGFObjectBox::ALIGN_RIGHT); // 'Aligned with bottom-right corner' 10px
+$svg_text_2 = SVGFAlign::align($svg_text_2,$svg_rect,SVGFObjectBox::ALIGN_BOTTOM);
+$svg_text_3 = SVGFAlign::align($svg_text_3,$svg_rect,SVGFObjectBox::POSITION_BOTTOM); // 'Below and to the right' 14px
+$svg_text_3 = SVGFAlign::align($svg_text_3,$svg_rect,SVGFObjectBox::POSITION_RIGHT);
+$svg_text_4 = SVGFAlign::align($svg_text_4,$svg_rect,SVGFObjectBox::POSITION_LEFT); // 'To the left' 24px (y=50)
+```
+
+<img src="./examples/readme/text_align.svg">
+
+#### Align texts with offset
+
+```php
+$svg_text_0 = SVGFAlign::align($svg_text_0,$svg_rect,SVGFObjectBox::ALIGN_CENTER); // 'offset top' 8px
+$svg_text_0 = SVGFAlign::align($svg_text_0,$svg_rect,SVGFObjectBox::POSITION_TOP,0,-10);
+$svg_text_1 = SVGFAlign::align($svg_text_1,$svg_rect,SVGFObjectBox::ALIGN_CENTER); // 'offset right' 16px
+$svg_text_1 = SVGFAlign::align($svg_text_1,$svg_rect,SVGFObjectBox::POSITION_RIGHT,20);
+$svg_text_2 = SVGFAlign::align($svg_text_2,$svg_rect,SVGFObjectBox::ALIGN_CENTER,-5,20); // 'offset center' 10px
+```
+
+<img src="./examples/readme/text_align_offset.svg">

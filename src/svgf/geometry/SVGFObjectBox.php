@@ -74,7 +74,6 @@ class SVGFObjectBox {
 		$y_max_ref = $ref_objectbox->y_max;
 		$x_center_ref = $ref_objectbox->x_center;
 		$y_center_ref = $ref_objectbox->y_center;
-				
 		$x_offset = 0;
 		$y_offset = 0;
 		
@@ -114,6 +113,6 @@ class SVGFObjectBox {
 		$this->x_center = $this->x_center + $x_offset + $h_offset;
 		$this->y_min = $this->y_min + $y_offset + $v_offset;
 		$this->y_max = $this->y_max + $y_offset + $v_offset;
-		$this->y_center = $this->y_center + $y_offset + $v_offset;	
+		$this->y_center = $this->y_center + $y_offset + $v_offset;		
 	 }
 }
