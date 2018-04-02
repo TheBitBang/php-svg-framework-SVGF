@@ -14,9 +14,9 @@ use b1t\svgf\SVGFNew;
  
 class SVGFMarkers {
 
-	public static function markerArrowStart($dom_doc, $id_marker = null, $id_path = null, $style_fill = null)
+	public static function markerArrowStart($dom_doc, $id_marker = null, $id_path = null, $style_fill = null, $offset = 0)
 	{
-		$svg_marker = SVGFNew::marker($dom_doc,$id_marker,8,8,8,4,'auto');
+		$svg_marker = SVGFNew::marker($dom_doc,$id_marker,8,8,8+$offset,4,'auto');
 		$svg_marker->style->setProperty('overflow','visible','');
 		$svg_path = new SVGPathElement($dom_doc);
 		$svg_path->d = 'M 8,0 8,8 0,4 8,0';
@@ -29,9 +29,9 @@ class SVGFMarkers {
 		return $svg_marker;
 	}
 
-	public static function markerArrowEnd($dom_doc, $id_marker = null, $id_path = null, $style_fill = null)
+	public static function markerArrowEnd($dom_doc, $id_marker = null, $id_path = null, $style_fill = null, $offset = 0)
 	{
-		$svg_marker = SVGFNew::marker($dom_doc,$id_marker,8,8,0,4,'auto');
+		$svg_marker = SVGFNew::marker($dom_doc,$id_marker,8,8,0+$offset,4,'auto');
 		$svg_marker->style->setProperty('overflow','visible','');
 		$svg_path = new SVGPathElement($dom_doc);
 		$svg_path->style->setProperty('fill',$style_fill,'');

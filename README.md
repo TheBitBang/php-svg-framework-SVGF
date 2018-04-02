@@ -520,3 +520,12 @@ $svg_svg->appendChild($svg_connector_4);
 ```
 
 <img src="./examples/readme/connect_points.svg">
+
+#### Connect elements from center to center
+
+```php
+$svg_connector_1 = SVGFConnectors::connectElements($dom_doc_svg,$svg_circle,$svg_rect,'#861a22','1px','connector_1',null,'marker_arrow_end');
+$svg_connector_2 = SVGFConnectors::connectElements($dom_doc_svg,$svg_rect,$svg_text,'#861a22','1px','connector_2',null,'marker_arrow_end');
+```
+
+<img src="./examples/readme/connect_elements_center.svg">
