@@ -9,17 +9,17 @@ namespace b1t\svg;
  * @link	https://www.w3.org/TR/SVG/coords.html#InterfaceSVGPoint
  */
  
-trait SVGPoint {
-	
+class SVGPoint {
+
 	/** @var float $x The x coordinate. */
-	private float $x;
+	private $x;
 
 	/** @var float $y The y coordinate. */
-	private float $y;
-	
+	private $y;
+
 	// set and get methods
-	
-	public function setX(float $x)
+
+	public function setX($x)
 	{
 		$this->x = $x;
 	}
@@ -29,11 +29,11 @@ trait SVGPoint {
 		return $this->x;
 	}
 
-	public function setY(float $y)
+	public function setY($y)
 	{
 		$this->y = $y;
 	}
-	
+
 	public function getY()
 	{
 		return $this->y;

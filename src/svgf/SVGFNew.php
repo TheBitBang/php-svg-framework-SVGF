@@ -4,9 +4,12 @@ namespace b1t\svgf;
 
 use b1t\svg\SVGSVGElement;
 use b1t\svg\SVGCircleElement;
+use b1t\svg\SVGDefsElement;
+use b1t\svg\SVGMarkerElement;
 use b1t\svg\SVGRectElement;
 use b1t\svg\SVGTextElement;
 use b1t\svg\SVGTSpanElement;
+use b1t\svg\SVGPoint;
 
 /**
  * This class returns SVGElements with the specified properties.
@@ -61,9 +64,9 @@ class SVGFNew {
 		$svg_svg->setHeight($height . $units);
 		$svg_svg->setViewBox('0 0 ' . $width . ' ' . $height);
 		$svg_svg->setVersion('1.1');
-		$svg_svg->setAttribute('xmlns','http://www.w3.org/2000/svg');	
+		$svg_svg->setAttribute('xmlns','http://www.w3.org/2000/svg');
 		$variable = $item ?: NULL;
-		
+
 		// add properties if the strings are not empty
 		if (isset($id)) {$svg_svg->id = $id;}
 
@@ -104,9 +107,9 @@ class SVGFNew {
 		if (isset($style_stroke)) {$svg_circle->style->setProperty('stroke',$style_stroke,'');}
 		if (isset($style_stroke_width)) {$svg_circle->style->setProperty('stroke-width',$style_stroke_width,'');}
 
-		return $svg_circle;	
+		return $svg_circle;
 	}
-	
+
 	public static function text($dom_doc_svg, $value, $id = null , $x = '0', $y = '0', $style_font_family = null, $style_font_size = null, $style_weight = null, $style_fill = null)
 	{
 
@@ -120,10 +123,10 @@ class SVGFNew {
 		if (isset($style_font_family)) {$svg_text->style->setProperty('font-family',$style_font_family,'');}
 		if (isset($style_font_size)) {$svg_text->style->setProperty('font-size',$style_font_size,'');}
 		if (isset($style_weight)) {$svg_text->style->setProperty('font-weight',$style_weight,'');}
-		if (isset($style_fill)) {$svg_text->style->setProperty('fill',$style_fill,'');}		
+		if (isset($style_fill)) {$svg_text->style->setProperty('fill',$style_fill,'');}
 
-		return $svg_text;	
-	}	
+		return $svg_text;
+	}
 
 	public static function tspan($dom_doc_svg, $value, $id = null , $x = '0', $y = '0', $style_font_family = null, $style_font_size = null, $style_weight = null, $style_fill = null)
 	{
@@ -138,15 +141,43 @@ class SVGFNew {
 		if (isset($style_font_family)) {$svg_tspan->style->setProperty('font-family',$style_font_family,'');}
 		if (isset($style_font_size)) {$svg_tspan->style->setProperty('font-size',$style_font_size,'');}
 		if (isset($style_weight)) {$svg_tspan->style->setProperty('font-weight',$style_weight,'');}
-		if (isset($style_fill)) {$svg_tspan->style->setProperty('fill',$style_fill,'');}		
+		if (isset($style_fill)) {$svg_tspan->style->setProperty('fill',$style_fill,'');}
 
-		return $svg_tspan;	
+		return $svg_tspan;
 	}
 
-	public static function align($svg_element_static, $svg_element_moving)
+	public static function defs($dom_doc_svg, $id = null)
 	{
-		$bbox_static = new SVGFObjectBox($svg_element_static);
-		$bbox_moving = new SVGFObjectBox($svg_element_moving);
+
+		$svg_defs = new SVGDefsElement($dom_doc_svg);
+
+		// add properties if the strings are not empty
+		if (isset($id)) {$svg_defs->id = $id;}
+
+		return $svg_defs;
 	}
 
- }
+	public static function marker($dom_doc_svg, $id = null, $markerWidth = null, $markerHeight = null, $refX = null, $refY = null, $orient = null)
+	{
+
+		$svg_marker = new SVGMarkerElement($dom_doc_svg);
+
+		// add properties if the strings are not empty
+		if (isset($id)) {$svg_marker->id = $id;}
+		if (isset($markerWidth)) {$svg_marker->markerWidth = $markerWidth;}
+		if (isset($markerHeight)) {$svg_marker->markerHeight = $markerHeight;}
+		if (isset($refX)) {$svg_marker->refX = $refX;}
+		if (isset($refY)) {$svg_marker->refY = $refY;}
+		if (isset($orient)) {$svg_marker->setOrient($orient);}
+
+		return $svg_marker;
+	}
+
+	public static function point($x, $y)
+	{
+		$svg_point = new SVGPoint();
+		$svg_point->setX($x);
+		$svg_point->setY($y);
+		return $svg_point;
+	}
+}

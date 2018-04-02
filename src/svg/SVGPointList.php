@@ -11,8 +11,6 @@ namespace b1t\svg;
  
 trait SVGPointList {
 	
-	use SVGPoint;
-	
 	/** @var unsigned long $numberOfItems The number of items in the list. */
 	private int $numberOfItems;
 	

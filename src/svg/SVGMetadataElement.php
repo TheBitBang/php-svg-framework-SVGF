@@ -10,7 +10,7 @@ namespace b1t\svg;
  */
  
 class SVGMetadataElement extends SVGObject {
-	
+
 	use SVGElement;
 
 }
