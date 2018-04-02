@@ -521,6 +521,19 @@ $svg_connector_4 = SVGFConnectors::connectPoints($dom_doc_svg,$point_start_4,$po
 
 <img src="./examples/readme/connect_points.svg">
 
+#### Draw connectors of different stroke widths between points
+
+The marker size will automatically adjust to the stroke size of the path
+
+```php
+$svg_connector_1 = SVGFConnectors::connectPoints($dom_doc_svg,$point_start_1,$point_end_1,'#861a22','0.5px','connector_1','marker_circle','marker_arrow_end');
+$svg_connector_2 = SVGFConnectors::connectPoints($dom_doc_svg,$point_start_2,$point_end_2,'#861a22','2px','connector_2','marker_arrow_start','marker_arrow_end');
+$svg_connector_3 = SVGFConnectors::connectPoints($dom_doc_svg,$point_start_3,$point_end_3,'#861a22','1.5px','connector_3','marker_arrow_end','marker_arrow_end');
+$svg_connector_4 = SVGFConnectors::connectPoints($dom_doc_svg,$point_start_4,$point_end_4,'#861a22','3px','connector_4',null,'marker_circle');
+```
+
+<img src="./examples/readme/connect_points_stroke_width.svg">
+
 #### Draw connectors between element centers
 
 ```php
