@@ -47,7 +47,7 @@ class SVGMarkerElement extends SVGObject {
 
 	/** @var SVGAnimatedAngle $orientAngle Corresponds to attribute 'orient' on the given 'marker' element. If markerUnits is SVG_MARKER_ORIENT_ANGLE, the angle value for attribute 'orient'; otherwise, it will be set to zero. */
 	private $orientAngle;
-	
+
 	public function __construct($dom_doc_svg)
 	{
 		// create the objects
@@ -60,53 +60,52 @@ class SVGMarkerElement extends SVGObject {
 		
 		parent::__construct($dom_doc_svg,'marker');
 	}
-	
+
 	// set and get methods
-	
-	public function setRefX($refX)
+
+	public function setRefX(SVGAnimatedLength $refX)
 	{
-		// To do: SVGAnimatedLength
 		$this->refX = $refX;
-		$this->setAttribute('refX',$refX); // set attribute in DOM
+		$this->setAttribute('refX',$refX->getBaseVal()); // set attribute in DOM
 	}
 
 	public function getRefX()
 	{
-		return $this->refX;
+		return $this->refX->getBaseVal();
 	}
 
-	public function setRefY($refY)
+	public function setRefY(SVGAnimatedLength $refY)
 	{
-		// To do: SVGAnimatedLength
 		$this->refY = $refY;
-		$this->setAttribute('refY',$refY); // set attribute in DOM
+		$this->setAttribute('refY',$refY->getBaseVal()); // set attribute in DOM
 	}
-	
+
 	public function getRefY()
 	{
-		return $this->refY;
+		return $this->refY->getBaseVal();
 	}
 
 	public function setMarkerUnits(SVGAnimatedEnumeration $markerUnits)
 	{
-		switch ($markerUnits->getBaseVal())
+		$this->markerUnits = $markerUnits;
+
+		$markerUnitsAttributeValue = null;
+		switch ($this->markerUnits->getBaseVal()) 
 		{
-			case 'strokeWidth':
-				$this->markerUnits->setBaseVal(self::SVG_MARKERUNITS_STROKEWIDTH);
+			case self::SVG_MARKERUNITS_STROKEWIDTH:
+				$markerUnitsAttributeValue = 'strokeWidth';
 				break;
-			case 'userSpaceOnUse':
-				$this->markerUnits->setBaseVal(self::SVG_MARKERUNITS_USERSPACEONUSE);
-				break;
-			default:
-				$this->markerUnits->setBaseVal(self::SVG_MARKERUNITS_UNKNOWN);			
+			case self::SVG_MARKERUNITS_USERSPACEONUSE:
+				$markerUnitsAttributeValue = 'userSpaceOnUse';
 				break;
 		}
+		$this->setAttribute('markerUnits',$markerUnitsAttributeValue); // set attribute in DOM
 	}
-	
+
 	public function getMarkerUnits()
 	{
 		$markerUnits = null;
-		
+
 		switch ($this->markerUnits->getBaseVal()) 
 		{
 			case self::SVG_MARKERUNITS_STROKEWIDTH:
@@ -115,33 +114,31 @@ class SVGMarkerElement extends SVGObject {
 			case self::SVG_MARKERUNITS_USERSPACEONUSE:
 				$markerUnits = 'userSpaceOnUse';
 				break;
-		}	
-		
+		}
+
 		return $markerUnits;
 	}
 
-	public function setMarkerWidth($markerWidth)
+	public function setMarkerWidth(SVGAnimatedLength $markerWidth)
 	{
-		// To do: SVGAnimatedLength
 		$this->markerWidth = $markerWidth;
-		$this->setAttribute('markerWidth',$markerWidth); // set attribute in DOM
-	}
-	
-	public function getMarkerWidth()
-	{
-		return $this->markerWidth;
+		$this->setAttribute('markerWidth',$markerWidth->getBaseVal()); // set attribute in DOM
 	}
 
-	public function setMarkerHeight($markerHeight)
+	public function getMarkerWidth()
 	{
-		// To do: SVGAnimatedLength
-		$this->markerHeight = $markerHeight;
-		$this->setAttribute('markerHeight',$markerHeight); // set attribute in DOM
+		return $this->markerWidth->getBaseVal();
 	}
-	
+
+	public function setMarkerHeight(SVGAnimatedLength $markerHeight)
+	{
+		$this->markerHeight = $markerHeight;
+		$this->setAttribute('markerHeight',$markerHeight->getBaseVal()); // set attribute in DOM
+	}
+
 	public function getMarkerHeight()
 	{
-		return $this->markerHeight;
+		return $this->markerHeight->getBaseVal();
 	}
 
 	public function getOrientType()
@@ -159,14 +156,14 @@ class SVGMarkerElement extends SVGObject {
 		$this->setAttribute('orient','auto'); // set attribute in DOM
 		$this->orientType->setBaseVal(self::SVG_MARKER_ORIENT_AUTO);
 	}
-	
+
 	public function setOrientToAngle($angle)
 	{
 		$this->orientAngle = $angle;
-		$this->setAttribute('orient',$angle); // set attribute in DOM		
+		$this->setAttribute('orient',$angle); // set attribute in DOM
 		$this->orientType->setBaseVal(self::SVG_MARKER_ORIENT_ANGLE);
 	}
-	
+
 	/**
 	 * Sets the correspondent parameter for the attribute orient based on 'markerUnits' value
 	 *

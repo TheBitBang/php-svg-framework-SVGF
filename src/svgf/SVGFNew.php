@@ -9,6 +9,7 @@ use b1t\svg\SVGMarkerElement;
 use b1t\svg\SVGRectElement;
 use b1t\svg\SVGTextElement;
 use b1t\svg\SVGTSpanElement;
+use b1t\svg\SVGAnimatedLength;
 use b1t\svg\SVGPoint;
 
 /**
@@ -164,10 +165,26 @@ class SVGFNew {
 
 		// add properties if the strings are not empty
 		if (isset($id)) {$svg_marker->id = $id;}
-		if (isset($markerWidth)) {$svg_marker->markerWidth = $markerWidth;}
-		if (isset($markerHeight)) {$svg_marker->markerHeight = $markerHeight;}
-		if (isset($refX)) {$svg_marker->refX = $refX;}
-		if (isset($refY)) {$svg_marker->refY = $refY;}
+		if (isset($markerWidth)) {
+			$marker_width = new SVGAnimatedLength();
+			$marker_width->setBaseVal($markerWidth);
+			$svg_marker->markerWidth = $marker_width;
+		}
+		if (isset($markerHeight)) {
+			$marker_height = new SVGAnimatedLength();
+			$marker_height->setBaseVal($markerHeight);
+			$svg_marker->markerHeight = $marker_height;
+		}
+		if (isset($refX)) {
+			$ref_x = new SVGAnimatedLength();
+			$ref_x->setBaseVal($refX);
+			$svg_marker->refX = $ref_x;
+		}
+		if (isset($refY)) {
+			$ref_y = new SVGAnimatedLength();
+			$ref_y->setBaseVal($refY);
+			$svg_marker->refY = $ref_y;
+		}
 		if (isset($orient)) {$svg_marker->setOrient($orient);}
 
 		return $svg_marker;

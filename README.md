@@ -201,7 +201,7 @@ $svg_svg->appendChild($svg_circle);
 
 ### Align SVG elements
 
-Source svg file used to ilustrate align functionalities:
+Source svg file used to illustrate align functionalities:
 
 ```xml
 <?xml version="1.0" encoding="utf-8"?>
@@ -278,7 +278,7 @@ $svg_rect_2 = SVGFAlign::align($svg_rect_2,$svg_rect_0,SVGFObjectBox::POSITION_T
 
 ### Access SVG elements using XPath
 
-Source svg file used to ilustrate xpath functionalities:
+Source svg file used to illustrate xpath functionalities:
 
 ```xml
 <?xml version="1.0" encoding="utf-8"?>
@@ -476,9 +476,9 @@ $svg_text_2 = SVGFAlign::align($svg_text_2,$svg_rect,SVGFObjectBox::ALIGN_CENTER
 
 <img src="./examples/readme/text_align_offset.svg">
 
-### Create connectors
+### Draw connectors
 
-Source php code to create the markers used to ilustrate connectors:
+Source php code to create the markers used to illustrate connectors:
 
 ```php
 // create defs
@@ -496,7 +496,7 @@ $svg_defs->appendChild($svg_marker_cicrle);
 $svg_svg->appendChild($svg_defs);
 ```
 
-#### Connect points
+#### Draw connectors between points
 
 ```php
 // create points
@@ -521,7 +521,22 @@ $svg_connector_4 = SVGFConnectors::connectPoints($dom_doc_svg,$point_start_4,$po
 
 <img src="./examples/readme/connect_points.svg">
 
-#### Connect elements from center to center
+#### Draw connectors between element centers
+
+```php
+// create elements
+$svg_circle = SVGFNew::circle($dom_doc_svg,10,'circle',25,50,'#d9737a');
+$svg_rect = SVGFNew::rect($dom_doc_svg,40,40,'rect',65,10,null,null,'#d9737a');
+$svg_text = SVGFNew::text($dom_doc_svg,'Hello World!','text_hello',60,90,'Helvetica','12px','normal','#d9737a');
+
+// create connectors
+$svg_connector_1 = SVGFConnectors::connectElements($dom_doc_svg,$svg_circle,$svg_rect,'#861a22','1px','connector_1',null,'marker_arrow_end');
+$svg_connector_2 = SVGFConnectors::connectElements($dom_doc_svg,$svg_rect,$svg_text,'#861a22','1px','connector_2',null,'marker_arrow_end');
+```
+
+<img src="./examples/readme/connect_elements_center.svg">
+
+#### Draw connectors between elements edges
 
 ```php
 // create elements
