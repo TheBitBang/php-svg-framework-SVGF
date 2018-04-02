@@ -478,7 +478,7 @@ $svg_text_2 = SVGFAlign::align($svg_text_2,$svg_rect,SVGFObjectBox::ALIGN_CENTER
 
 ### Create connectors
 
-#### Connect points
+Source php code to create the markers used to ilustrate connectors:
 
 ```php
 // create defs
@@ -493,6 +493,12 @@ $svg_defs->appendChild($svg_marker_arrow_start);
 $svg_defs->appendChild($svg_marker_arrow_end);
 $svg_defs->appendChild($svg_marker_cicrle);
 
+$svg_svg->appendChild($svg_defs);
+```
+
+#### Connect points
+
+```php
 // create points
 $point_start_1 = SVGFNew::point(10,10);
 $point_end_1 = SVGFNew::point(40,40);
@@ -511,12 +517,6 @@ $svg_connector_1 = SVGFConnectors::connectPoints($dom_doc_svg,$point_start_1,$po
 $svg_connector_2 = SVGFConnectors::connectPoints($dom_doc_svg,$point_start_2,$point_end_2,'#861a22','1px','connector_2','marker_arrow_start','marker_arrow_end');
 $svg_connector_3 = SVGFConnectors::connectPoints($dom_doc_svg,$point_start_3,$point_end_3,'#861a22','1px','connector_3','marker_arrow_end','marker_arrow_end');
 $svg_connector_4 = SVGFConnectors::connectPoints($dom_doc_svg,$point_start_4,$point_end_4,'#861a22','1px','connector_4',null,'marker_circle');
-
-$svg_svg->appendChild($svg_defs);
-$svg_svg->appendChild($svg_connector_1);
-$svg_svg->appendChild($svg_connector_2);
-$svg_svg->appendChild($svg_connector_3);
-$svg_svg->appendChild($svg_connector_4);
 ```
 
 <img src="./examples/readme/connect_points.svg">
@@ -524,6 +524,12 @@ $svg_svg->appendChild($svg_connector_4);
 #### Connect elements from center to center
 
 ```php
+// create elements
+$svg_circle = SVGFNew::circle($dom_doc_svg,10,'circle',25,50,'#d9737a');
+$svg_rect = SVGFNew::rect($dom_doc_svg,40,40,'rect',65,10,null,null,'#d9737a');
+$svg_text = SVGFNew::text($dom_doc_svg,'Hello World!','text_hello',60,90,'Helvetica','12px','normal','#d9737a');
+
+// create connectors
 $svg_connector_1 = SVGFConnectors::connectElements($dom_doc_svg,$svg_circle,$svg_rect,'#861a22','1px','connector_1',null,'marker_arrow_end');
 $svg_connector_2 = SVGFConnectors::connectElements($dom_doc_svg,$svg_rect,$svg_text,'#861a22','1px','connector_2',null,'marker_arrow_end');
 ```
