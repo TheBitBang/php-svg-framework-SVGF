@@ -550,9 +550,9 @@ $svg_connector_2 = SVGFConnector::centers($dom_doc_svg,$svg_rect,$svg_text,'#861
 $svg_connector_1 = SVGFConnector::borders($dom_doc_svg,$svg_rect_left,$svg_rect_top,'#861a22','1px','connector_1',null,'marker_arrow_end');
 $svg_connector_2 = SVGFConnector::borders($dom_doc_svg,$svg_rect_right,$svg_rect_left,'#861a22','1px','connector_2',null,'marker_arrow_end');
 $svg_connector_3 = SVGFConnector::borders($dom_doc_svg,$svg_circle,$svg_rect_right,'#861a22','1px','connector_3',null,'marker_arrow_end');
-$svg_connector_4 = SVGFConnector::borders($dom_doc_svg,$svg_rect_top,$svg_circle,'#861a22','1px','connector_5',null,'marker_arrow_end');
-$svg_connector_5 = SVGFConnector::borders($dom_doc_svg,$svg_text,$svg_rect_top,'#861a22','1px','connector_6',null,'marker_arrow_end');
-$svg_connector_6 = SVGFConnector::borders($dom_doc_svg,$svg_circle,$svg_text,'#861a22','1px','connector_8',null,'marker_arrow_end');
+$svg_connector_4 = SVGFConnector::borders($dom_doc_svg,$svg_rect_top,$svg_circle,'#861a22','1px','connector_4',null,'marker_arrow_end');
+$svg_connector_5 = SVGFConnector::borders($dom_doc_svg,$svg_text,$svg_rect_top,'#861a22','1px','connector_5',null,'marker_arrow_end');
+$svg_connector_6 = SVGFConnector::borders($dom_doc_svg,$svg_circle,$svg_text,'#861a22','1px','connector_6',null,'marker_arrow_end');
 ```
 
 <img src="./examples/readme/connect_elements_border.svg">
@@ -563,9 +563,9 @@ $svg_connector_6 = SVGFConnector::borders($dom_doc_svg,$svg_circle,$svg_text,'#8
 $svg_connector_1 = SVGFConnector::borders($dom_doc_svg,$svg_rect_left,$svg_rect_top,'#861a22','1px','connector_1',null,'marker_arrow_end',-5);
 $svg_connector_2 = SVGFConnector::borders($dom_doc_svg,$svg_rect_right,$svg_rect_left,'#861a22','1px','connector_2',null,'marker_arrow_end',15);
 $svg_connector_3 = SVGFConnector::borders($dom_doc_svg,$svg_circle,$svg_rect_right,'#861a22','1px','connector_3',null,'marker_arrow_end',-5);
-$svg_connector_4 = SVGFConnector::borders($dom_doc_svg,$svg_rect_top,$svg_circle,'#861a22','1px','connector_5',null,'marker_arrow_end',15);
-$svg_connector_5 = SVGFConnector::borders($dom_doc_svg,$svg_text,$svg_rect_top,'#861a22','1px','connector_6',null,'marker_arrow_end',5);
-$svg_connector_6 = SVGFConnector::borders($dom_doc_svg,$svg_circle,$svg_text,'#861a22','1px','connector_8',null,'marker_arrow_end',5);
+$svg_connector_4 = SVGFConnector::borders($dom_doc_svg,$svg_rect_top,$svg_circle,'#861a22','1px','connector_4',null,'marker_arrow_end',15);
+$svg_connector_5 = SVGFConnector::borders($dom_doc_svg,$svg_text,$svg_rect_top,'#861a22','1px','connector_5',null,'marker_arrow_end',5);
+$svg_connector_6 = SVGFConnector::borders($dom_doc_svg,$svg_circle,$svg_text,'#861a22','1px','connector_6',null,'marker_arrow_end',5);
 ```
 
 <img src="./examples/readme/connect_elements_border_offset.svg">
