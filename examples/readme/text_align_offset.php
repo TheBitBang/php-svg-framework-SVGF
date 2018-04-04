@@ -13,7 +13,7 @@ require realpath(__DIR__ . '/../..' . '/vendor/autoload.php');;
 use b1t\svg\SVGSVGElement;
 use b1t\svg\SVGTextElement;
 use b1t\svgf\SVGFRectElement;
-use b1t\svgf\SVGFNew;
+use b1t\svgf\SVGFElement;
 use b1t\svgf\SVGFAlign;
 use b1t\svgf\geometry\SVGFObjectBox;
 
@@ -27,12 +27,12 @@ $svg_svg->setVersion('1.1');
 $svg_svg->setAttribute('xmlns','http://www.w3.org/2000/svg');
 
 // create rectangle
-$svg_rect = SVGFNew::rect($dom_doc_svg,80,80,'rect',110,20,null,null,'#d9737a');
+$svg_rect = SVGFElement::rect($dom_doc_svg,80,80,'rect',110,20,null,null,'#d9737a');
 
 // create text
-$svg_text_0 = SVGFNew::text($dom_doc_svg,'offset top','text_0',0,0,'Helvetica','8px','normal','#861a22');
-$svg_text_1 = SVGFNew::text($dom_doc_svg,'offset right','text_1',0,0,'Helvetica','16px','normal','#861a22');
-$svg_text_2 = SVGFNew::text($dom_doc_svg,'offset center','text_2',0,0,'Helvetica','10px','normal','#861a22');
+$svg_text_0 = SVGFElement::text($dom_doc_svg,'offset top','text_0',0,0,'Helvetica','8px','normal','#861a22');
+$svg_text_1 = SVGFElement::text($dom_doc_svg,'offset right','text_1',0,0,'Helvetica','16px','normal','#861a22');
+$svg_text_2 = SVGFElement::text($dom_doc_svg,'offset center','text_2',0,0,'Helvetica','10px','normal','#861a22');
 
 // align text
 $svg_text_0 = SVGFAlign::align($svg_text_0,$svg_rect,SVGFObjectBox::ALIGN_CENTER); // 'offset top' 8px

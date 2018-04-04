@@ -12,7 +12,7 @@ require realpath(__DIR__ . '/../..' . '/vendor/autoload.php');;
 
 use b1t\svg\SVGSVGElement;
 use b1t\svg\SVGRectElement;
-use b1t\svgf\SVGFNew;
+use b1t\svgf\SVGFElement;
 
 // create svg document
 $dom_doc_svg = new \DOMDocument('1.0', 'utf-8');
@@ -24,7 +24,7 @@ $svg_svg->setVersion('1.1');
 $svg_svg->setAttribute('xmlns','http://www.w3.org/2000/svg');
 
 // create rectangle
-$svg_rect = SVGFNew::rect($dom_doc_svg,'50','50','rect_50x50_3');
+$svg_rect = SVGFElement::rect($dom_doc_svg,'50','50','rect_50x50_3');
 $svg_svg->appendChild($svg_rect);
 
 $txt_svg = $dom_doc_svg->saveXML();

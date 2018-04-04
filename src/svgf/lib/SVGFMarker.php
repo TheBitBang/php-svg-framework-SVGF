@@ -6,7 +6,7 @@ use b1t\svg\SVGSVGElement;
 use b1t\svg\SVGAnimatedEnumeration;
 use b1t\svg\SVGPathElement;
 use b1t\svg\SVGMarkerElement;
-use b1t\svgf\SVGFNew;
+use b1t\svgf\SVGFElement;
 
 /**
  * This is a helper class to create connectors.
@@ -14,11 +14,11 @@ use b1t\svgf\SVGFNew;
  * @author J. Xavier Atero
  */
  
-class SVGFMarkers {
+class SVGFMarker {
 
 	public static function markerArrowStart($dom_doc, $id_marker = null, $id_path = null, $style_fill = null, $offset = 0)
 	{
-		$svg_marker = SVGFNew::marker($dom_doc,$id_marker,8,8,8+$offset,4,'auto');
+		$svg_marker = SVGFElement::marker($dom_doc,$id_marker,8,8,8+$offset,4,'auto');
 		$svg_marker->style->setProperty('overflow','visible','');
 		$svg_animated_enum = new SVGAnimatedEnumeration();
 		$svg_animated_enum->setBaseVal(SVGMarkerElement::SVG_MARKERUNITS_STROKEWIDTH);
@@ -36,7 +36,7 @@ class SVGFMarkers {
 
 	public static function markerArrowEnd($dom_doc, $id_marker = null, $id_path = null, $style_fill = null, $offset = 0)
 	{
-		$svg_marker = SVGFNew::marker($dom_doc,$id_marker,8,8,0+$offset,4,'auto');
+		$svg_marker = SVGFElement::marker($dom_doc,$id_marker,8,8,0+$offset,4,'auto');
 		$svg_marker->style->setProperty('overflow','visible','');
 		$svg_animated_enum = new SVGAnimatedEnumeration();
 		$svg_animated_enum->setBaseVal(SVGMarkerElement::SVG_MARKERUNITS_STROKEWIDTH);
@@ -55,12 +55,12 @@ class SVGFMarkers {
 
 	public static function markerCircle($dom_doc, $id_marker = null, $id_circle = null, $style_fill = null)
 	{
-		$svg_marker = SVGFNew::marker($dom_doc,$id_marker,8,4,5,5,'auto');
+		$svg_marker = SVGFElement::marker($dom_doc,$id_marker,8,4,5,5,'auto');
 		$svg_marker->style->setProperty('overflow','visible','');
 		$svg_animated_enum = new SVGAnimatedEnumeration();
 		$svg_animated_enum->setBaseVal(SVGMarkerElement::SVG_MARKERUNITS_STROKEWIDTH);
 		$svg_marker->markerUnits = $svg_animated_enum; // The value of attribute ‘markerUnits’ is 'strokeWidth' 
-		$svg_cicrle = SVGFNew::circle($dom_doc,3,$id_circle,5,5,$style_fill);
+		$svg_cicrle = SVGFElement::circle($dom_doc,3,$id_circle,5,5,$style_fill);
 
 		$svg_marker->appendChild($svg_cicrle);
 		return $svg_marker;

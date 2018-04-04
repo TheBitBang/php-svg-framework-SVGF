@@ -18,7 +18,7 @@ use b1t\svg\SVGPoint;
  * @author J. Xavier Atero
  */
  
-class SVGFNew {
+class SVGFElement {
 
 	const SIZE_A0 = array('mm', '841', '1189');
 	const SIZE_A1 = array('mm', '594', '841');

@@ -37,21 +37,21 @@ $svg_svg->setAttribute('xmlns','http://www.w3.org/2000/svg');
 
 ```php
 $dom_doc_svg = new \DOMDocument('1.0', 'utf-8');
-$svg_svg = SVGFNew::svg($dom_doc_svg,'a4',SVGFNew::SIZE_A4,'portrait');
+$svg_svg = SVGFElement::svg($dom_doc_svg,'a4',SVGFElement::SIZE_A4,'portrait');
 ```
 
 #### Create SVG with size A4 using SVGF (landscape orientation)
 
 ```php
 $dom_doc_svg = new \DOMDocument('1.0', 'utf-8');
-$svg_svg = SVGFNew::svg($dom_doc_svg,'a4');
+$svg_svg = SVGFElement::svg($dom_doc_svg,'a4');
 ```
 
 or
 
 ```php
 $dom_doc_svg = new \DOMDocument('1.0', 'utf-8');
-$svg_svg = SVGFNew::svg($dom_doc_svg,'a4',SVGFNew::SIZE_A4,'landscape');
+$svg_svg = SVGFElement::svg($dom_doc_svg,'a4',SVGFElement::SIZE_A4,'landscape');
 ```
 
 #### Create SVG with size Full HD
@@ -70,7 +70,7 @@ $svg_svg->setAttribute('xmlns','http://www.w3.org/2000/svg');
 
 ```php
 $dom_doc_svg = new \DOMDocument('1.0', 'utf-8');
-$svg_svg = SVGFNew::svg($dom_doc_svg,'a4',SVGFNew::SIZE_FHD);
+$svg_svg = SVGFElement::svg($dom_doc_svg,'a4',SVGFElement::SIZE_FHD);
 ```
 
 #### SVGF predefined sizes
@@ -124,7 +124,7 @@ $svg_svg->appendChild($svg_rect);
 #### Create rectangle using SVGF
 
 ```php
-$svg_rect = SVGFNew::rect($dom_doc_svg,'50','50','rect_50x50_3');
+$svg_rect = SVGFElement::rect($dom_doc_svg,'50','50','rect_50x50_3');
 $svg_svg->appendChild($svg_rect);
 ```
 
@@ -160,7 +160,7 @@ $svg_svg->appendChild($svg_circle);
 
 ```php
 // create circle
-$svg_circle = SVGFNew::circle($dom_doc_svg,'20','circle_20','25','25');
+$svg_circle = SVGFElement::circle($dom_doc_svg,'20','circle_20','25','25');
 $svg_svg->appendChild($svg_circle);
 ```
 
@@ -171,7 +171,7 @@ $svg_svg->appendChild($svg_circle);
 #### Apply style setting individual properties
 
 ```php
-$svg_circle = SVGFNew::circle($dom_doc_svg,10,'circle_10_style',25,25);
+$svg_circle = SVGFElement::circle($dom_doc_svg,10,'circle_10_style',25,25);
 $svg_circle->style->setProperty('fill','#d9737a','');
 $svg_circle->style->setProperty('stroke','#861a22','');
 $svg_circle->style->setProperty('stroke-width','2','');
@@ -183,7 +183,7 @@ $svg_svg->appendChild($svg_circle);
 #### Apply style setting style as string with properties and values
 
 ```php
-$svg_circle = SVGFNew::circle($dom_doc_svg,15,'circle_15_style',25,25);
+$svg_circle = SVGFElement::circle($dom_doc_svg,15,'circle_15_style',25,25);
 $svg_circle->style = "fill: #d9737a; stroke: #861a22; stroke-width: 2;";
 $svg_svg->appendChild($svg_circle);
 ```
@@ -193,7 +193,7 @@ $svg_svg->appendChild($svg_circle);
 #### Apply style from SVGF
 
 ```php
-$svg_circle = SVGFNew::circle($dom_doc_svg,20,'circle_20_style',25,25,'#d9737a','#861a22',2);
+$svg_circle = SVGFElement::circle($dom_doc_svg,20,'circle_20_style',25,25,'#d9737a','#861a22',2);
 $svg_svg->appendChild($svg_circle);
 ```
 
@@ -413,7 +413,7 @@ $svg_svg->appendChild($svg_text);
 #### Create text using SVGF
 
 ```php
-$svg_text = SVGFNew::text($dom_doc_svg,'Hello World!','text_hello','0','20');
+$svg_text = SVGFElement::text($dom_doc_svg,'Hello World!','text_hello','0','20');
 $svg_svg->appendChild($svg_text);
 ```
 
@@ -439,7 +439,7 @@ $svg_svg->appendChild($svg_text);
 #### Create text with style properties using SVGF
 
 ```php
-$svg_text = SVGFNew::text($dom_doc_svg,'Hello World!','text_hello','0','20','Helvetica','25px','normal','#861a22');
+$svg_text = SVGFElement::text($dom_doc_svg,'Hello World!','text_hello','0','20','Helvetica','25px','normal','#861a22');
 $svg_svg->appendChild($svg_text);
 ```
 
@@ -482,12 +482,12 @@ Source php code to create the markers used to illustrate connectors:
 
 ```php
 // create defs
-$svg_defs = SVGFNew::defs($dom_doc_svg,'marker');
+$svg_defs = SVGFElement::defs($dom_doc_svg,'marker');
 
 // create markers
-$svg_marker_arrow_start = SVGFMarkers::markerArrowStart($dom_doc_svg,'marker_arrow_start','path_arrow_start','#861a22');
-$svg_marker_arrow_end = SVGFMarkers::markerArrowEnd($dom_doc_svg,'marker_arrow_end','path_arrow_end','#861a22');
-$svg_marker_cicrle = SVGFMarkers::markerCircle($dom_doc_svg,'marker_circle','circle','#861a22');
+$svg_marker_arrow_start = SVGFMarker::markerArrowStart($dom_doc_svg,'marker_arrow_start','path_arrow_start','#861a22');
+$svg_marker_arrow_end = SVGFMarker::markerArrowEnd($dom_doc_svg,'marker_arrow_end','path_arrow_end','#861a22');
+$svg_marker_cicrle = SVGFMarker::markerCircle($dom_doc_svg,'marker_circle','circle','#861a22');
 
 $svg_defs->appendChild($svg_marker_arrow_start);
 $svg_defs->appendChild($svg_marker_arrow_end);
@@ -500,23 +500,23 @@ $svg_svg->appendChild($svg_defs);
 
 ```php
 // create points
-$point_start_1 = SVGFNew::point(10,10);
-$point_end_1 = SVGFNew::point(40,40);
+$point_start_1 = SVGFElement::point(10,10);
+$point_end_1 = SVGFElement::point(40,40);
 
-$point_start_2 = SVGFNew::point(60,40);
-$point_end_2 = SVGFNew::point(90,10);
+$point_start_2 = SVGFElement::point(60,40);
+$point_end_2 = SVGFElement::point(90,10);
 
-$point_start_3 = SVGFNew::point(125,40);
-$point_end_3 = SVGFNew::point(125,10);
+$point_start_3 = SVGFElement::point(125,40);
+$point_end_3 = SVGFElement::point(125,10);
 
-$point_start_4 = SVGFNew::point(160,25);
-$point_end_4 = SVGFNew::point(190,25);
+$point_start_4 = SVGFElement::point(160,25);
+$point_end_4 = SVGFElement::point(190,25);
 
 // create connectors
-$svg_connector_1 = SVGFConnectors::connectPoints($dom_doc_svg,$point_start_1,$point_end_1,'#861a22','1px','connector_1','marker_circle','marker_arrow_end');
-$svg_connector_2 = SVGFConnectors::connectPoints($dom_doc_svg,$point_start_2,$point_end_2,'#861a22','1px','connector_2','marker_arrow_start','marker_arrow_end');
-$svg_connector_3 = SVGFConnectors::connectPoints($dom_doc_svg,$point_start_3,$point_end_3,'#861a22','1px','connector_3','marker_arrow_end','marker_arrow_end');
-$svg_connector_4 = SVGFConnectors::connectPoints($dom_doc_svg,$point_start_4,$point_end_4,'#861a22','1px','connector_4',null,'marker_circle');
+$svg_connector_1 = SVGFConnector::points($dom_doc_svg,$point_start_1,$point_end_1,'#861a22','1px','connector_1','marker_circle','marker_arrow_end');
+$svg_connector_2 = SVGFConnector::points($dom_doc_svg,$point_start_2,$point_end_2,'#861a22','1px','connector_2','marker_arrow_start','marker_arrow_end');
+$svg_connector_3 = SVGFConnector::points($dom_doc_svg,$point_start_3,$point_end_3,'#861a22','1px','connector_3','marker_arrow_end','marker_arrow_end');
+$svg_connector_4 = SVGFConnector::points($dom_doc_svg,$point_start_4,$point_end_4,'#861a22','1px','connector_4',null,'marker_circle');
 ```
 
 <img src="./examples/readme/connect_points.svg">
@@ -526,10 +526,10 @@ $svg_connector_4 = SVGFConnectors::connectPoints($dom_doc_svg,$point_start_4,$po
 The marker size will automatically adjust to the stroke size of the path
 
 ```php
-$svg_connector_1 = SVGFConnectors::connectPoints($dom_doc_svg,$point_start_1,$point_end_1,'#861a22','0.5px','connector_1','marker_circle','marker_arrow_end');
-$svg_connector_2 = SVGFConnectors::connectPoints($dom_doc_svg,$point_start_2,$point_end_2,'#861a22','2px','connector_2','marker_arrow_start','marker_arrow_end');
-$svg_connector_3 = SVGFConnectors::connectPoints($dom_doc_svg,$point_start_3,$point_end_3,'#861a22','1.5px','connector_3','marker_arrow_end','marker_arrow_end');
-$svg_connector_4 = SVGFConnectors::connectPoints($dom_doc_svg,$point_start_4,$point_end_4,'#861a22','3px','connector_4',null,'marker_circle');
+$svg_connector_1 = SVGFConnector::points($dom_doc_svg,$point_start_1,$point_end_1,'#861a22','0.5px','connector_1','marker_circle','marker_arrow_end');
+$svg_connector_2 = SVGFConnector::points($dom_doc_svg,$point_start_2,$point_end_2,'#861a22','2px','connector_2','marker_arrow_start','marker_arrow_end');
+$svg_connector_3 = SVGFConnector::points($dom_doc_svg,$point_start_3,$point_end_3,'#861a22','1.5px','connector_3','marker_arrow_end','marker_arrow_end');
+$svg_connector_4 = SVGFConnector::points($dom_doc_svg,$point_start_4,$point_end_4,'#861a22','3px','connector_4',null,'marker_circle');
 ```
 
 <img src="./examples/readme/connect_points_stroke_width.svg">
@@ -538,28 +538,36 @@ $svg_connector_4 = SVGFConnectors::connectPoints($dom_doc_svg,$point_start_4,$po
 
 ```php
 // create elements
-$svg_circle = SVGFNew::circle($dom_doc_svg,10,'circle',25,50,'#d9737a');
-$svg_rect = SVGFNew::rect($dom_doc_svg,40,40,'rect',65,10,null,null,'#d9737a');
-$svg_text = SVGFNew::text($dom_doc_svg,'Hello World!','text_hello',60,90,'Helvetica','12px','normal','#d9737a');
+$svg_circle = SVGFElement::circle($dom_doc_svg,10,'circle',25,50,'#d9737a');
+$svg_rect = SVGFElement::rect($dom_doc_svg,40,40,'rect',65,10,null,null,'#d9737a');
+$svg_text = SVGFElement::text($dom_doc_svg,'Hello World!','text_hello',60,90,'Helvetica','12px','normal','#d9737a');
 
 // create connectors
-$svg_connector_1 = SVGFConnectors::connectElements($dom_doc_svg,$svg_circle,$svg_rect,'#861a22','1px','connector_1',null,'marker_arrow_end');
-$svg_connector_2 = SVGFConnectors::connectElements($dom_doc_svg,$svg_rect,$svg_text,'#861a22','1px','connector_2',null,'marker_arrow_end');
+$svg_connector_1 = SVGFConnector::centers($dom_doc_svg,$svg_circle,$svg_rect,'#861a22','1px','connector_1',null,'marker_arrow_end');
+$svg_connector_2 = SVGFConnector::centers($dom_doc_svg,$svg_rect,$svg_text,'#861a22','1px','connector_2',null,'marker_arrow_end');
 ```
 
 <img src="./examples/readme/connect_elements_center.svg">
 
-#### Draw connectors between elements edges
+#### Draw connectors between elements borders
 
 ```php
 // create elements
-$svg_circle = SVGFNew::circle($dom_doc_svg,10,'circle',25,50,'#d9737a');
-$svg_rect = SVGFNew::rect($dom_doc_svg,40,40,'rect',65,10,null,null,'#d9737a');
-$svg_text = SVGFNew::text($dom_doc_svg,'Hello World!','text_hello',60,90,'Helvetica','12px','normal','#d9737a');
+$svg_circle = SVGFElement::circle($dom_doc_svg,10,'circle',190,10,'#d9737a');
+$svg_text = SVGFElement::text($dom_doc_svg,'Hello World!','text_hello',90,50,'Helvetica','12px','normal','#d9737a');
+$svg_rect_1 = SVGFElement::rect($dom_doc_svg,20,20,'rect_1',15,30,null,null,'#d9737a');
+$svg_rect_2 = SVGFElement::rect($dom_doc_svg,40,40,'rect_2',5,80,null,null,'#d9737a');
+$svg_rect_3 = SVGFElement::rect($dom_doc_svg,40,20,'rect_3',130,90,null,null,'#d9737a');
 
 // create connectors
-$svg_connector_1 = SVGFConnectors::connectElements($dom_doc_svg,$svg_circle,$svg_rect,'#861a22','1px','connector_1',null,'marker_arrow_end');
-$svg_connector_2 = SVGFConnectors::connectElements($dom_doc_svg,$svg_rect,$svg_text,'#861a22','1px','connector_2',null,'marker_arrow_end');
+$svg_connector_1 = SVGFConnector::borders($dom_doc_svg,$svg_rect_2,$svg_rect_1,'#861a22','1px','connector_1',null,'marker_arrow_end');
+$svg_connector_2 = SVGFConnector::borders($dom_doc_svg,$svg_rect_3,$svg_rect_2,'#861a22','1px','connector_2',null,'marker_arrow_end');
+$svg_connector_3 = SVGFConnector::borders($dom_doc_svg,$svg_circle,$svg_rect_3,'#861a22','1px','connector_3',null,'marker_arrow_end');
+$svg_connector_4 = SVGFConnector::borders($dom_doc_svg,$svg_rect_1,$svg_text,'#861a22','1px','connector_4',null,'marker_arrow_end');
+$svg_connector_5 = SVGFConnector::borders($dom_doc_svg,$svg_rect_1,$svg_circle,'#861a22','1px','connector_5',null,'marker_arrow_end');
+$svg_connector_6 = SVGFConnector::borders($dom_doc_svg,$svg_rect_3,$svg_rect_1,'#861a22','1px','connector_6',null,'marker_arrow_end');
+$svg_connector_7 = SVGFConnector::borders($dom_doc_svg,$svg_text,$svg_rect_3,'#861a22','1px','connector_7',null,'marker_arrow_end');
+$svg_connector_8 = SVGFConnector::borders($dom_doc_svg,$svg_text,$svg_circle,'#861a22','1px','connector_8',null,'marker_arrow_end');
 ```
 
-<img src="./examples/readme/connect_elements_center.svg">
+<img src="./examples/readme/connect_elements_border.svg">
