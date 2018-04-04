@@ -73,7 +73,7 @@ class SVGFConnector {
 		return $svg_path;
 	}
 
-	public static function borders($dom_doc, $element_start, $element_end, $style_stroke, $style_stroke_width, $id = null, $marker_start_url = null, $marker_end_url = null)
+	public static function borders($dom_doc, $element_start, $element_end, $style_stroke, $style_stroke_width, $id = null, $marker_start_url = null, $marker_end_url = null, $offset = 0)
 	{
 
 		// get bboxes
@@ -86,28 +86,37 @@ class SVGFConnector {
 		$x_end_center = $bbox_element_end->x_center;
 		$y_end_center = $bbox_element_end->y_center;
 
+		// get max and min points
+		$x_start_min = $bbox_element_start->x_min - $offset;
+		$y_start_min = $bbox_element_start->y_min - $offset;
+		$x_start_max = $bbox_element_start->x_max + $offset;
+		$y_start_max = $bbox_element_start->y_max + $offset;
+		$x_end_min = $bbox_element_end->x_min - $offset;
+		$y_end_min = $bbox_element_end->y_min - $offset;
+		$x_end_max = $bbox_element_end->x_max + $offset;
+		$y_end_max = $bbox_element_end->y_max + $offset;
+
 		// get deltas
 		$delta_y_connector = $y_end_center - $y_start_center;
 		$delta_x_connector = $x_end_center - $x_start_center;
 
-		// calculate end point if connector starting and ending in the edges
 		while (true) {
 
 			if ($delta_x_connector == 0) {// vertically aligned
-				$x_start = $bbox_element_start->x_center;
-				$y_start = ($y_end_center > $y_start_center) ? $bbox_element_start->y_max : $bbox_element_start->y_min ;
-				$x_end = $bbox_element_end->x_center;
-				$y_end = ($y_end_center < $y_start_center) ? $bbox_element_end->y_max : $bbox_element_end->y_min ;
+				$x_start = $x_start_center;
+				$y_start = ($y_end_center > $y_start_center) ? $y_start_max : $y_start_min;
+				$x_end = $x_end_center;
+				$y_end = ($y_end_center < $y_start_center) ? $y_end_max : $y_end_min;
 				break;
 			}
 
 			$m_connector = $delta_y_connector / $delta_x_connector; // slope
 
 			if ($m_connector == 0) {// horizontally aligned
-				$x_start = ($x_end_center > $x_start_center) ? $bbox_element_start->x_max : $bbox_element_start->x_min ;
-				$y_start = $bbox_element_start->y_center;
-				$x_end = ($x_end_center < $x_start_center) ? $bbox_element_end->x_max : $bbox_element_end->x_min ;
-				$y_end = $bbox_element_end->y_center;
+				$x_start = ($x_end_center > $x_start_center) ? $x_start_max : $x_start_min ;
+				$y_start = $y_start_center;
+				$x_end = ($x_end_center < $x_start_center) ? $x_end_max : $x_end_min ;
+				$y_end = $y_end_center;
 				break;
 			 }
 
@@ -118,17 +127,17 @@ class SVGFConnector {
 				case 'tspan':
 					$element_m = self::getBBoxSlope($bbox_element_start); //slope
 					if (abs($m_connector) < abs($element_m)){ // connector arriving to left or right sides
-						$x_start = ($x_end_center > $x_start_center) ? $bbox_element_start->x_max : $bbox_element_start->x_min ;
+						$x_start = ($x_end_center > $x_start_center) ? $x_start_max : $x_start_min ;
 						$y_start = $y_end_center - ($m_connector * ($x_end_center - $x_start));
 					} else { // connector arriving to top or bottom sides
-						$y_start = ($y_end_center > $y_start_center) ? $bbox_element_start->y_max : $bbox_element_start->y_min ;
+						$y_start = ($y_end_center > $y_start_center) ? $y_start_max : $y_start_min ;
 						$x_start = $x_end_center - (($y_end_center - $y_start) / $m_connector);
 					}
 					break;
 				case 'circle':
 					$phi = atan2($delta_y_connector,$delta_x_connector);
-					$x_start = $x_start_center + $element_start->r * cos($phi);
-					$y_start = $y_start_center + $element_start->r * sin($phi);
+					$x_start = $x_start_center + ($element_start->r + $offset) * cos($phi);
+					$y_start = $y_start_center + ($element_start->r + $offset) * sin($phi);
 					break;
 			}
 
@@ -139,17 +148,17 @@ class SVGFConnector {
 				case 'tspan':
 					$element_m = self::getBBoxSlope($bbox_element_end); //slope
 					if (abs($m_connector) < abs($element_m)){ // connector arriving to left or right sides
-						$x_end = ($x_end_center < $x_start_center) ? $bbox_element_end->x_max : $bbox_element_end->x_min ;
+						$x_end = ($x_end_center < $x_start_center) ? $x_end_max : $x_end_min;
 						$y_end = ($m_connector * ($x_end - $x_start_center)) + $y_start_center;
 					} else { // connector arriving to top or bottom sides
-						$y_end = ($y_end_center < $y_start_center) ? $bbox_element_end->y_max : $bbox_element_end->y_min ;
+						$y_end = ($y_end_center < $y_start_center) ? $y_end_max : $y_end_min;
 						$x_end = (($y_end - $y_start_center) / $m_connector) + $x_start_center;
 					}
 					break;
 				case 'circle':
 					$phi = atan2($delta_y_connector,$delta_x_connector);
-					$x_end = $x_end_center - $element_end->r * cos($phi);
-					$y_end = $y_end_center - $element_end->r * sin($phi);
+					$x_end = $x_end_center - ($element_end->r + $offset) * cos($phi);
+					$y_end = $y_end_center - ($element_end->r + $offset) * sin($phi);
 					break;
 			}
 			break;
@@ -163,7 +172,7 @@ class SVGFConnector {
 		return $svg_path;
 	}
 
-	public static function sides($dom_doc, $element_start, $element_end, $id = null, $style_fill = null)
+	public static function sides($dom_doc, $element_start, $element_end, $id = null, $style_fill = null, $offset = 0)
 	{
 		// get bboxes
 		$bbox_element_start = self::getBBox($element_start);
@@ -180,34 +189,32 @@ class SVGFConnector {
 		$delta_x_connector = $x_end_center - $x_start_center;
 
 		// defalut values
-		$x_start_1 = $bbox_element_start->x_min;
-		$x_start_2 = $bbox_element_start->x_max;
-		$y_start_1 = $bbox_element_start->y_min;
-		$y_start_2 = $bbox_element_start->y_max;
-		$x_end_1 = $bbox_element_end->x_min;
-		$x_end_2 = $bbox_element_end->x_max;
-		$y_end_1 = $bbox_element_end->y_min;
-		$y_end_2 = $bbox_element_end->y_max;
+		$x_start_min = $bbox_element_start->x_min;
+		$y_start_min = $bbox_element_start->y_min;
+		$x_start_max = $bbox_element_start->x_max;
+		$y_start_max = $bbox_element_start->y_max;
+		$x_end_min = $bbox_element_end->x_min;
+		$y_end_min = $bbox_element_end->y_min;
+		$x_end_max = $bbox_element_end->x_max;
+		$y_end_max = $bbox_element_end->y_max;
 
-
-		// calculate end point if connector starting and ending in the edges
 		while (true) {
 
 			if ($delta_x_connector == 0) {// vertically aligned
-				$y_start_1 = ($y_end_center > $y_start_center) ? $bbox_element_start->y_max : $bbox_element_start->y_min ;
-				$y_start_2 = $y_start_1;
-				$y_end_1 = ($y_end_center < $y_start_center) ? $bbox_element_end->y_max : $bbox_element_end->y_min ;
-				$y_end_2 = $y_end_1;
+				$y_start_min = ($y_end_center > $y_start_center) ? $y_start_max + $offset : $y_start_min - $offset;
+				$y_start_max = $y_start_min;
+				$y_end_min = ($y_end_center < $y_start_center) ? $y_end_max + $offset : $y_end_min - $offset;
+				$y_end_max = $y_end_min;
 				break;
 			}
 
 			$m_connector = $delta_y_connector / $delta_x_connector; // slope
 
 			if ($m_connector == 0) {// horizontally aligned
-				$x_start_1 = ($x_end_center > $x_start_center) ? $bbox_element_start->x_max : $bbox_element_start->x_min ;
-				$x_start_2 = $x_start_1;
-				$x_end_1 = ($x_end_center < $x_start_center) ? $bbox_element_end->x_max : $bbox_element_end->x_min ;
-				$x_end_2 = $x_end_1;
+				$x_start_min = ($x_end_center > $x_start_center) ? $x_start_max + $offset : $x_start_min - $offset;
+				$x_start_max = $x_start_min;
+				$x_end_min = ($x_end_center < $x_start_center) ? $x_end_max + $offset : $x_end_min - $offset;
+				$x_end_max = $x_end_min;
 				break;
 			 }
 
@@ -218,17 +225,15 @@ class SVGFConnector {
 				case 'tspan':
 					$element_m = self::getBBoxSlope($bbox_element_start); //slope
 					if (abs($m_connector) < abs($element_m)){ // connector arriving to left or right sides
-						$x_start_1 = ($x_end_center > $x_start_center) ? $bbox_element_start->x_max : $bbox_element_start->x_min ;
-						$x_start_2 = $x_start_1;
+						$x_start_min = ($x_end_center > $x_start_center) ? $x_start_max + $offset : $x_start_min - $offset;
+						$x_start_max = $x_start_min;
 					} else { // connector arriving to top or bottom sides
-						$y_start_1 = ($y_end_center > $y_start_center) ? $bbox_element_start->y_max : $bbox_element_start->y_min ;
-						$y_start_2 = $y_start_1;
+						$y_start_min = ($y_end_center > $y_start_center) ? $y_start_max + $offset : $y_start_min - $offset;
+						$y_start_max = $y_start_min;
 					}
 					break;
 				case 'circle':
-					$phi = atan2($delta_y_connector,$delta_x_connector);
-					$x_start = $x_start_center + $element_start->r * cos($phi);
-					$y_start = $y_start_center + $element_start->r * sin($phi);
+					// to-do: tangent to circle
 					break;
 			}
 
@@ -239,17 +244,15 @@ class SVGFConnector {
 				case 'tspan':
 					$element_m = self::getBBoxSlope($bbox_element_end); //slope
 					if (abs($m_connector) < abs($element_m)){ // connector arriving to left or right sides
-						$x_end_1 = ($x_end_center < $x_start_center) ? $bbox_element_end->x_max : $bbox_element_end->x_min ;
-						$x_end_2 = $x_end_1;
+						$x_end_min = ($x_end_center < $x_start_center) ? $x_end_max + $offset : $x_end_min - $offset;
+						$x_end_max = $x_end_min;
 					} else { // connector arriving to top or bottom sides
-						$y_end_1 = ($y_end_center < $y_start_center) ? $bbox_element_end->y_max : $bbox_element_end->y_min ;
-						$y_end_2 = $y_end_1;
+						$y_end_min = ($y_end_center < $y_start_center) ? $y_end_max + $offset : $y_end_min - $offset;
+						$y_end_max = $y_end_min;
 					}
 					break;
 				case 'circle':
-					$phi = atan2($delta_y_connector,$delta_x_connector);
-					$x_end = $x_end_center - $element_end->r * cos($phi);
-					$y_end = $y_end_center - $element_end->r * sin($phi);
+					// to-do: tangent to circle
 					break;
 			}
 			break;
@@ -257,7 +260,7 @@ class SVGFConnector {
 
 		// create path
 		$svg_path = new SVGPathElement($dom_doc);
-		$m = "M $x_start_1,$y_start_1 $x_start_2,$y_start_2 $x_end_2,$y_end_2 $x_end_1,$y_end_1 Z";
+		$m = "M $x_start_min,$y_start_min $x_start_max,$y_start_max $x_end_max,$y_end_max $x_end_min,$y_end_min Z";
 		$svg_path->setD("$m");
 
 		// add properties if the strings are not empty
