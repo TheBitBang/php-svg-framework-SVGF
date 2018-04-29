@@ -63,8 +63,23 @@ class SVGMarkerElement extends SVGObject {
 
 	// set and get methods
 
-	public function setRefX(SVGAnimatedLength $refX)
+	public function setRefX($refX)
 	{
+		// allow the input parameter to have different types
+		if (gettype($refX) == 'object' )
+		{
+			if (get_class($refX) != 'b1t\svg\SVGAnimatedLength')
+			{
+				throw new Exception('Wrong object class. Expected class: b1t\svg\SVGAnimatedLength');
+			}
+		} 
+		else // convert input parameter to proper type
+		{
+			$ref_x = new SVGAnimatedLength();
+			$ref_x->setBaseVal($refX);
+			$refX = $ref_x;
+		}
+		
 		$this->refX = $refX;
 		$this->setAttribute('refX',$refX->getBaseVal()); // set attribute in DOM
 	}
@@ -74,8 +89,23 @@ class SVGMarkerElement extends SVGObject {
 		return $this->refX->getBaseVal();
 	}
 
-	public function setRefY(SVGAnimatedLength $refY)
+	public function setRefY($refY)
 	{
+		// allow the input parameter to have different types
+		if (gettype($refY) == 'object' )
+		{
+			if (get_class($refY) != 'b1t\svg\SVGAnimatedLength')
+			{
+				throw new Exception('Wrong object class. Expected class: b1t\svg\SVGAnimatedLength');
+			}
+		} 
+		else // convert input parameter to proper type
+		{
+			$ref_y = new SVGAnimatedLength();
+			$ref_y->setBaseVal($refY);
+			$refY = $ref_y;
+		}
+		
 		$this->refY = $refY;
 		$this->setAttribute('refY',$refY->getBaseVal()); // set attribute in DOM
 	}
@@ -119,8 +149,23 @@ class SVGMarkerElement extends SVGObject {
 		return $markerUnits;
 	}
 
-	public function setMarkerWidth(SVGAnimatedLength $markerWidth)
+	public function setMarkerWidth($markerWidth)
 	{
+		// allow the input parameter to have different types
+		if (gettype($markerWidth) == 'object' )
+		{
+			if (get_class($markerWidth) != 'b1t\svg\SVGAnimatedLength')
+			{
+				throw new Exception('Wrong object class. Expected class: b1t\svg\SVGAnimatedLength');
+			}
+		} 
+		else // convert input parameter to proper type
+		{
+			$marker_width = new SVGAnimatedLength();
+			$marker_width->setBaseVal($markerWidth);
+			$markerWidth = $marker_width;
+		}
+		
 		$this->markerWidth = $markerWidth;
 		$this->setAttribute('markerWidth',$markerWidth->getBaseVal()); // set attribute in DOM
 	}
@@ -130,8 +175,23 @@ class SVGMarkerElement extends SVGObject {
 		return $this->markerWidth->getBaseVal();
 	}
 
-	public function setMarkerHeight(SVGAnimatedLength $markerHeight)
+	public function setMarkerHeight($markerHeight)
 	{
+		// allow the input parameter to have different types
+		if (gettype($markerHeight) == 'object' )
+		{
+			if (get_class($markerHeight) != 'b1t\svg\SVGAnimatedLength')
+			{
+				throw new Exception('Wrong object class. Expected class: b1t\svg\SVGAnimatedLength');
+			}
+		} 
+		else // convert input parameter to proper type
+		{
+			$marker_height = new SVGAnimatedLength();
+			$marker_height->setBaseVal($markerHeight);
+			$markerHeight = $marker_height;
+		}
+		
 		$this->markerHeight = $markerHeight;
 		$this->setAttribute('markerHeight',$markerHeight->getBaseVal()); // set attribute in DOM
 	}
