@@ -24,6 +24,10 @@ use b1t\svgf\geometry\SVGFObjectBoxTSpanElement;
  
 class SVGFConnector {
 
+	const AUTOMATIC_CONNECTION = 0;
+	const FORCE_CONNECTION_HORIZONTAL = 1;
+	const FORCE_CONNECTION_VERTICAL = 2;
+
 	public static function points($dom_doc, $svg_point_start, $svg_point_end, $style_stroke, $style_stroke_width, $id = null, $marker_start_url = null, $marker_end_url = null)
 	{
 		// origin coordinates
@@ -172,7 +176,7 @@ class SVGFConnector {
 		return $svg_path;
 	}
 
-	public static function sides($dom_doc, $element_start, $element_end, $id = null, $style_fill = null, $offset = 0)
+	public static function sides($dom_doc, $element_start, $element_end, $id = null, $style_fill = null, $offset = 0, $connection_restriction = self::AUTOMATIC_CONNECTION)
 	{
 		// get bboxes
 		$bbox_element_start = self::getBBox($element_start);
@@ -200,7 +204,7 @@ class SVGFConnector {
 
 		while (true) {
 
-			if ($delta_x_connector == 0) {// vertically aligned
+			if ($delta_x_connector == 0) {// vertically aligned ($connection_restriction has no effect)
 				$y_start_min = ($y_end_center > $y_start_center) ? $y_start_max + $offset : $y_start_min - $offset;
 				$y_start_max = $y_start_min;
 				$y_end_min = ($y_end_center < $y_start_center) ? $y_end_max + $offset : $y_end_min - $offset;
@@ -210,7 +214,7 @@ class SVGFConnector {
 
 			$m_connector = $delta_y_connector / $delta_x_connector; // slope
 
-			if ($m_connector == 0) {// horizontally aligned
+			if ($m_connector == 0) {// horizontally aligned ($connection_restriction has no effect)
 				$x_start_min = ($x_end_center > $x_start_center) ? $x_start_max + $offset : $x_start_min - $offset;
 				$x_start_max = $x_start_min;
 				$x_end_min = ($x_end_center < $x_start_center) ? $x_end_max + $offset : $x_end_min - $offset;
@@ -218,13 +222,16 @@ class SVGFConnector {
 				break;
 			 }
 
+			// determine the connection of the nodes
+			$is_horizontal = (((abs($m_connector) < abs($element_m)) && $connection_restriction != self::FORCE_CONNECTION_VERTICAL) || $connection_restriction == self::FORCE_CONNECTION_HORIZONTAL);
+ 
 			 // calculate start point 
 			 switch($element_start->tagName){
 				case 'rect':
 				case 'text':
 				case 'tspan':
 					$element_m = self::getBBoxSlope($bbox_element_start); //slope
-					if (abs($m_connector) < abs($element_m)){ // connector arriving to left or right sides
+					if ($is_horizontal){ // connector arriving to left or right sides
 						$x_start_min = ($x_end_center > $x_start_center) ? $x_start_max + $offset : $x_start_min - $offset;
 						$x_start_max = $x_start_min;
 					} else { // connector arriving to top or bottom sides
@@ -243,7 +250,7 @@ class SVGFConnector {
 				case 'text':
 				case 'tspan':
 					$element_m = self::getBBoxSlope($bbox_element_end); //slope
-					if (abs($m_connector) < abs($element_m)){ // connector arriving to left or right sides
+					if ($is_horizontal){ // connector arriving to left or right sides
 						$x_end_min = ($x_end_center < $x_start_center) ? $x_end_max + $offset : $x_end_min - $offset;
 						$x_end_max = $x_end_min;
 					} else { // connector arriving to top or bottom sides

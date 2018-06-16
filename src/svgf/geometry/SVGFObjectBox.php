@@ -76,7 +76,7 @@ class SVGFObjectBox {
 		$y_center_ref = $ref_objectbox->y_center;
 		$x_offset = 0;
 		$y_offset = 0;
-		
+
 		switch ($type) {
 			case self::ALIGN_CENTER:
 				$x_offset = $x_center_ref - $this->x_center;
