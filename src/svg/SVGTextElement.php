@@ -10,7 +10,7 @@ namespace b1t\svg;
  */
  
 class SVGTextElement extends SVGObject {
-	
+
 	use SVGTextPositioningElement;
 	use SVGTransformable;
 	
