@@ -27,6 +27,15 @@ use b1t\svgf\geometry\SVGFObjectBox;
 $str_data = file_get_contents("./nested_list-horizontal.json"); // read the json data file
 $data = json_decode($str_data, true); // decode the data
 
+// read settings from configuration
+$font_family = $data['settings']['font_family'];
+$lvl_1_background_color = '#' . $data['settings']['level_1_background_color'];
+$lvl_2_background_color = '#' . $data['settings']['level_1_background_color'];
+$lvl_3_background_color = '#' . $data['settings']['level_1_background_color'];
+$lvl_1_text_color = '#' . $data['settings']['level_1_text_color'];
+$lvl_2_text_color = '#' . $data['settings']['level_1_text_color'];
+$lvl_3_text_color = '#' . $data['settings']['level_1_text_color'];
+
 // variable definition
 $canvas_size = SVGFElement::SIZE_FHD;
 $infographic_width = SVGFElement::SIZE_FHD[2]; // 1920 px
@@ -42,16 +51,9 @@ $connector_lvls_1_2_height =  $infographic_width / 48; // 40 px
 $connector_lvls_2_3_height = $infographic_width / 96; // 20 px
 $spacing_px = $infographic_width / 960; // 2 px;
 $spacing_between_levels_px = $infographic_width / 960; // 2 px;
-$font_family = $data['settings']['font_family'];
 $lvl_1_font_size = $infographic_width / 60 . 'px'; // 32 px
 $lvl_2_font_size = $infographic_width / 76.8 . 'px'; // 25 px
 $lvl_3_font_size = $infographic_width / 128 . 'px'; // 15 px
-$lvl_1_background_color = '#' . $data['settings']['level_1_background_color'];
-$lvl_2_background_color = '#' . $data['settings']['level_1_background_color'];
-$lvl_3_background_color = '#' . $data['settings']['level_1_background_color'];
-$lvl_1_text_color = '#' . $data['settings']['level_1_text_color'];
-$lvl_2_text_color = '#' . $data['settings']['level_1_text_color'];
-$lvl_3_text_color = '#' . $data['settings']['level_1_text_color'];
 
 $dom_doc_svg = new \DOMDocument('1.0', 'utf-8'); // create the document
 

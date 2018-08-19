@@ -16,24 +16,25 @@ class SVGFObjectBoxTextElement extends SVGFObjectBox {
 	 * This function calculates the bounding box in pixels for a TrueType text.
 	 *
 	 * It assumes that the file containing the TrueType font is located in the same folder.
+	 * For bold text use the bold font instead of using font-weight: bold
 	 *
 	 * @param string $obj_svg The svg object used to calculate its bounding box.
 	 *
 	 * @throws Exception if GD version is different of 1 or 2.
-	 */	
+	 */
 	public function __construct(SVGObject $obj_svg)
 	{
 		// to-do: consider unit conversion
 		// to-do: test more fonts
 		// to-do: fix hunging characters jpgq
-			
+
 		// get gd version
 		$array_gd_info = gd_info();
 		$str_gd_version = $array_gd_info['GD Version'];
 		preg_match('/\d+/', $str_gd_version, $matches); // find first integer
 		$gd_version = $matches[0]; // In GD 1, this is measured in pixels. In GD 2, this is measured in points.
-		
-		//set the conversion rate
+
+		// set the conversion rate
 		$float_conversion_rate;
 		switch ($gd_version) {
 			case 1:
@@ -50,7 +51,7 @@ class SVGFObjectBoxTextElement extends SVGFObjectBox {
 		$font_file = $obj_svg->style->getPropertyValue('font-family');
 		$path_to_font_file = './' . $font_file;
 		$font_size_pixels = floatval($obj_svg->style->getPropertyValue('font-size'));
-		
+
 		// calculate bounding box
 		$bounding = imagettfbbox($font_size_pixels, 0, $path_to_font_file, $obj_svg->nodeValue);
 		$x_min = min($bounding[0],$bounding[2],$bounding[4],$bounding[6]) * $float_conversion_rate; 
