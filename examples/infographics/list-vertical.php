@@ -82,6 +82,8 @@ foreach ($array_data as $data)
 	$alignment_reference_x = $bbox_text->x_min;
 	$alignment_reference_width = $bbox_text->x_max - $bbox_text->x_min;
 	$alignment_reference_element = SVGFElement::rect($dom_doc_svg,$alignment_reference_width,0,"aux_alignment_reference_element",$alignment_reference_x,$alignment_reference_y);
+	$svg_svg->appendChild($alignment_reference_element);
+	$svg_svg->removeChild($alignment_reference_element);
 
 	$array_sides_items = array();
 	$array_sides_items[$orientation] = $data['content']['list'];
