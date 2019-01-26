@@ -15,7 +15,9 @@ These are the main functionalities provided by **SVGF**:
 * Programatically modify the attributes of the elements in compliance with the (SVG) 1.1 specification.
 * Programatically modify the style attribute in compliance with the (DOM) Level 2 Style Specification.
 * Access SVG elements using XPath.
-* Programatically align SVG elements
+* Programatically create SVG basic shapes.
+* Programatically create SVG texts.
+* Programatically align SVG elements.
 * Draw preset connectors between points and elements
 
 ## Usage
