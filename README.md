@@ -331,10 +331,10 @@ foreach ($matches as $match) {
 
 <img src="./examples/readme/xpath_select_elements_by_tag_name.svg">
 
-#### Select children elements
+#### Select child elements
 
 ```php
-// Change fill color of the g children elements to #1a867e
+// Change fill color of the g child elements to #1a867e
 $matches = $xpath->query("//g/*");
 foreach ($matches as $match) {
 	$match->style->setProperty('fill','#1a867e','');
