@@ -8,7 +8,7 @@
  * @author	J. Xavier Atero
  */
 
-require realpath(__DIR__ . '/../..' . '/vendor/autoload.php');;
+require realpath(__DIR__ . '/../..' . '/vendor/autoload.php');
 
 use b1t\svg\SVGSVGElement;
 use b1t\svg\SVGRectElement;

@@ -8,7 +8,7 @@
  * @author	J. Xavier Atero
  */
 
-require realpath(__DIR__ . '/../..' . '/vendor/autoload.php');;
+require realpath(__DIR__ . '/../..' . '/vendor/autoload.php');
 
 use b1t\svg\SVGSVGElement;
 use b1t\svg\SVGRectElement;
@@ -30,39 +30,41 @@ $data = json_decode($str_data, true); // decode the data
 // read settings from configuration
 $font_family = $data['settings']['font_family'];
 $lvl_1_background_color = '#' . $data['settings']['level_1_background_color'];
-$lvl_2_background_color = '#' . $data['settings']['level_1_background_color'];
-$lvl_3_background_color = '#' . $data['settings']['level_1_background_color'];
+$lvl_2_background_color = '#' . $data['settings']['level_2_background_color'];
+$lvl_3_background_color = '#' . $data['settings']['level_3_background_color'];
 $lvl_1_text_color = '#' . $data['settings']['level_1_text_color'];
-$lvl_2_text_color = '#' . $data['settings']['level_1_text_color'];
-$lvl_3_text_color = '#' . $data['settings']['level_1_text_color'];
+$lvl_2_text_color = '#' . $data['settings']['level_2_text_color'];
+$lvl_3_text_color = '#' . $data['settings']['level_3_text_color'];
 
 // variable definition
 $canvas_size = SVGFElement::SIZE_FHD;
-$infographic_width = SVGFElement::SIZE_FHD[2]; // 1920 px
-$lvl_1_width = ceil($infographic_width * 0.833); // 1600 px
-$lvl_1_y = $infographic_width / 192; // 10px
-$lvl_1_height = $infographic_width / 24; // 80 px
-$lvl_2_height = $infographic_width / 24; // 80 px
-$lvl_3_height = $infographic_width / 48; // 40 px
-$lvl_2_indent =  $infographic_width / 32; // 60 px
-$lvl_3_indent = $infographic_width / 96; // 20 px
-$lvl_3_indent_text = $infographic_width / 96; // 20 px
-$connector_lvls_1_2_height =  $infographic_width / 48; // 40 px
-$connector_lvls_2_3_height = $infographic_width / 96; // 20 px
-$spacing_px = $infographic_width / 960; // 2 px;
-$spacing_between_levels_px = $infographic_width / 960; // 2 px;
-$lvl_1_font_size = $infographic_width / 60 . 'px'; // 32 px
-$lvl_2_font_size = $infographic_width / 76.8 . 'px'; // 25 px
-$lvl_3_font_size = $infographic_width / 128 . 'px'; // 15 px
+$canvas_width = SVGFElement::SIZE_FHD[2]; // 1920 px
+$canvas_height = SVGFElement::SIZE_FHD[1]; // 1080 px
 
+$lvl_1_width = ceil($canvas_width * 0.833); // 1600 px
+$lvl_1_y = $canvas_width / 192; // 10px
+$lvl_1_height = $canvas_width / 24; // 80 px
+$lvl_2_height = $canvas_width / 24; // 80 px
+$lvl_3_height = $canvas_width / 48; // 40 px
+$lvl_2_indent =  $canvas_width / 32; // 60 px
+$lvl_3_indent = $canvas_width / 96; // 20 px
+$lvl_3_indent_text = $canvas_width / 96; // 20 px
+$connector_lvls_1_2_height =  $canvas_width / 48; // 40 px
+$connector_lvls_2_3_height = $canvas_width / 96; // 20 px
+$spacing_px = $canvas_width / 960; // 2 px;
+$spacing_between_levels_px = $canvas_width / 960; // 2 px;
+$lvl_1_font_size = $canvas_width / 60 . 'px'; // 32 px
+$lvl_2_font_size = $canvas_width / 76.8 . 'px'; // 25 px
+$lvl_3_font_size = $canvas_width / 128 . 'px'; // 15 px
+
+// document creation
 $dom_doc_svg = new \DOMDocument('1.0', 'utf-8'); // create the document
-
 $svg_svg = SVGFElement::svg($dom_doc_svg,'infographic-nested-horizontal-list',$canvas_size); // create svg elment
 //$svg_svg->style->setProperty('background',"#000000",''); // uncomment to visualize canvas
 
 // calculations for level 1
 $lvl_1_num_elements = count($data['content']); // get number of elements in level 1
-$lvl_1_x = ($infographic_width - $lvl_1_width) / 2; // calculate x of first level 1 element
+$lvl_1_x = ($canvas_width - $lvl_1_width) / 2; // calculate x of first level 1 element
 $lvl_1_width_element = ($lvl_1_width - (($lvl_1_num_elements - 1) * $spacing_px) ) / $lvl_1_num_elements; // calculate width of level 1 elements
 
 $lvl_1_reference_alignment = null;
