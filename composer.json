@@ -1,9 +1,9 @@
 {
-    "name": "a-php-framework-for-svg",
+    "name": "svg-framework",
     "description": "Provides funtionality for creating, reading, modifying and writing svg files in php",
-    "version": "1.0.0",
+    "version": "1.0",
     "type": "libary",
-    "time": "2017-06-18",
+    "time": "2019-01-25",
     "license": "MIT",
     "authors": [
         {
