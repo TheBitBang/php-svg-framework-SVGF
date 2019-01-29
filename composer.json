@@ -1,5 +1,5 @@
 {
-    "name": "svg-framework",
+    "name": "TheBitBang/php-svg-framework-SVGF",
     "description": "Provides funtionality for creating, reading, modifying and writing svg files in php",
     "version": "1.0",
     "type": "libary",
