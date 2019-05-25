@@ -15,10 +15,10 @@ class DOMString {
 	 
 	/** @var string $dom_string Representation of a string according to DOM specification */
 	private $dom_string;
-	
+
 	/**
-     * @param string|null $input_string Input string
-     */
+	 * @param string|null $input_string Input string
+	 */
 	public function __construct($input_string)
 	{
 		$this->setDOMString($input_string);
