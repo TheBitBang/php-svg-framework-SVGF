@@ -165,7 +165,7 @@ class CSSStyleDeclaration {
 		$string_get_method_name = "get" . ucfirst($attribute_name);
 		if(!method_exists($this,$string_get_method_name)) {throw new \Exception("attribute : $attribute_name is not a valid attribute for this class");}
 		$call_to_user_func = array(get_class($this), $string_get_method_name);
-		return call_user_func($call_to_user_func,$attribute_value);
+		return call_user_func($call_to_user_func);
 	}
 
 	// set and get methods
