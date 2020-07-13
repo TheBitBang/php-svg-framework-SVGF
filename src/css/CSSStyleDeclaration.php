@@ -176,14 +176,12 @@ class CSSStyleDeclaration {
 		$array_properties = explode(";",$cssText);
 		foreach($array_properties as $property)
 		{ // populate property values array (to_do: and priorities)
+			if(trim($property) === '') { continue; } // to avoid adding an empty property because of the last ;
 			$array_property_parts = explode(":",$property);
 			$property_name = trim($array_property_parts[0]);
 			$property_value = trim($array_property_parts[1]);
-			if ($property_name != '')
-			{	// to avoid adding an empty property because of the last ;
-				$this->array_properties_values[$property_name] = $property_value;
-			}
-		}	
+			$this->array_properties_values[$property_name] = $property_value;
+		}
 		$this->cssText = $cssText;
 	}
 
