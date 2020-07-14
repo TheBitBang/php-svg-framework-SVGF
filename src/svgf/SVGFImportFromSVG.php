@@ -41,15 +41,15 @@ class SVGFImportFromSVG {
 	 * @return \DOMDocument The \DOMDocument containing the SVGObject generated.
 	 *
 	 * @throws Exception if incorrect file format.
-	 */	
+	 */
 	public static function getSVGFromFile($path_file)
 	{
 		$string_svg = file_get_contents($path_file); //read file
 		self::getSVGFromString($string_svg);
-		
+
 		return self::$dom_doc_svg;
 	}
-	
+
 	/**
 	 * Porcess the string passed as a parameter and returns the SVGObject generated.
 	 *
@@ -65,7 +65,7 @@ class SVGFImportFromSVG {
 		$dom_doc->loadXML($string_svg);
 		self::getSVGFromXML($dom_doc);
 
-		return self::$dom_doc_svg;				
+		return self::$dom_doc_svg;
 	}
 
 	/**
@@ -136,12 +136,11 @@ class SVGFImportFromSVG {
 					break;
 				case XML_ELEMENT_NODE: // process as a child
 					self::constructMultidimensionalAssociativeArrayFromXml($dom_child_elemement,$array_svg_objects['children'][$key]); // recursion
-					break;		
+					break;
 			}
 		}
-}
-		
 	}
+}
 
 	/**
 	 * Recursively appends the children to the SVGObjects being processed.
@@ -150,11 +149,13 @@ class SVGFImportFromSVG {
 	 * @param object[]  $array_children Contains the children of the object being processed.
 	 */
 	private static function processMultidimensionalAssociativeArrayElement($svg_object,$array_children)
-	{	
+	{
 		foreach ($array_children as $child)
 		{	// append children if any and perform recursion on them
-			$svg_object->appendChild($child['svg_object']);
-			self::processMultidimensionalAssociativeArrayElement($child['svg_object'],$child['children']); // recursion
+			if ($child != null) {
+				$svg_object->appendChild($child['svg_object']);
+				self::processMultidimensionalAssociativeArrayElement($child['svg_object'],$child['children']); // recursion
+			}
 		}
-	}    
+	}
 }

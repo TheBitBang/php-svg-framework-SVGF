@@ -12,6 +12,7 @@ use b1t\svgf\geometry\SVGFObjectBoxRectElement;
 use b1t\svgf\geometry\SVGFObjectBoxCircleElement;
 use b1t\svgf\geometry\SVGFObjectBoxTextElement;
 use b1t\svgf\geometry\SVGFObjectBoxTSpanElement;
+use b1t\svgf\geometry\SVGFObjectBoxImageElement;
 
 /**
  * This is a helper class to align elements.
@@ -41,6 +42,9 @@ class SVGFAlign {
 			case 'tspan':
 				$bbox_element_static = new SVGFObjectBoxTSpanElement($svg_element_static);
 				break;
+			case 'tspan':
+				$bbox_element_static = new SVGFObjectBoxImageElement($svg_element_static);
+				break;
 		}
 
 		// create bounding box of moving element
@@ -56,6 +60,9 @@ class SVGFAlign {
 				break;
 			case 'tspan':
 				$bbox_element_moving = new SVGFObjectBoxTSpanElement($svg_element_moving);
+				break;
+			case 'image':
+				$bbox_element_moving = new SVGFObjectBoxImageElement($svg_element_moving);
 				break;
 		}
 
@@ -78,6 +85,10 @@ class SVGFAlign {
 			case 'circle':
 				$svg_element_moving->cx = $bbox_element_moving->x_center;
 				$svg_element_moving->cy = $bbox_element_moving->y_center;
+				break;
+			case 'image':
+				$svg_element_moving->x = $bbox_element_moving->x_min;
+				$svg_element_moving->y = $bbox_element_moving->y_min;
 				break;
 		}
 
