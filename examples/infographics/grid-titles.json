@@ -1,0 +1,146 @@
+{
+    "settings": {
+        "fhd-magin-top": "50",
+        "fhd-magin-bottom": "10",
+        "fhd-magin-left": "10",
+        "fhd-magin-right": "10",
+        "fhd-magin-right": "10",
+        "foot-note-text": "This is a test"
+    },
+    "content": {
+        "title": "Bottom",
+        "list": {
+            "Row 1": {
+                "Cell 1-1": {
+                    "title" : "Element 1",
+                    "fhd-title-height" : "50",
+                    "pecentage-title-width" : "50",
+                    "pecentage-gap" : "-10",
+                    "fhd-padding" : "20",
+                    "color-ribbon": "a1d1e4",
+                    "color-text": "ffffff",
+                    "font-family": "Helvetica",
+                    "font-size": "24",
+                    "percentage-to-shift-ribbon-center" : "50"
+                }
+            },
+            "Row 2": {
+                "Cell 2-1": {
+                    "title" : "Element 2.1",
+                    "fhd-title-height" : "50",
+                    "pecentage-title-width" : "50",
+                    "pecentage-gap" : "-10",
+                    "fhd-padding" : "20",
+                    "color-ribbon": "225e78",
+                    "color-text": "a1d1e4",
+                    "font-family": "Helvetica",
+                    "font-size": "24",
+                    "percentage-to-shift-ribbon-center" : "-50"
+                },
+                "Cell 2-2": {
+                    "title" : "Element 2.2",
+                    "fhd-title-height" : "50",
+                    "pecentage-title-width" : "50",
+                    "pecentage-gap" : "-10",
+                    "fhd-padding" : "20",
+                    "color-ribbon": "a1d1e4",
+                    "color-text": "225e78",
+                    "font-family": "Helvetica",
+                    "font-size": "24",
+                    "percentage-to-shift-ribbon-center" : "-50"
+                },
+                "Cell 2-3": {
+                    "title" : "Element 2.3",
+                    "fhd-title-height" : "50",
+                    "pecentage-title-width" : "50",
+                    "pecentage-gap" : "-10",
+                    "fhd-padding" : "20",
+                    "color-ribbon": "225e78",
+                    "color-text": "a1d1e4",
+                    "font-family": "Helvetica",
+                    "font-size": "24",
+                    "percentage-to-shift-ribbon-center" : "-50"
+                }
+            },
+            "Row 3": {
+                "Cell 3-1": {
+                    "title" : "Element 3.1",
+                    "fhd-title-height" : "50",
+                    "pecentage-title-width" : "40",
+                    "pecentage-gap" : "-20",
+                    "fhd-padding" : "2",
+                    "color-ribbon": "225e78",
+                    "color-text": "ffffff",
+                    "font-family": "Helvetica",
+                    "font-size": "24",
+                    "image-href": "https://upload.wikimedia.org/wikipedia/commons/thumb/1/12/Bimetrical_icon_team_black.svg/200px-Bimetrical_icon_team_black.svg.png",
+                    "percentage-to-shift-ribbon-center" : "150"
+                },
+                "Cell 3-2": {
+                    "title" : "Element 3.2",
+                    "fhd-title-height" : "50",
+                    "pecentage-title-width" : "80",
+                    "pecentage-gap" : "-5",
+                    "fhd-padding" : "2",
+                    "color-ribbon": "a1d1e4",
+                    "color-text": "ffffff",
+                    "font-family": "Helvetica",
+                    "font-size": "24",
+                    "image-href": "https://upload.wikimedia.org/wikipedia/commons/thumb/1/12/Bimetrical_icon_team_black.svg/200px-Bimetrical_icon_team_black.svg.png",
+                    "percentage-to-shift-ribbon-center" : "-50"
+                }
+            },
+            "Row 4": {
+                "Cell 4-1": {
+                    "title" : "Element 4.1",
+                    "fhd-title-height" : "30",
+                    "pecentage-title-width" : "30",
+                    "pecentage-gap" : "30",
+                    "fhd-padding" : "0",
+                    "color-ribbon": "225e78",
+                    "color-text": "a1d1e4",
+                    "font-family": "Helvetica",
+                    "font-size": "12",
+                    "percentage-to-shift-ribbon-center" : "-100"
+                },
+                "Cell 4-2": {
+                    "title" : "Element 4.2",
+                    "fhd-title-height" : "30",
+                    "pecentage-title-width" : "30",
+                    "pecentage-gap" : "30",
+                    "fhd-padding" : "0",
+                    "color-ribbon": "a1d1e4",
+                    "color-text": "225e78",
+                    "font-family": "Helvetica",
+                    "font-size": "12",
+                    "percentage-to-shift-ribbon-center" : "100"
+                },
+                "Cell 4-3": {
+                    "title" : "Element 4.3",
+                    "fhd-title-height" : "30",
+                    "pecentage-title-width" : "30",
+                    "pecentage-gap" : "0",
+                    "fhd-padding" : "0",
+                    "color-ribbon": "225e78",
+                    "color-text": "a1d1e4",
+                    "font-family": "Helvetica",
+                    "font-size": "12",
+                    "percentage-to-shift-ribbon-center" : "-100"
+                },
+                "Cell 4-4": {
+                    "title" : "Element 4.4",
+                    "fhd-title-height" : "30",
+                    "pecentage-title-width" : "30",
+                    "pecentage-gap" : "0",
+                    "fhd-padding" : "0",
+                    "color-ribbon": "a1d1e4",
+                    "color-text": "225e78",
+                    "font-family": "Helvetica",
+                    "font-size": "12",
+                    "percentage-to-shift-ribbon-center" : "100"
+                }
+            }
+        }
+    }
+}
+
