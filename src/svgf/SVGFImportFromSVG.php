@@ -12,26 +12,27 @@ use b1t\svg\SVGSVGElement;
  
 class SVGFImportFromSVG {
 
-    /** @var SVGObjects[] Array containing all the SVGObjects as a multidimensional indexed array. This is a workarround because a direct appendChild() does cast all objects to DOMElement. */
-    private static $array_svg_objects = array();
+	/** @var SVGObjects[] Array containing all the SVGObjects as a multidimensional indexed array. This is a workarround because a direct appendChild() does cast all objects to DOMElement. */
+	private static $array_svg_objects = array();
 
-    /** @var \DOMDocument $dom_doc_svg Owner \DOMDocument for all the SVGObjects created. */
+	/** @var \DOMDocument $dom_doc_svg Owner \DOMDocument for all the SVGObjects created. */
 	private static $dom_doc_svg; // create DOMDocument for SVG
 
-    /** @var string[] $map_svg_element_classes Map of tag names to fully-qualified class names. */
-    private static $map_svg_element_classes = array(
+	/** @var string[] $map_svg_element_classes Map of tag names to fully-qualified class names. */
+	private static $map_svg_element_classes = array(
+		'a'			=> 'b1t\svg\SVGAElement',
 		'circle'	=> 'b1t\svg\SVGCircleElement',
 		'defs'		=> 'b1t\svg\SVGDefsElement',
-        'g'			=> 'b1t\svg\SVGGElement',
+		'g'			=> 'b1t\svg\SVGGElement',
 		'marker'	=> 'b1t\svg\SVGMarkerElement',
 		'path'		=> 'b1t\svg\SVGPathElement',
 		'polygon'	=> 'b1t\svg\SVGPolygonElement',
 		'polyline'	=> 'b1t\svg\SVGPolylineElement',
-        'rect'		=> 'b1t\svg\SVGRectElement',
-        'svg'		=> 'b1t\svg\SVGSVGElement',
-        'text'		=> 'b1t\svg\SVGTextElement',
+		'rect'		=> 'b1t\svg\SVGRectElement',
+		'svg'		=> 'b1t\svg\SVGSVGElement',
+		'text'		=> 'b1t\svg\SVGTextElement',
 		'tspan'		=> 'b1t\svg\SVGTSpanElement',
-    );
+	);
 
 	/**
 	 * Porcess the file passed as a parameter and returns the SVGObject generated.
