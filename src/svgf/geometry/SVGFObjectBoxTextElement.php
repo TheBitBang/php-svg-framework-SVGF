@@ -49,6 +49,11 @@ class SVGFObjectBoxTextElement extends SVGFObjectBox {
 
 		// get font style information
 		$font_file = $obj_svg->style->getPropertyValue('font-family');
+		$is_get_font_file_from_parent = ($font_file == null);
+		if ($is_get_font_file_from_parent)
+		{
+			$font_file = self::getFontFileFromAncestors($obj_svg);
+		}
 		$path_to_font_file = './' . $font_file;
 		$font_size_pixels = floatval($obj_svg->style->getPropertyValue('font-size'));
 
@@ -64,5 +69,19 @@ class SVGFObjectBoxTextElement extends SVGFObjectBox {
 		$this->y_max = $obj_svg->y + $y_max;
 		$this->x_center = $obj_svg->x + ($x_min + $x_max) / 2;
 		$this->y_center = $obj_svg->y + ($y_min + $y_max) / 2;
+	}
+
+	private function getFontFileFromAncestors(SVGObject $obj_svg) {
+		// get parent node
+		$parent_node = $obj_svg->parentNode;
+		$is_there_parent = ($parent_node != null);
+		if (!$is_there_parent) { return null; }
+		// get font file of parent
+		$font_file_parent = $parent_node->style->getPropertyValue('font-family');
+		$is_there_parent_font_file = ($font_file_parent != null);
+		if (!$is_there_parent_font_file) {
+			$font_file_parent = self::getFontFileFromAncestors($parent_node);
+		}
+		return $font_file_parent;
 	}
 }
