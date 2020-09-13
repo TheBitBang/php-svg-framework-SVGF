@@ -15,7 +15,7 @@ use b1t\svgf\geometry\SVGFObjectBoxTextElement;
  
 class SVGFText {
 
-	public static function fitWithinWidth($dom_doc_svg, $svg_text, $max_width)
+	public static function fitWithinWidth($dom_doc_svg, $svg_text, $max_width, $style_baseline_shift_percentage = 0.6)
 	{
 
 		// initializations
@@ -25,17 +25,14 @@ class SVGFText {
 		$text_y = $svg_text->y;
 
 		// get style information
-		$style_font_family = $svg_text->style->getPropertyValue('font-family');
-		$style_font_size = $svg_text->style->getPropertyValue('font-size');
-		$style_weight = $svg_text->style->getPropertyValue('font-weight');
-		$style_fill = $svg_text->style->getPropertyValue('fill');
+		$style_text = $svg_text->style;
 
 		// get the bounding box
 		$bbox_element_text = new SVGFObjectBoxTextElement($svg_text);
 		$text_width = $bbox_element_text->x_max - $bbox_element_text->x_min;
 		$text_height = $bbox_element_text->y_max - $bbox_element_text->y_min;
 
-		$style_baseline_shift = $text_height * 0.6;
+		$style_baseline_shift = $text_height * $style_baseline_shift_percentage;
 
 		// verify that text fits within the specified width
 		if ($text_width > $max_width)
@@ -46,13 +43,15 @@ class SVGFText {
 
 			// create new text element
 			$dom_doc_svg->removeChild($svg_text); // delete previous reference
-			$svg_text = SVGFElement::text($dom_doc_svg,$text,$text_id,0,0,$style_font_family,$style_font_size,$style_weight,$style_fill);
+			$svg_text = SVGFElement::text($dom_doc_svg,$text,$text_id);
+			$svg_text->style = $style_text;
 
 			$i = 0; // initialzation to use it outside the loop (not required, but to indicate variable scope)
 			foreach ($words as $i=>$word) // to-do: better algorithm
 			{
 				$text_with_new_word = ($text == "") ? $word : $text . " " . $word;
-				$svg_text_aux = SVGFElement::text($dom_doc_svg,$text_with_new_word,"text_aux",0,0,$style_font_family,$style_font_size,$style_weight);
+				$svg_text_aux = SVGFElement::text($dom_doc_svg,$text_with_new_word,"text_aux");
+				$svg_text_aux->style = $style_text; // apply original style
 				$dom_doc_svg->appendChild($svg_text_aux);
 				$dom_doc_svg->removeChild($svg_text_aux);
 
