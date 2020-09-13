@@ -17,10 +17,12 @@ class SVGFObjectBox {
 	const ALIGN_BOTTOM = 2;
 	const ALIGN_LEFT = 3;
 	const ALIGN_RIGHT = 4;
-	const POSITION_TOP = 5;	
-	const POSITION_BOTTOM = 6;
-	const POSITION_LEFT = 7;
-	const POSITION_RIGHT = 8;
+	const POSITION_CENTER = 5;
+	const POSITION_MIDDLE = 6;
+	const POSITION_TOP = 7;
+	const POSITION_BOTTOM = 8;
+	const POSITION_LEFT = 9;
+	const POSITION_RIGHT = 10;
 
 	/** @var int $element_name Returns the name of the SVGObject node. */
 	protected $element_name;
@@ -93,6 +95,12 @@ class SVGFObjectBox {
 				break;
 			case self::ALIGN_RIGHT:
 				$x_offset = $x_max_ref - $this->x_max;
+				break;
+			case self::POSITION_CENTER:
+				$x_offset = $x_center_ref - $this->x_center;
+				break;
+			case self::POSITION_MIDDLE:
+				$y_offset = $y_center_ref - $this->y_center;
 				break;
 			case self::POSITION_TOP:
 				$y_offset = $y_min_ref - $this->y_max;
