@@ -69,6 +69,15 @@ class SVGFObjectBoxTextElement extends SVGFObjectBox {
 		$this->y_max = $obj_svg->y + $y_max;
 		$this->x_center = $obj_svg->x + ($x_min + $x_max) / 2;
 		$this->y_center = $obj_svg->y + ($y_min + $y_max) / 2;
+
+		//shift bounding box when alignment is middle
+		// to-do: this is a quick workaround that does not work with tspan elements
+		$is_text_anchor_middle = ($obj_svg->style->getPropertyValue('text-anchor') == 'middle');
+		if ($is_text_anchor_middle) {
+			$this->x_min = $this->x_min + ($x_min + $x_max) / 2;
+			$this->x_max = $this->x_max + ($x_min + $x_max) / 2;
+			$this->x_center = $this->x_center + ($x_min + $x_max) / 2;
+		}
 	}
 
 	private function getFontFileFromAncestors(SVGObject $obj_svg) {
