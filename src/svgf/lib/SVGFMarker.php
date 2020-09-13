@@ -42,7 +42,6 @@ class SVGFMarker {
 		$svg_animated_enum->setBaseVal(SVGMarkerElement::SVG_MARKERUNITS_STROKEWIDTH);
 		$svg_marker->markerUnits = $svg_animated_enum; // The value of attribute ‘markerUnits’ is 'strokeWidth' 
 		$svg_path = new SVGPathElement($dom_doc);
-		$svg_path->style->setProperty('fill',$style_fill,'');
 		$svg_path->d = 'M 0,0 0,8 8,4 0,0';
 
 		// add properties if the strings are not empty
