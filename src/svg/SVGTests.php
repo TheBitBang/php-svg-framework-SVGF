@@ -6,7 +6,7 @@ namespace b1t\svg;
  * This class implements the interface SVGTests as described in Document Object Model (DOM) Level 3 Core Specification.
  *
  * @author	J. Xavier Atero
- * @link	http://www.w3.org/TR/SVG/types.html#InterfaceSVGTests
+ * @link	http://www.w3.org/TR/SVG11/types.html#InterfaceSVGTests
  */
  
 trait SVGTests {

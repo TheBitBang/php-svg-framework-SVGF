@@ -12,7 +12,7 @@ use b1t\svgf\font\SVGFFont;
  * Note: it is assumed that the class using this trait extends SVGObject which in turn extends \DOMElement
  * 
  * @author	J. Xavier Atero
- * @link	https://www.w3.org/TR/SVG/text.html#InterfaceSVGTextContentElement
+ * @link	https://www.w3.org/TR/SVG11/text.html#InterfaceSVGTextContentElement
  */
  
 trait SVGTextContentElement {

@@ -6,7 +6,7 @@ namespace b1t\svg;
  * This class contains the implementation for the SVGTextElement Interface.
  *
  * @author	J. Xavier Atero
- * @link	http://www.w3.org/TR/SVG/text.html#InterfaceSVGTextElement
+ * @link	http://www.w3.org/TR/SVG11/text.html#InterfaceSVGTextElement
  */
  
 class SVGTextElement extends SVGObject {

@@ -6,7 +6,7 @@ namespace b1t\svg;
  * This class implements the interface SVGTextPositioningElement as described in Document Object Model (DOM) Level 3 Core Specification.
  *
  * @author	J. Xavier Atero
- * @link	https://www.w3.org/TR/SVG/text.html#InterfaceSVGTextPositioningElement
+ * @link	https://www.w3.org/TR/SVG11/text.html#InterfaceSVGTextPositioningElement
  */
  
 trait SVGTextPositioningElement {

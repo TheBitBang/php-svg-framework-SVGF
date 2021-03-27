@@ -6,7 +6,7 @@ namespace b1t\svg;
  * This class contains the implementation for the Interface SVGPathSegLinetoHorizontalRel Interface.
  *
  * @author	J. Xavier Atero
- * @link	https://www.w3.org/TR/SVG/paths.html#InterfaceSVGPathSegLinetoHorizontalRel
+ * @link	https://www.w3.org/TR/SVG11/paths.html#InterfaceSVGPathSegLinetoHorizontalRel
  */
  
 class SVGPathSegLinetoHorizontalRel extends SVGPathSeg {

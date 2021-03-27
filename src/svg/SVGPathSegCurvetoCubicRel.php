@@ -6,7 +6,7 @@ namespace b1t\svg;
  * This class contains the implementation for the Interface SVGPathSegCurvetoCubicRel Interface.
  *
  * @author	J. Xavier Atero
- * @link	https://www.w3.org/TR/SVG/paths.html#InterfaceSVGPathSegCurvetoCubicRel
+ * @link	https://www.w3.org/TR/SVG11/paths.html#InterfaceSVGPathSegCurvetoCubicRel
  */
  
 class SVGPathSegCurvetoCubicRel extends SVGPathSeg {

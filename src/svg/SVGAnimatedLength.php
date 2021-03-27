@@ -6,7 +6,7 @@ namespace b1t\svg;
  * This class contains the implementation for the SVGAnimatedLength Interface.
  *
  * @author	J. Xavier Atero
- * @link	https://www.w3.org/TR/SVG/types.html#InterfaceSVGAnimatedLength
+ * @link	https://www.w3.org/TR/SVG11/types.html#InterfaceSVGAnimatedLength
  */
  
 class SVGAnimatedLength {

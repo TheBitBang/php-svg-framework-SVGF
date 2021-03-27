@@ -6,7 +6,7 @@ namespace b1t\svg;
  * This class contains the implementation for the SVGPolygonElement Interface.
  *
  * @author	J. Xavier Atero
- * @link	https://www.w3.org/TR/SVG/shapes.html#InterfaceSVGPolygonElement
+ * @link	https://www.w3.org/TR/SVG11/shapes.html#InterfaceSVGPolygonElement
  */
  
 class SVGPolygonElement extends SVGObject {

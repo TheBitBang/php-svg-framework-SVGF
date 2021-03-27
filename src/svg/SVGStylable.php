@@ -9,7 +9,7 @@ use b1t\css\CSSStyleDeclaration;
  * This class implements the interface SVGStylable as described in Document Object Model (DOM) Level 3 Core Specification.
  *
  * @author	J. Xavier Atero
- * @link	https://www.w3.org/TR/SVG/types.html#InterfaceSVGStylable
+ * @link	https://www.w3.org/TR/SVG11/types.html#InterfaceSVGStylable
  */
  
 trait SVGStylable {

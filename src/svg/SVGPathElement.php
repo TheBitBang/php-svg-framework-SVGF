@@ -6,7 +6,7 @@ namespace b1t\svg;
  * This class contains the implementation for the SVGPathElement Interface.
  *
  * @author	J. Xavier Atero
- * @link	http://www.w3.org/TR/SVG/paths.html#InterfaceSVGPathElement
+ * @link	http://www.w3.org/TR/SVG11/paths.html#InterfaceSVGPathElement
  */
  
 class SVGPathElement extends SVGObject {

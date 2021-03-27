@@ -6,7 +6,7 @@ namespace b1t\svg;
  * This class implements the interface SVGFitToViewBox as described in Document Object Model (DOM) Level 3 Core Specification.
  *
  * @author	J. Xavier Atero
- * @link	https://www.w3.org/TR/SVG/types.html#InterfaceSVGFitToViewBox
+ * @link	https://www.w3.org/TR/SVG11/types.html#InterfaceSVGFitToViewBox
  */
  
 trait SVGFitToViewBox {

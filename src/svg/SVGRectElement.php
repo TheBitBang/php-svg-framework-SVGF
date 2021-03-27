@@ -6,7 +6,7 @@ namespace b1t\svg;
  * This class contains the implementation for the SVGRectElement Interface.
  *
  * @author	J. Xavier Atero
- * @link	https://www.w3.org/TR/SVG/shapes.html#InterfaceSVGRectElement
+ * @link	https://www.w3.org/TR/SVG11/shapes.html#InterfaceSVGRectElement
  */
  
 class SVGRectElement extends SVGObject {

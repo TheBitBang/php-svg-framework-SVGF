@@ -8,7 +8,7 @@ use b1t\svg\SVGPointList;
  * This class implements the interface SVGAnimatedPoints as described in Document Object Model (DOM) Level 3 Core Specification.
  *
  * @author	J. Xavier Atero
- * @link	https://www.w3.org/TR/SVG/shapes.html#InterfaceSVGAnimatedPoints
+ * @link	https://www.w3.org/TR/SVG11/shapes.html#InterfaceSVGAnimatedPoints
  */
  
 trait SVGAnimatedPoints {

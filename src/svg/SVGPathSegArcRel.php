@@ -6,7 +6,7 @@ namespace b1t\svg;
  * This class contains the implementation for the Interface SVGPathSegArcRel Interface.
  *
  * @author	J. Xavier Atero
- * @link	https://www.w3.org/TR/SVG/paths.html#InterfaceSVGPathSegArcRel
+ * @link	https://www.w3.org/TR/SVG11/paths.html#InterfaceSVGPathSegArcRel
  */
  
 class SVGPathSegArcRel extends SVGPathSeg {

@@ -8,7 +8,7 @@ use b1t\dom\DOMString;
  * This class implements the interface SVGElement as described in Document Object Model (DOM) Level 3 Core Specification.
  *
  * @author	J. Xavier Atero
- * @link	https://www.w3.org/TR/SVG/types.html#InterfaceSVGElement
+ * @link	https://www.w3.org/TR/SVG11/types.html#InterfaceSVGElement
  */
  
 trait SVGElement {

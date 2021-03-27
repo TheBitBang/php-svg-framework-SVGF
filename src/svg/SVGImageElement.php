@@ -6,7 +6,7 @@ namespace b1t\svg;
  * This class contains the implementation for the SVGImageElement Interface.
  *
  * @author	J. Xavier Atero
- * @link	https://www.w3.org/TR/SVG/struct.html#InterfaceSVGImageElement
+ * @link	https://www.w3.org/TR/SVG11/struct.html#InterfaceSVGImageElement
  */
  
 class SVGImageElement extends SVGObject {
