@@ -6,7 +6,7 @@ namespace b1t\svg;
  * This class contains the implementation for the SVGCircleElement Interface.
  *
  * @author	J. Xavier Atero
- * @link	http://www.w3.org/TR/SVG/shapes.html#InterfaceSVGCircleElement
+ * @link	http://www.w3.org/TR/SVG11/shapes.html#InterfaceSVGCircleElement
  */
  
 class SVGCircleElement extends SVGObject {
