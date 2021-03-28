@@ -66,7 +66,6 @@ class SVGFElement {
 		$svg_svg->setViewBox('0 0 ' . $width . ' ' . $height);
 		$svg_svg->setVersion('1.1');
 		$svg_svg->setAttribute('xmlns','http://www.w3.org/2000/svg');
-		$variable = $item ?: NULL;
 
 		// add properties if the strings are not empty
 		if (isset($id)) {$svg_svg->id = $id;}
