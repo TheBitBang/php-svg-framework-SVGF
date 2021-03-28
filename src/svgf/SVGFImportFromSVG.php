@@ -24,6 +24,7 @@ class SVGFImportFromSVG {
 		'circle'	=> 'b1t\svg\SVGCircleElement',
 		'defs'		=> 'b1t\svg\SVGDefsElement',
 		'g'			=> 'b1t\svg\SVGGElement',
+		'image'		=> 'b1t\svg\SVGImageElement',
 		'marker'	=> 'b1t\svg\SVGMarkerElement',
 		'path'		=> 'b1t\svg\SVGPathElement',
 		'polygon'	=> 'b1t\svg\SVGPolygonElement',
@@ -77,7 +78,7 @@ class SVGFImportFromSVG {
 	 * @return \DOMDocument The \DOMDocument containing the SVGObject generated.
 	 *
 	 * @throws Exception if incorrect file format.
-	 */		
+	 */
 	public static function getSVGFromXML(\DOMDocument $dom_doc)
 	{
 		self::$dom_doc_svg = new \DOMDocument('1.0', 'utf-8'); // create DOMDocument for SVG
@@ -86,10 +87,10 @@ class SVGFImportFromSVG {
 		$svg_object = self::$array_svg_objects['svg_object'];
 		$children = self::$array_svg_objects['children'];
 		self::processMultidimensionalAssociativeArrayElement($svg_object,$children);
-	
+
 		return self::$dom_doc_svg;
-	}	
-	
+	}
+
 	/**
 	 * Parses the XML constructing an array that contains the references to all the SVGObject created.
 	 * This array is created because if the SVGObject is directly appended with appendChild() after exiting this function it will be of type base DOMElement.
@@ -101,47 +102,45 @@ class SVGFImportFromSVG {
 	{
 		$element_name = $dom_element->tagName;
 		if (!isset(self::$map_svg_element_classes[$element_name])) // {throw new \Exception("element : $element_name is not a valid SVG element");}
-{
-	// do nothing
-	
-} else {
-		$name_class = self::$map_svg_element_classes[$element_name]; // get class name
-		$svg_object = new $name_class(self::$dom_doc_svg); // create element
-		$array_svg_objects['svg_object'] = $svg_object;
-		$array_svg_objects['children'] = array(); // if there are no children the array will be empty
-		
-		if ($element_name == 'svg')
-		{	// it seems that the xmlns is lost as an attribute when the file is read as \DOMDocument
-			$svg_object->xmlns = $dom_element->namespaceURI;
-		}
+		{
+			// do nothing
+		} else {
+			$name_class = self::$map_svg_element_classes[$element_name]; // get class name
+			$svg_object = new $name_class(self::$dom_doc_svg); // create element
+			$array_svg_objects['svg_object'] = $svg_object;
+			$array_svg_objects['children'] = array(); // if there are no children the array will be empty
 
-		
-		foreach ($dom_element->attributes as $attribute)
-		{	// populate attributes
-			$attribute_name = $attribute->nodeName;
-			$attribute_value = $attribute->nodeValue;
-			$svg_object->$attribute_name = $attribute_value;
-		}
+			if ($element_name == 'svg')
+			{	// it seems that the xmlns is lost as an attribute when the file is read as \DOMDocument
+				$svg_object->xmlns = $dom_element->namespaceURI;
+			}
 
-		foreach ($dom_element->childNodes as $key=>$dom_child_elemement)
-		{	// add content and children
-			$element_type = $dom_child_elemement->nodeType;
-			switch ($element_type) 
-			{
-				case XML_TEXT_NODE: // add content to the node
-					$element_value = $dom_child_elemement->nodeValue;
-					if(!empty(trim($element_value)))
-					{ // to avoid spaces and line breaks
-						$svg_object->textContent = $element_value;
-					}
-					break;
-				case XML_ELEMENT_NODE: // process as a child
-					self::constructMultidimensionalAssociativeArrayFromXml($dom_child_elemement,$array_svg_objects['children'][$key]); // recursion
-					break;
+			foreach ($dom_element->attributes as $attribute)
+			{	// populate attributes
+				$attribute_name = $attribute->nodeName;
+				$attribute_value = $attribute->nodeValue;
+				$svg_object->$attribute_name = $attribute_value;
+			}
+
+			foreach ($dom_element->childNodes as $key=>$dom_child_elemement)
+			{	// add content and children
+				$element_type = $dom_child_elemement->nodeType;
+				switch ($element_type) 
+				{
+					case XML_TEXT_NODE: // add content to the node
+						$element_value = $dom_child_elemement->nodeValue;
+						if(!empty(trim($element_value)))
+						{ // to avoid spaces and line breaks
+							$svg_object->textContent = $element_value;
+						}
+						break;
+					case XML_ELEMENT_NODE: // process as a child
+						self::constructMultidimensionalAssociativeArrayFromXml($dom_child_elemement,$array_svg_objects['children'][$key]); // recursion
+						break;
+				}
 			}
 		}
 	}
-}
 
 	/**
 	 * Recursively appends the children to the SVGObjects being processed.
