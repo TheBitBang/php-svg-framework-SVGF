@@ -29,18 +29,4 @@ trait SVGElement {
 		return $this->id->getDOMString();
 	}
 
-	public function setXMLBase($xml_base = '')
-	{
-		if (!array_key_exists('xml', $this->array_attributes_in_namespaces))
-		{	// create namespace if it does not exists
-			$this->array_attributes_in_namespaces['xml']= array();
-		}
-		$this->array_attributes_in_namespaces['xml'] = new DOMString($xml_base);
-		$this->setAttribute('xml:base',$xml_base); // set attribute in DOM
-	}
-
-	public function getXMLBase()
-	{
-		return $this->array_attributes_in_namespaces['xml']->getDOMString(); // no need to check if it exists since it should always be set
-	}
 }
