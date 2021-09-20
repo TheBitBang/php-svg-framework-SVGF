@@ -42,7 +42,7 @@ class SVGFAlign {
 			case 'tspan':
 				$bbox_element_static = new SVGFObjectBoxTSpanElement($svg_element_static);
 				break;
-			case 'tspan':
+			case 'image':
 				$bbox_element_static = new SVGFObjectBoxImageElement($svg_element_static);
 				break;
 		}
