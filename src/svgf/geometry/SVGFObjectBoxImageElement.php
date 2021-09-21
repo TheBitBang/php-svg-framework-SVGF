@@ -23,13 +23,23 @@ class SVGFObjectBoxImageElement extends SVGFObjectBox {
 
 		$this->element_name = $obj_svg->nodeName;
 
-		// get the dimensions of the image
-		$width = getimagesize ($obj_svg->getHref())[0]; // read image width;
-		$height = getimagesize ($obj_svg->getHref())[1]; // read image height;
-		$aspect_ratio = $width / $height;
+		$image_extension = pathinfo($obj_svg->getHref(), PATHINFO_EXTENSION);
+		$is_svg_image = strtolower($image_extension) == 'svg';
+
+		if ($is_svg_image) {
+			$width = $obj_svg->getWidth();
+			$height = $obj_svg->getHeight();
+			$aspect_ratio = $width / $height;
+		} else {
+			// get the dimensions of the image (png, jpg, etc.)
+			$width = getimagesize ($obj_svg->getHref())[0]; // read image width;
+			$height = getimagesize ($obj_svg->getHref())[1]; // read image height;
+			$aspect_ratio = $width / $height;
+		}
 
 		$is_width_definied = $obj_svg->getWidth() != "";
 		$is_height_definied = $obj_svg->getHeight() != "";
+
 		if ($is_width_definied & !$is_height_definied)
 		{
 			$width = $obj_svg->getWidth();
